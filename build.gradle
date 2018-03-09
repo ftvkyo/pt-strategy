@@ -1,7 +1,8 @@
-group 'org.ftvkyo2011.mipt.pt-strategy'
+group 'org.ftvkyo2011.pt-strategy'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'Game'
 
 sourceCompatibility = 1.8
 
