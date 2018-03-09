@@ -2,6 +2,11 @@
 
 ### Семестровое задание по предмету "Технологии программирования"
 
+### Dependencies:
+* JDK 8 (JDK 9 не поддерживается этим Gradle)
+* Gradle (Gradle wrapper will install it automatically)
+* LWJGL (Gradle will install it automatially)
+
 #### Основная информация
 Для независимости от IntelliJ IDEA IDE используется система сборки
 Gradle. Ее файлы:
