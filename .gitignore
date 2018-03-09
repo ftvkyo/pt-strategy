@@ -3,6 +3,8 @@
 /build/
 /out/
 
+pt-strategy.iml
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
