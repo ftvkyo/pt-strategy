@@ -12,7 +12,7 @@
 * If you don't have write access in this repo, you should make
 a pull request to the `dev` branch.
 
-## Как участвоать тем, у кого есть доступ на запись:
+## Как участвовать тем, у кого есть доступ на запись:
 ##### Тыканье кода
 1) Склонируйте репозиторий
 2) Перейдите в ветку origin/dev `git checkout origin/dev`
