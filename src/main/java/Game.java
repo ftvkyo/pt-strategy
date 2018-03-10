@@ -15,6 +15,7 @@ public class Game {
     private long window;
 
     private void run() {
+        System.out.println(System.getProperty("java.library.path"));
         System.out.println("LWJGL Version " + Version.getVersion() + " is working.");
 
         init();
