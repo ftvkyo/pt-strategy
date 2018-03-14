@@ -21,5 +21,5 @@ public interface IUnit {
     void changeMovePoints(int n) throws NotEnoughPointsException;
 
     void attackUnit(IUnit otherUnit);
-    void death(IUnit unit);
+    //TODO: void death(IUnit unit);
 }

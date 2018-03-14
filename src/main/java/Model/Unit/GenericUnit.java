@@ -66,4 +66,5 @@ public class GenericUnit implements IUnit {
     public ArrayList<IItem> getInventory() { return (ArrayList<IItem>) inventory.clone(); }
     public void addItem(IItem item) { inventory.add(item); }
     public void removeItem(int n) { inventory.remove(n); }
+
 }
