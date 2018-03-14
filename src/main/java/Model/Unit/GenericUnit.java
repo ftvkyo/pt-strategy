@@ -3,15 +3,17 @@ package Model.Unit;
 import java.util.ArrayList;
 
 import Model.Item.IItem;
+import Model.Player;
 
 public class GenericUnit implements IUnit {
-    private ArrayList<IItem> items;
+    Player owner;
+    private ArrayList<IItem> inventory;
 
     GenericUnit() {
-        items = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
-    public ArrayList<IItem> getItems() { return (ArrayList<IItem>) items.clone(); }
-    public void addItem(IItem item) { items.add(item); }
-    public void removeItem(int n) { items.remove(n); }
+    public ArrayList<IItem> getInventory() { return (ArrayList<IItem>) inventory.clone(); }
+    public void addItem(IItem item) { inventory.add(item); }
+    public void removeItem(int n) { inventory.remove(n); }
 }
