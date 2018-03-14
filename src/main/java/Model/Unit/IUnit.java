@@ -12,7 +12,7 @@ public interface IUnit {
     void restoreAllPoints();
 
     int  getHealthPoints();
-    void changeHealthPoints(int n) throws NotEnoughPointsException;
+    void changeHealthPoints(int n);
 
     int  getActionPoints();
     void changeActionPoints(int n) throws NotEnoughPointsException;
@@ -21,4 +21,5 @@ public interface IUnit {
     void changeMovePoints(int n) throws NotEnoughPointsException;
 
     void attackUnit(IUnit otherUnit);
+    //TODO: void death(IUnit unit);
 }
