@@ -15,7 +15,10 @@ public class ArcherUnit extends GenericUnit {
         }
 
         public void setDefaults() {
-
+            setActionPointsMax(10);
+            setHealthPointsMax(100);
+            setMovePointsMax(10);
+            setDamagePoints(15);
         }
     }
 }

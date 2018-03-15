@@ -15,7 +15,10 @@ public class CavalryUnit extends GenericUnit {
         }
 
         public void setDefaults() {
-
+            setActionPointsMax(10);
+            setHealthPointsMax(100);
+            setMovePointsMax(20);
+            setDamagePoints(20);
         }
     }
 }

@@ -15,7 +15,10 @@ public class InfantryUnit extends GenericUnit {
         }
 
         public void setDefaults() {
-
+            setActionPointsMax(10);
+            setHealthPointsMax(100);
+            setMovePointsMax(15);
+            setDamagePoints(15);
         }
     }
 }
