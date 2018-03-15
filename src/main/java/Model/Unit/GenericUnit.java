@@ -8,17 +8,17 @@ import Model.Item.IItem;
 import Model.Player;
 import com.sun.istack.internal.NotNull;
 
-public class GenericUnit {
+public class GenericUnit implements IUnit{
     Player owner;
 
     private ArrayList<IItem> items;
-    int healthPointsMax;
-    int healthPointsCurrent;
-    int actionPointsMax;
-    int actionPointsCurrent;
-    int movePointsMax;
-    int movePointsCurrent;
-    int damagePoints;
+    private int healthPointsMax;
+    private int healthPointsCurrent;
+    private int actionPointsMax;
+    private int actionPointsCurrent;
+    private int movePointsMax;
+    private int movePointsCurrent;
+    private int damagePoints;
 
     private ArrayList<IItem> inventory;
 
@@ -68,18 +68,18 @@ public class GenericUnit {
         }
         this.actionPointsCurrent = 0;
         try {
-            otherUnit.recieveDamage(this);
+            otherUnit.receiveDamage(this);
         } catch (UnitDiedException ex) {
             throw new UnitDiedException(otherUnit);
         }
         try {
-            this.recieveDamage(otherUnit);
+            this.receiveDamage(otherUnit);
         } catch (UnitDiedException ex) {
             throw new UnitDiedException(this);
         }
     }
 
-    private void recieveDamage(@NotNull GenericUnit attackingUnit) throws UnitDiedException {
+    public void receiveDamage(@NotNull GenericUnit attackingUnit) throws UnitDiedException {
         if(this.healthPointsCurrent - attackingUnit.damagePoints <= 0) {
             throw new UnitDiedException();
         }
