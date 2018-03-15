@@ -1,9 +1,15 @@
 package Model.Unit;
 
-public class CavalryUnit extends GenericUnit implements IUnit {
+import Model.Player;
+
+public class CavalryUnit extends GenericUnit {
     //
 
-    public class UnitMaker extends GenericUnit.GenericUnitMaker implements IUnitMaker {
+    public class UnitMaker extends GenericUnit.GenericUnitMaker {
+        public UnitMaker(Player owner) {
+            super(owner);
+        }
+
         public void setInventory() {
 
         }
