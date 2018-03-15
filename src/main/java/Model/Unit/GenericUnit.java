@@ -8,18 +8,16 @@ import Model.Item.IItem;
 import Model.Player;
 import com.sun.istack.internal.NotNull;
 
-
 public class GenericUnit {
     Player owner;
 
     private ArrayList<IItem> items;
     int healthPointsMax;
     int healthPointsCurrent;
-    int actionPointsCurrent;
     int actionPointsMax;
+    int actionPointsCurrent;
     int movePointsMax;
     int movePointsCurrent;
-    int attackPoints;
     int damagePoints;
 
     private ArrayList<IItem> inventory;
@@ -30,6 +28,8 @@ public class GenericUnit {
 
     public void restoreAllPoints() {
         healthPointsCurrent = healthPointsMax;
+        actionPointsCurrent = actionPointsMax;
+        movePointsCurrent = movePointsMax;
     }
 
     public int getHealthPoints() {
@@ -37,9 +37,6 @@ public class GenericUnit {
     }
 
     public void changeHealthPoints(int n) {
-        if(healthPointsCurrent + n <= 0) {
-            //TODO: implement death
-        }
         healthPointsCurrent = Math.min(healthPointsCurrent + n, healthPointsMax);
     };
 
@@ -65,7 +62,11 @@ public class GenericUnit {
         movePointsCurrent = Math.min(movePointsCurrent + n, movePointsMax);
     }
 
-    public void attackUnit(GenericUnit otherUnit) throws UnitDiedException {
+    public void attackUnit(GenericUnit otherUnit) throws UnitDiedException, NotEnoughPointsException {
+        if(this.actionPointsCurrent <= 0) {
+            throw new NotEnoughPointsException("You cant attack on this turn.");
+        }
+        this.actionPointsCurrent = 0;
         try {
             otherUnit.recieveDamage(this);
         } catch (UnitDiedException ex) {
