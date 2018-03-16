@@ -2,14 +2,13 @@ package Model.Unit;
 
 import java.util.ArrayList;
 
-import Model.Exceptions.NotEnoughPointsException;
-import Model.Exceptions.UnitDiedException;
 import Model.Item.IItem;
 import Model.Player;
-import com.sun.istack.internal.NotNull;
 
-public class GenericUnit implements IUnit{
-    Player owner;
+class GenericUnit implements IUnit {
+    private Player owner;
+
+    private UnitCondition condition;
 
     private ArrayList<IItem> items;
     private int healthPointsMax;
@@ -24,12 +23,33 @@ public class GenericUnit implements IUnit{
 
     GenericUnit() {
         inventory = new ArrayList<>();
+        condition = UnitCondition.ALIVE;
+    }
+
+    void setMaxHealthPoints(int pts) {
+        healthPointsMax = pts;
+    }
+
+    void setMaxMovePoints(int pts) {
+        movePointsMax = pts;
+    }
+
+    void setMaxActionPoints(int pts) {
+        actionPointsMax = pts;
+    }
+
+    void setDamagePoints(int pts) {
+        damagePoints = pts;
+    }
+
+    public boolean isDead() {
+        return condition == UnitCondition.DEAD;
     }
 
     public void restoreAllPoints() {
         healthPointsCurrent = healthPointsMax;
         actionPointsCurrent = actionPointsMax;
-        movePointsCurrent = movePointsMax;
+        movePointsCurrent   = movePointsMax;
     }
 
     public int getHealthPoints() {
@@ -48,9 +68,9 @@ public class GenericUnit implements IUnit{
         return damagePoints;
     }
 
-    public void changeActionPoints(int n) throws NotEnoughPointsException {
+    public void changeActionPoints(int n) {
         if(actionPointsCurrent + n < 0) {
-            throw new NotEnoughPointsException("That unit has not enough Action Points.");
+            //TODO: return NOT_ENOUGH_POINTS
         }
         actionPointsCurrent = Math.min(actionPointsCurrent + n, actionPointsMax);
     }
@@ -59,39 +79,31 @@ public class GenericUnit implements IUnit{
         healthPointsCurrent = Math.min(healthPointsCurrent + n, healthPointsMax);
     }
 
-    public void changeMovePoints(int n) throws NotEnoughPointsException {
+    public void changeMovePoints(int n) {
         if(movePointsCurrent + n < 0) {
-            throw new NotEnoughPointsException("That unit has not enough Move Points.");
+            //TODO: return NOT_ENOUGH_POINTS
         }
         movePointsCurrent = Math.min(movePointsCurrent + n, movePointsMax);
     }
 
-    public void setDamagePoints(int n) {
-        this.damagePoints = n;
-    }
-
-    public void attackUnit(GenericUnit otherUnit) throws UnitDiedException, NotEnoughPointsException {
+    public void attackUnit(IUnit otherUnit) {
         if(this.actionPointsCurrent <= 0) {
-            throw new NotEnoughPointsException("You cant attack on this turn.");
+            //TODO: return NOT_ENOUGH_POINTS
         }
         this.actionPointsCurrent = 0;
-        try {
-            otherUnit.receiveDamage(this);
-        } catch (UnitDiedException ex) {
-            throw new UnitDiedException(otherUnit);
-        }
-        try {
-            this.receiveDamage(otherUnit);
-        } catch (UnitDiedException ex) {
-            throw new UnitDiedException(this);
+
+        otherUnit.receiveDamage(this.damagePoints);
+
+        if(! otherUnit.isDead()) {
+            this.receiveDamage(otherUnit.getDamagePoints());
         }
     }
 
-    public void receiveDamage(@NotNull GenericUnit attackingUnit) throws UnitDiedException {
-        if(this.getHealthPoints() - attackingUnit.getDamagePoints() <= 0) {
-            throw new UnitDiedException();
+    public void receiveDamage(int damage) {
+        if(this.getHealthPoints() - damage <= 0) {
+            this.condition = UnitCondition.DEAD;
         }
-        this.changeHealthPoints(-attackingUnit.getDamagePoints());
+        this.changeHealthPoints(-damage);
     }
 
     public ArrayList<IItem> getInventory() {
@@ -106,37 +118,23 @@ public class GenericUnit implements IUnit{
         inventory.remove(n);
     }
 
-    public class GenericUnitMaker implements IUnitMaker {
-        Player owner;
+    abstract class GenericUnitMaker {
         GenericUnit unit;
-
-        public GenericUnitMaker(Player owner) {
-            this.owner = owner;
-        }
 
         public void createUnit() {
             unit = new GenericUnit();
         }
 
-        public void setOwner() {
-            unit.owner = this.owner;
+        public void setOwner(Player owner) {
+            unit.owner = owner;
         }
+
+        abstract void setInventory();
+
+        abstract void setDefaults();
 
         public GenericUnit getUnit() {
             return unit;
-        }
-
-        public void setHealthPointsMax(int n) {
-            healthPointsMax = n;
-        }
-        public void setActionPointsMax(int n) {
-            actionPointsMax = n;
-        }
-        public void setMovePointsMax(int n) {
-            movePointsMax = n;
-        }
-        public void setDamagePoints(int n) {
-            damagePoints = n;
         }
     }
 }
