@@ -187,9 +187,7 @@ class GenericUnit implements IUnit {
         /**
          * First method to be called in the UnitBuilder class.
          */
-        public void createUnit() {
-            unit = new GenericUnit();
-        }
+        abstract void createUnit();
 
 
         /**

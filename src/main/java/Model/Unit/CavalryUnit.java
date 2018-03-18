@@ -6,6 +6,12 @@ import Model.Player;
 class CavalryUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
+
+        public void createUnit() {
+            unit = new CavalryUnit();
+        }
+
+
         public void setInventory() {
             //unit.addItem(something);
         }

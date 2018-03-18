@@ -5,15 +5,28 @@ import Model.Unit.IUnit;
 
 import java.util.ArrayList;
 
-public class Landscape implements ILandscape {
+abstract public class GenericLandscape {
 
-    Type type;
+    /**
+     * Action Points to move to this Landscape
+     */
+    private int passableness;
 
 
     private IUnit unit;
 
 
     private ArrayList<IItem> items;
+
+
+    void setPassableness(int p) {
+        passableness = p;
+    }
+
+
+    public int getPassableness() {
+        return passableness;
+    }
 
 
     public void setUnit(IUnit un) {
@@ -26,9 +39,10 @@ public class Landscape implements ILandscape {
     }
 
 
-    public void moveUnit(ILandscape l) {
-        l.setUnit(this.unit);
-        this.unit = null;
+    public void swapUnit(GenericLandscape l) {
+        IUnit tmp = l.getUnit();
+        l.setUnit(this.getUnit());
+        this.setUnit(tmp);
     }
 
 
@@ -44,5 +58,11 @@ public class Landscape implements ILandscape {
 
     public void removeItem(int n) {
         items.remove(n);
+    }
+
+
+    abstract public static class GenericLandscapeFactory {
+
+        abstract public GenericLandscape createInstance();
     }
 }
