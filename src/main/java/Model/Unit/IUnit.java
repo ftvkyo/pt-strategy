@@ -12,10 +12,8 @@ public interface IUnit {
     void restoreAllPoints();
     void changeHealthPoints(int n);
     void changeActionPoints(int n);
-    void changeMovePoints(int n);
 
     int  getHealthPoints();
-    int  getMovePoints();
     int  getActionPoints();
     int  getDamagePoints();
 

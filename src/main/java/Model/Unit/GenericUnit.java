@@ -15,8 +15,6 @@ class GenericUnit implements IUnit {
     private int healthPointsCurrent;
     private int actionPointsMax;
     private int actionPointsCurrent;
-    private int movePointsMax;
-    private int movePointsCurrent;
     private int damagePoints;
 
     private ArrayList<IItem> inventory;
@@ -28,10 +26,6 @@ class GenericUnit implements IUnit {
 
     void setMaxHealthPoints(int pts) {
         healthPointsMax = pts;
-    }
-
-    void setMaxMovePoints(int pts) {
-        movePointsMax = pts;
     }
 
     void setMaxActionPoints(int pts) {
@@ -49,7 +43,6 @@ class GenericUnit implements IUnit {
     public void restoreAllPoints() {
         healthPointsCurrent = healthPointsMax;
         actionPointsCurrent = actionPointsMax;
-        movePointsCurrent   = movePointsMax;
     }
 
     public int getHealthPoints() {
@@ -58,10 +51,6 @@ class GenericUnit implements IUnit {
 
     public int getActionPoints() {
         return actionPointsCurrent;
-    }
-
-    public int getMovePoints() {
-        return movePointsCurrent;
     }
 
     public int getDamagePoints() {
@@ -79,12 +68,6 @@ class GenericUnit implements IUnit {
         healthPointsCurrent = Math.min(healthPointsCurrent + n, healthPointsMax);
     }
 
-    public void changeMovePoints(int n) {
-        if(movePointsCurrent + n < 0) {
-            //TODO: return NOT_ENOUGH_POINTS
-        }
-        movePointsCurrent = Math.min(movePointsCurrent + n, movePointsMax);
-    }
 
     public void attackUnit(IUnit otherUnit) {
         if(this.actionPointsCurrent <= 0) {
