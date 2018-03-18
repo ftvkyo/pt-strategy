@@ -17,6 +17,10 @@ public interface IUnit {
 
 
     /**
+     * Restore value of Action Points.
+     */
+    void restoreActionPoints();
+    /**
      * Change (increase or decrease) amount of Health Points.
      * @param n Positive or negative delta for changing Health Points
      * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
@@ -34,21 +38,21 @@ public interface IUnit {
 
     /**
      * Getter for Health Points.
-     * @return current Health Points amount.
+     * @return current Health Points amount
      */
     int getHealthPoints();
 
 
     /**
      * Getter for Action Points.
-     * @return current Action Points amount.
+     * @return current Action Points amount
      */
     int getActionPoints();
 
 
     /**
      * Getter for DamagePoints.
-     * @return Damage Points amount.
+     * @return Damage Points amount
      */
     int getDamagePoints();
 
@@ -77,14 +81,14 @@ public interface IUnit {
 
     /**
      * Add item to the inventory of this Unit.
-     * @param item Item that will be added.
+     * @param item Item that will be added
      */
     void addItem(GenericItem item);
 
 
     /**
      * Remove item from this unit inventory.
-     * @param n Position (in inventory) of the item that will be removed.
+     * @param n Position (in inventory) of the item that will be removed
      */
     void removeItem(int n);
 }

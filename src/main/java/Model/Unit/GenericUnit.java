@@ -120,6 +120,11 @@ class GenericUnit implements IUnit {
     }
 
 
+    public void restoreActionPoints() {
+        actionPointsCurrent = actionPointsMax;
+    }
+
+
     public int getHealthPoints() {
         return healthPointsCurrent;
     }
