@@ -1,12 +1,11 @@
 package Model.Unit;
 
-import Model.Item.IItem;
+import Model.Item.GenericItem;
 
 import java.util.ArrayList;
 
 
 public interface IUnit {
-    enum UnitCondition { ALIVE, DEAD }
     enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, DEAD }
 
 
@@ -65,14 +64,14 @@ public interface IUnit {
      * Get inventory of this Unit.
      * @return Inventory
      */
-    ArrayList<IItem> getItems();
+    ArrayList<GenericItem> getItems();
 
 
     /**
      * Add item to the inventory of this Unit.
      * @param item Item that will be added.
      */
-    void addItem(IItem item);
+    void addItem(GenericItem item);
 
 
     /**

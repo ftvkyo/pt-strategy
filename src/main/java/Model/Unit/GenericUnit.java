@@ -2,7 +2,7 @@ package Model.Unit;
 
 import java.util.ArrayList;
 
-import Model.Item.IItem;
+import Model.Item.GenericItem;
 import Model.Player;
 
 
@@ -62,7 +62,7 @@ class GenericUnit implements IUnit {
     /**
      * Inventory of the Unit.
      */
-    private ArrayList<IItem> items;
+    private ArrayList<GenericItem> items;
 
 
     /**
@@ -154,12 +154,12 @@ class GenericUnit implements IUnit {
     }
 
 
-    public ArrayList<IItem> getItems() {
-        return (ArrayList<IItem>) items.clone();
+    public ArrayList<GenericItem> getItems() {
+        return (ArrayList<GenericItem>) items.clone();
     }
 
 
-    public void addItem(IItem item) {
+    public void addItem(GenericItem item) {
         items.add(item);
     }
 

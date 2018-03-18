@@ -1,6 +1,6 @@
 package Model.Landscape;
 
-import Model.Item.IItem;
+import Model.Item.GenericItem;
 import Model.Unit.IUnit;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ abstract public class GenericLandscape {
     private IUnit unit;
 
 
-    private ArrayList<IItem> items;
+    private ArrayList<GenericItem> items;
 
 
     void setPassableness(int p) {
@@ -46,13 +46,13 @@ abstract public class GenericLandscape {
     }
 
 
-    public void addItem(IItem item) {
+    public void addItem(GenericItem item) {
         items.add(item);
     }
 
 
-    public ArrayList<IItem> getItems() {
-        return (ArrayList<IItem>) items.clone();
+    public ArrayList<GenericItem> getItems() {
+        return (ArrayList<GenericItem>) items.clone();
     }
 
 
