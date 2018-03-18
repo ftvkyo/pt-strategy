@@ -17,15 +17,15 @@ public interface IUnit {
 
     /**
      * Change (increase or decrease) amount of Health Points.
-     * @param n Positive or negative delta for Health Points
+     * @param n Positive or negative delta for changing Health Points
      * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
      */
     ActionResult changeHealthPoints(int n);
 
 
     /**
-     * Change (increase or decrease_ amount Action Points.
-     * @param n Positive or negative delta for Action Points
+     * Change (increase or decrease) amount of Action Points.
+     * @param n Positive or negative delta for changing Action Points
      * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
      */
     ActionResult changeActionPoints(int n);

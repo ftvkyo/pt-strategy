@@ -12,8 +12,8 @@ import Model.Player;
  * not intended to be used not from package.
  *
  * Particularly methods for correct implementation of Builder Design Pattern.
- * It means, that some fields of object will not be editable outside the package, for example
- * maximal values of *Points and damage of the unit.
+ * It means that some fields of object will not be editable outside the package, for example
+ * maximal values of *Points and damage of the Unit.
  */
 class GenericUnit implements IUnit {
 
@@ -48,7 +48,7 @@ class GenericUnit implements IUnit {
 
 
     /**
-     * Damage that the Unit deal to other units during attack.
+     * Damage that the Unit does to other units during attack.
      */
     private int damagePoints;
 
@@ -75,28 +75,28 @@ class GenericUnit implements IUnit {
 
     /**
      * Change maximum value of Health Points.
-     * @param pts New maximum value for Health Points
+     * @param maxHealthPoints New maximum value for Health Points
      */
-    void setMaxHealthPoints(int pts) {
-        healthPointsMax = pts;
+    void setMaxHealthPoints(int maxHealthPoints) {
+        healthPointsMax = maxHealthPoints;
     }
 
 
     /**
      * Change maximum value of Action Points
-     * @param pts New maximum value for Action Points
+     * @param maxActionPoints New maximum value for Action Points
      */
-    void setMaxActionPoints(int pts) {
-        actionPointsMax = pts;
+    void setMaxActionPoints(int maxActionPoints) {
+        actionPointsMax = maxActionPoints;
     }
 
 
     /**
      * Change maximum value of Damage Points
-     * @param pts New maximum value for Damage Points
+     * @param damagePoints New maximum value for Damage Points
      */
-    void setDamagePoints(int pts) {
-        damagePoints = pts;
+    void setDamagePoints(int damagePoints) {
+        this.damagePoints = damagePoints;
     }
 
 
@@ -147,7 +147,7 @@ class GenericUnit implements IUnit {
 
         ActionResult firstAttackResult = otherUnit.changeHealthPoints(-this.damagePoints);
 
-        if((firstAttackResult != ActionResult.DEAD) || this.canIgnoreCounterAttack) {
+        if(!(firstAttackResult == ActionResult.DEAD) && !(this.canIgnoreCounterAttack)) {
             this.changeHealthPoints(-otherUnit.getDamagePoints());
         }
         return ActionResult.SUCCESS;
