@@ -22,6 +22,8 @@ class ArcherUnit extends GenericUnit {
             unit.setMaxHealthPoints(70);
             unit.setMaxActionPoints(10);
 
+            unit.setCanIgnoreCounterAttack(true);
+
             unit.restoreAllPoints();
         }
     }

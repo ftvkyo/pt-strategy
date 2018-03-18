@@ -22,6 +22,8 @@ class CavalryUnit extends GenericUnit {
             unit.setMaxHealthPoints(120);
             unit.setMaxActionPoints(14);
 
+            unit.setCanIgnoreCounterAttack(false);
+
             unit.restoreAllPoints();
         }
     }
