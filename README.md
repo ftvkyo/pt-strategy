@@ -2,10 +2,12 @@
 
 ### Семестровое задание по предмету "Технологии программирования"
 
-### Dependencies:
+**У этого репозитория есть раздел Wiki с дополнительной информацией.**
+
+### Dependencies (зависимости):
 * JDK 8 (JDK 9 не поддерживается этим Gradle)
-* Gradle (Gradle wrapper will install it automatically)
-* LWJGL (Gradle will install it automatially)
+* Gradle (Gradlew установит ее автоматически)
+* LWJGL (Gradlew установит ее автоматически)
 
 #### Основная информация
 Для независимости от IntelliJ IDEA IDE используется система сборки
@@ -43,12 +45,14 @@ CRLF на LF переносы строк при pull.
 ./gradlew run
 ```
 
-Gradle автоматически загрузит зависимость -
-библиотеку `LWJGL` - в свой кеш в домашней папке текущего пользователя.
-После этого он запустит сборку, могут появиться директории `build` и/или `out`,
-а потом Gradle запустит программу.
-Точкой входа является метод `main` из класса `Main`, это указано в инструкциях
-сборки в `build.gradle`: `mainClassName = 'Main'`.
+Gradle автоматически загрузит зависимость - библиотеку `LWJGL` -
+в свой кеш в домашней папке текущего пользователя. После этого он запустит
+сборку, могут появиться директории `build` и/или `out`, а потом Gradle
+запустит программу. Точкой входа является метод `main` из класса `Main`,
+это указано в инструкциях сборки в `build.gradle`: `mainClassName = 'Main'`.
+
+Мы изменили конфигурационный файл Gradle так, чтобы библиотека `LWJGL`
+правильно загружалась и на Linux и на Windows.
 
 
 #### Запуск тестов:
@@ -58,29 +62,19 @@ Gradle автоматически загрузит зависимость -
 ./gradlew test
 ```
 
+Если Gradle не написал об ошибках - значит все тесты выполнились успешно.
+
 
 #### Дополнительные инструкции:
 * Чтобы собрать программу на Ubuntu, требуется установить
 пакет `openjdk-8-jdk`.
-* Чтобы добавить проект под контроль IntelliJ IDEA
-(версия без встроенного JDK) вам нужно:
-    1) Открыть папку с проектом, не изменяя стандартные параметры.
-    2) Если IDEA выдает ошибку на стандартные классы Java, вам нужно зайти
-    в File -> Project Structure -> SDKs и добавить там openjdk-8 заново.
-    После этого нужно там же выбрать пункт Project и изменить JDK
-    на вновь добавленный. После индексирования все заработает.
-    3) Чтобы собрать проект, нужно создать цель для сборки. В правом верхнем
-    углу в выпадающем списке выбрать "Edit Configurations" и создать
-    конфигурацию Application. В ней прописать параметры Main class: `Main`,
-    Use classpath or module: `pt-strategy_main`.
-* Чтобы запустить тесты в IntelliJ IDEA достаточно открыть файл
-с тестами и нажать стрелочку напротив класса тестов или конкретного
-интересующего вас теста. Конфигурация тестов Junit для этого класса тестов/теста
-автоматически появится в выпадающем меню справа сверху среди возможных способов
-запуска.
+* На Windows тоже понадобится 8 версия JDK.
+* **Остальные инструкции можно найти в разделе Wiki на гитхабе.**
 
 
 #### Ссылки
-* [Концепция](https://docs.google.com/document/d/e/2PACX-1vSpHRiPfLlqVUm37otCjSqb913a2Rj6wKtj59bPCHMOy2IUX041F3jNrHfqbqNyguhXppTrVQphbS43/pub)
-* [Техническое задание](https://docs.google.com/document/d/e/2PACX-1vQM3NRpSZ0w1k_juJK0osW2sz-D8cKg0Lm-9CzF7Vcr4Iquctj_FX4qmdZEONR3xDyRBMt_i7b5aspf/pub)
-* [Диаграммы](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Diagrams#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D17TI6yRmGKrILYu83-H9geccFlDeuWDhf%26export%3Ddownload)
+* Какая-то [Концепция](https://docs.google.com/document/d/e/2PACX-1vSpHRiPfLlqVUm37otCjSqb913a2Rj6wKtj59bPCHMOy2IUX041F3jNrHfqbqNyguhXppTrVQphbS43/pub)
+* Попытка [Техническое задание](https://docs.google.com/document/d/e/2PACX-1vQM3NRpSZ0w1k_juJK0osW2sz-D8cKg0Lm-9CzF7Vcr4Iquctj_FX4qmdZEONR3xDyRBMt_i7b5aspf/pub)
+* Устаревшие [Диаграммы](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Diagrams#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D17TI6yRmGKrILYu83-H9geccFlDeuWDhf%26export%3Ddownload),
+которые мы рисовали в начале разработки проекта.
+Потом будут подкорректированы под новую версию.
