@@ -2,7 +2,7 @@ group 'org.ftvkyo2011.pt-strategy'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
-mainClassName = 'Game'
+mainClassName = 'Main'
 
 sourceCompatibility = 1.8
 
@@ -10,8 +10,14 @@ repositories {
     mavenCentral()
 }
 
+
+import org.apache.tools.ant.taskdefs.condition.Os
 project.ext.lwjglVersion = "3.1.6"
 project.ext.lwjglNatives = "natives-linux"
+if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    project.ext.lwjglNatives = "natives-windows"
+}
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
