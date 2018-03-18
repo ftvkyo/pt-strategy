@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 
 public interface IUnit {
-    enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, DEAD }
+    enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, UNIT_DIED }
+    enum AttackResult { NOBODY_DIED, ATTACKER_DIED, DEFENDER_DIED }
 
 
     /**
@@ -55,9 +56,9 @@ public interface IUnit {
     /**
      * Method for attacking other unit
      * @param otherUnit other unit.
-     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     * @return AttackResult.NOBODY_DIED or AttackResult.ATTACKER_DIED or AttackResult.DEFENDER_DIED
      */
-    ActionResult attackUnit(IUnit otherUnit);
+    AttackResult attackUnit(IUnit otherUnit);
 
 
     /**

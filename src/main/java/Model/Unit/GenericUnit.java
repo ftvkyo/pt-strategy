@@ -132,25 +132,46 @@ class GenericUnit implements IUnit {
 
     public ActionResult changeHealthPoints(int n) {
         if(healthPointsCurrent + n < 0) {
-            return ActionResult.DEAD;
+            return ActionResult.UNIT_DIED;
         }
         healthPointsCurrent = Math.min(Math.max(healthPointsCurrent + n, 0), healthPointsMax);
         return ActionResult.SUCCESS;
     }
 
 
-    public ActionResult attackUnit(IUnit otherUnit) {
+    /**
+     * Estimate whether Unit is able to attack
+     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     */
+    ActionResult ableToAttack() {
         if(this.actionPointsCurrent <= 0) {
             return ActionResult.NOT_ENOUGH_POINTS;
         }
-        this.actionPointsCurrent = 0;
-
-        ActionResult firstAttackResult = otherUnit.changeHealthPoints(-this.damagePoints);
-
-        if(!(firstAttackResult == ActionResult.DEAD) && !(this.canIgnoreCounterAttack)) {
-            this.changeHealthPoints(-otherUnit.getDamagePoints());
-        }
         return ActionResult.SUCCESS;
+    }
+
+
+    public AttackResult attackUnit(IUnit otherUnit) {
+        if(this.ableToAttack() == ActionResult.NOT_ENOUGH_POINTS) {
+            return AttackResult.NOBODY_DIED;
+        } else {
+            this.actionPointsCurrent = 0;
+
+            ActionResult outcomingAttackResult = otherUnit.changeHealthPoints(-this.damagePoints);
+
+            if(outcomingAttackResult == ActionResult.UNIT_DIED) {
+                return AttackResult.DEFENDER_DIED;
+            }
+
+            if(!this.canIgnoreCounterAttack) {
+                ActionResult incomingAttackResult = this.changeHealthPoints(-otherUnit.getDamagePoints());
+                if(incomingAttackResult == ActionResult.UNIT_DIED) {
+                    return AttackResult.ATTACKER_DIED;
+                }
+            }
+
+            return AttackResult.NOBODY_DIED;
+        }
     }
 
 
