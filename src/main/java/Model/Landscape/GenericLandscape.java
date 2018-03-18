@@ -8,26 +8,26 @@ import java.util.ArrayList;
 abstract public class GenericLandscape {
 
     /**
-     * Action Points to move to this Landscape
+     * Action Points needed to step on this Landscape.
      */
     private int passableness;
 
 
     /**
-     *
+     * Unit on current Landscape.
      */
     private IUnit unit;
 
 
     /**
-     *
+     * Items on current Landscape.
      */
     private ArrayList<GenericItem> items;
 
 
     /**
-     *
-     * @param p
+     * Setter for passableness of Landscape.
+     * @param p Positive delta for passableness of Landscape
      */
     void setPassableness(int p) {
         passableness = p;
@@ -35,8 +35,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @return
+     * Getter for passableness of Landscape.
+     * @return passableness of Landscape
      */
     public int getPassableness() {
         return passableness;
@@ -44,8 +44,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @param un
+     * Method for putting Unit on this Landscape.
+     * @param un Unit to put on this Landscape
      */
     public void setUnit(IUnit un) {
         this.unit = un;
@@ -53,8 +53,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @return
+     * Method for getting Unit on this Landscape.
+     * @return Unit on this Landscape
      */
     public IUnit getUnit() {
         return this.unit;
@@ -62,8 +62,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @param l
+     * Method for swapping Units (on this Landscape and on Landscape l).
+     * @param l second Landscape for swapping Units
      */
     public void swapUnit(GenericLandscape l) {
         IUnit tmp = l.getUnit();
@@ -73,8 +73,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @param item
+     * Method to add Item on this Landscape.
+     * @param item Item to put on this Landscape
      */
     public void addItem(GenericItem item) {
         items.add(item);
@@ -82,8 +82,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @return
+     * Method for getting Items on this Landscape.
+     * @return copy of the inventory of the Unit
      */
     public ArrayList<GenericItem> getItems() {
         return (ArrayList<GenericItem>) items.clone();
@@ -91,8 +91,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
-     * @param n
+     * Method to remove n-th Item from this Landscape.
+     * @param n number of the Item to remove
      */
     public void removeItem(int n) {
         items.remove(n);
@@ -100,13 +100,13 @@ abstract public class GenericLandscape {
 
 
     /**
-     *
+     * Class for Factory Method Design Pattern.
      */
     abstract public static class GenericLandscapeFactory {
 
         /**
-         *
-         * @return
+         * Factory method.
+         * @return newly generated Landscape object
          */
         abstract public GenericLandscape createInstance();
     }
