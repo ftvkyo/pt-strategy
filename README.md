@@ -51,6 +51,14 @@ Gradle автоматически загрузит зависимость -
 сборки в `build.gradle`: `mainClassName = 'Main'`.
 
 
+#### Запуск тестов:
+Для этого достаточно запустить:
+
+```bash
+./gradlew test
+```
+
+
 #### Дополнительные инструкции:
 * Чтобы собрать программу на Ubuntu, требуется установить
 пакет `openjdk-8-jdk`.
@@ -63,10 +71,16 @@ Gradle автоматически загрузит зависимость -
     на вновь добавленный. После индексирования все заработает.
     3) Чтобы собрать проект, нужно создать цель для сборки. В правом верхнем
     углу в выпадающем списке выбрать "Edit Configurations" и создать
-    конфигурацию Application. В ней прописать параметры Main class: Main,
-    Use classpath or module: pt-strategy_main .
+    конфигурацию Application. В ней прописать параметры Main class: `Main`,
+    Use classpath or module: `pt-strategy_main`.
+* Чтобы запустить тесты в IntelliJ IDEA достаточно открыть файл
+с тестами и нажать стрелочку напротив класса тестов или конкретного
+интересующего вас теста. Конфигурация тестов Junit для этого класса тестов/теста
+автоматически появится в выпадающем меню справа сверху среди возможных способов
+запуска.
 
 
 #### Ссылки
 * [Концепция](https://docs.google.com/document/d/e/2PACX-1vSpHRiPfLlqVUm37otCjSqb913a2Rj6wKtj59bPCHMOy2IUX041F3jNrHfqbqNyguhXppTrVQphbS43/pub)
 * [Техническое задание](https://docs.google.com/document/d/e/2PACX-1vQM3NRpSZ0w1k_juJK0osW2sz-D8cKg0Lm-9CzF7Vcr4Iquctj_FX4qmdZEONR3xDyRBMt_i7b5aspf/pub)
+* [Диаграммы](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Diagrams#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D17TI6yRmGKrILYu83-H9geccFlDeuWDhf%26export%3Ddownload)
