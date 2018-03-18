@@ -54,6 +54,13 @@ public interface IUnit {
 
 
     /**
+     * //TODO
+     * @return
+     */
+    boolean getCanIgnoreCounterAttack();
+
+
+    /**
      * Method for attacking other unit
      * @param otherUnit other unit.
      * @return AttackResult.NOBODY_DIED or AttackResult.ATTACKER_DIED or AttackResult.DEFENDER_DIED

@@ -73,6 +73,20 @@ class GenericUnit implements IUnit {
     }
 
 
+    public boolean getCanIgnoreCounterAttack() {
+        return canIgnoreCounterAttack;
+    }
+
+
+    /**
+     * //TODO
+     * @param canIgnoreCounterAttack
+     */
+    void setCanIgnoreCounterAttack(boolean canIgnoreCounterAttack) {
+        this.canIgnoreCounterAttack = canIgnoreCounterAttack;
+    }
+
+
     /**
      * Change maximum value of Health Points.
      * @param maxHealthPoints New maximum value for Health Points
@@ -131,11 +145,12 @@ class GenericUnit implements IUnit {
 
 
     public ActionResult changeHealthPoints(int n) {
-        if(healthPointsCurrent + n < 0) {
-            return ActionResult.UNIT_DIED;
+        ActionResult retval = ActionResult.SUCCESS;
+        if(healthPointsCurrent + n <= 0) {
+            retval = ActionResult.UNIT_DIED;
         }
         healthPointsCurrent = Math.min(Math.max(healthPointsCurrent + n, 0), healthPointsMax);
-        return ActionResult.SUCCESS;
+        return retval;
     }
 
 

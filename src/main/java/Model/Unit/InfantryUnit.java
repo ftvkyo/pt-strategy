@@ -22,6 +22,8 @@ class InfantryUnit extends GenericUnit {
             unit.setMaxHealthPoints(100);
             unit.setMaxActionPoints(8);
 
+            unit.setCanIgnoreCounterAttack(false);
+
             unit.restoreAllPoints();
         }
     }
