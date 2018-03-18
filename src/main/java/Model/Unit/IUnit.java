@@ -2,7 +2,6 @@ package Model.Unit;
 
 import Model.Item.IItem;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public interface IUnit {
