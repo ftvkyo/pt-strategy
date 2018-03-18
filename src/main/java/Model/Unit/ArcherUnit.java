@@ -3,7 +3,7 @@ package Model.Unit;
 import Model.Player;
 
 
-public class ArcherUnit extends GenericUnit {
+class ArcherUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
         public void setInventory() {
