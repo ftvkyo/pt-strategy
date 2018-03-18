@@ -1,5 +1,10 @@
 package Model;
 
+import java.util.ArrayList;
+import Model.Landscape.GenericLandscape;
+
+
 public class Field {
-    //Игровоге поле, на котором находятся объекты типов ILandscape и IUnit
+
+    private ArrayList< ArrayList<GenericLandscape> > field;
 }

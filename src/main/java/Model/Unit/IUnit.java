@@ -1,11 +1,11 @@
 package Model.Unit;
 
-import Model.Item.IItem;
+import Model.Item.GenericItem;
 
 import java.util.ArrayList;
 
+
 public interface IUnit {
-    enum UnitCondition { ALIVE, DEAD }
     enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, DEAD }
 
 
@@ -17,15 +17,15 @@ public interface IUnit {
 
     /**
      * Change (increase or decrease) amount of Health Points.
-     * @param n Positive or negative delta for Health Points
+     * @param n Positive or negative delta for changing Health Points
      * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
      */
     ActionResult changeHealthPoints(int n);
 
 
     /**
-     * Change (increase or decrease_ amount Action Points.
-     * @param n Positive or negative delta for Action Points
+     * Change (increase or decrease) amount of Action Points.
+     * @param n Positive or negative delta for changing Action Points
      * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
      */
     ActionResult changeActionPoints(int n);
@@ -64,14 +64,14 @@ public interface IUnit {
      * Get inventory of this Unit.
      * @return Inventory
      */
-    ArrayList<IItem> getItems();
+    ArrayList<GenericItem> getItems();
 
 
     /**
      * Add item to the inventory of this Unit.
      * @param item Item that will be added.
      */
-    void addItem(IItem item);
+    void addItem(GenericItem item);
 
 
     /**

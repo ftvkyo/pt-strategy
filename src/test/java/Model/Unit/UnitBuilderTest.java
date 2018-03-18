@@ -1,7 +1,11 @@
 package Model.Unit;
 
+import Model.Item.GenericItem;
 import org.junit.Test;
 import Model.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -18,24 +22,43 @@ public class UnitBuilderTest {
         myBuilder.setMaker(new ArcherUnit.UnitMaker());
         createdUnit = myBuilder.buildNewUnit();
 
-        assertEquals(createdUnit.getActionPoints(), 10);
-        assertEquals(createdUnit.getHealthPoints(), 70);
-        assertEquals(createdUnit.getDamagePoints(), 20);
+        assertEquals(10, createdUnit.getActionPoints());
+        assertEquals(70, createdUnit.getHealthPoints());
+        assertEquals(20, createdUnit.getDamagePoints());
 
 
         myBuilder.setMaker(new CavalryUnit.UnitMaker());
         createdUnit = myBuilder.buildNewUnit();
 
-        assertEquals(createdUnit.getActionPoints(), 14);
-        assertEquals(createdUnit.getHealthPoints(), 120);
-        assertEquals(createdUnit.getDamagePoints(), 30);
+        assertEquals(14, createdUnit.getActionPoints());
+        assertEquals(120, createdUnit.getHealthPoints());
+        assertEquals(30, createdUnit.getDamagePoints());
 
 
         myBuilder.setMaker(new InfantryUnit.UnitMaker());
         createdUnit = myBuilder.buildNewUnit();
 
-        assertEquals(createdUnit.getActionPoints(), 8);
-        assertEquals(createdUnit.getHealthPoints(), 100);
-        assertEquals(createdUnit.getDamagePoints(), 30);
+        assertEquals(8, createdUnit.getActionPoints());
+        assertEquals(100, createdUnit.getHealthPoints());
+        assertEquals(30, createdUnit.getDamagePoints());
+    }
+
+
+    @Test
+    public void testUnitInventory() {
+        GenericUnit unit = new GenericUnit();
+        GenericItem item = new GenericItem();
+        ArrayList<GenericItem> l = new ArrayList<>();
+
+        unit.addItem(item);
+        l.add(item);
+
+        assertEquals(l, unit.getItems());
+
+
+        unit.removeItem(0);
+        l.remove(0);
+
+        assertEquals(l, unit.getItems());
     }
 }

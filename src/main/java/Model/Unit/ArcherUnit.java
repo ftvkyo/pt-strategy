@@ -6,6 +6,12 @@ import Model.Player;
 class ArcherUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
+
+        public void createUnit() {
+            unit = new ArcherUnit();
+        }
+
+
         public void setInventory() {
             //unit.addItem(something);
         }
