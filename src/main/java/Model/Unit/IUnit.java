@@ -91,4 +91,6 @@ public interface IUnit {
      * @param n Position (in inventory) of the item that will be removed
      */
     void removeItem(int n);
+
+    void levelUp();
 }
