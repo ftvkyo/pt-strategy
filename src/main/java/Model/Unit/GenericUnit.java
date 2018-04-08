@@ -3,7 +3,7 @@ package Model.Unit;
 import java.util.ArrayList;
 
 import Model.Item.GenericItem;
-import Model.Player;
+import Model.PlayerList.Player;
 
 
 /**
@@ -210,6 +210,9 @@ class GenericUnit implements IUnit {
     }
 
 
+    public void levelUp() {}
+
+
     /**
      * Part of Builder Design Pattern.
      * "Creator and initializer" of Units.
@@ -259,5 +262,6 @@ class GenericUnit implements IUnit {
         public GenericUnit getUnit() {
             return unit;
         }
+
     }
 }

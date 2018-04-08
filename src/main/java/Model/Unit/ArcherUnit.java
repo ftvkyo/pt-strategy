@@ -27,4 +27,5 @@ class ArcherUnit extends GenericUnit {
             unit.restoreAllPoints();
         }
     }
+
 }

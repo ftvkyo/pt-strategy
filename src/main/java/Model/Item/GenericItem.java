@@ -7,4 +7,6 @@ public class GenericItem {
     void setTitle(String title) {
         this.title = title;
     }
+
+    void levelUp (){}
 }
