@@ -13,7 +13,6 @@ class ArcherUnit extends GenericUnit {
 
 
         public void setInventory() {
-            //unit.addItem(something);
         }
 
 
