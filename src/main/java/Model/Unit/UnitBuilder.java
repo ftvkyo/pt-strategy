@@ -1,6 +1,6 @@
 package Model.Unit;
 
-import Model.Player;
+import Model.Player.Player;
 
 
 /**

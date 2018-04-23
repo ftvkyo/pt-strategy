@@ -1,7 +1,5 @@
 package Model.Unit;
 
-import Model.Player;
-
 
 class ArcherUnit extends GenericUnit {
 

@@ -1,7 +1,5 @@
 package Model.Unit;
 
-import Model.Player;
-
 
 class CavalryUnit extends GenericUnit {
 

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 
 public interface IUnit {
+    /*
+     * TODO: transform Actions to more complex structure
+     */
+    enum Action { EXAMPLE_ACTION }
     enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, UNIT_DIED }
     enum AttackResult { NOBODY_DIED, ATTACKER_DIED, DEFENDER_DIED }
 
@@ -91,4 +95,17 @@ public interface IUnit {
      * @param n Position (in inventory) of the item that will be removed
      */
     void removeItem(int n);
+
+    /**
+     * Get available actions for this Unit
+     * @return list of available actions
+     */
+    ArrayList<Action> getAvailableActions();
+
+
+    /**
+     * Perform action on this unit.
+     * @param action Action to be performed
+     */
+    ActionResult performAction(Action action);
 }
