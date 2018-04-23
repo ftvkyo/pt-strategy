@@ -4,13 +4,20 @@ import Model.Item.GenericItem;
 
 import java.util.ArrayList;
 
-
+/**
+ * Interface of units. Should be used everywhere, where it's possible instead of GenericUnit class.
+ */
 public interface IUnit {
-    /*
-     * TODO: transform Actions to more complex structure
+    /**
+     * Пока что особенностью Action-ов является их ограниченность,
+     * например, если мы хотим все действия юнитов переписать на Actions,
+     * то потребуется довольно сильная их переработка, потому что у разных
+     * действий будут разные требования, например проверка дальности до цели,
+     * если реализовывать атаку других юнитов через Actions.
+     * TODO?: transform Actions to more complex structure
      */
-    enum Action { EXAMPLE_ACTION }
-    enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, UNIT_DIED }
+    enum Action { EXAMPLE_ACTION, ONLY_UPGRADED_ACTION, SIMPLE_ACTION }
+    enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, UNIT_DIED, ACTION_UNAVAILABLE }
     enum AttackResult { NOBODY_DIED, ATTACKER_DIED, DEFENDER_DIED }
 
 
@@ -24,6 +31,8 @@ public interface IUnit {
      * Restore value of Action Points.
      */
     void restoreActionPoints();
+
+
     /**
      * Change (increase or decrease) amount of Health Points.
      * @param n Positive or negative delta for changing Health Points
@@ -62,8 +71,9 @@ public interface IUnit {
 
 
     /**
-     * //TODO
-     * @return
+     * Some units are able to ignore incoming attack after their attack,
+     * this is determined by this getter.
+     * @return true if the unit can ignore counter attack, false otherwise.
      */
     boolean getCanIgnoreCounterAttack();
 

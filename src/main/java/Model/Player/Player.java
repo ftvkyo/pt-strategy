@@ -14,16 +14,31 @@ public class Player {
      * Structure pattern Facade.
      */
     public class UnitGroup {
-        private ArrayList<IUnit> units; //TODO: init
 
+        /**
+         * Current group of Units.
+         */
+        private ArrayList<IUnit> units = new ArrayList<>();
+
+        /**
+         * Add unit into the group.
+         * @param unit The unit to be added
+         */
         public void addUnit(IUnit unit) {
             units.add(unit);
         }
 
+        /**
+         * Clear current group of Units.
+         */
         public void clearUnits() {
             units.clear();
         }
 
+        /**
+         * Perform action on all Units in group.
+         * @param action Action to be performed
+         */
         public void performAction(IUnit.Action action) {
             for(IUnit unit : units) {
                 unit.performAction(action);

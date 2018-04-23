@@ -11,7 +11,6 @@ class InfantryUnit extends GenericUnit {
 
 
         public void setInventory() {
-            //unit.addItem(something);
         }
 
 
@@ -23,6 +22,11 @@ class InfantryUnit extends GenericUnit {
             unit.setCanIgnoreCounterAttack(false);
 
             unit.restoreAllPoints();
+        }
+
+
+        public void setActions() {
+            unit.availableActions.add(Action.SIMPLE_ACTION);
         }
     }
 }

@@ -88,7 +88,7 @@ class GenericUnit implements IUnit {
 
     /**
      * //TODO
-     * @param canIgnoreCounterAttack
+     * @param canIgnoreCounterAttack true if the unit can ignore counter attack, false otherwise.
      */
     void setCanIgnoreCounterAttack(boolean canIgnoreCounterAttack) {
         this.canIgnoreCounterAttack = canIgnoreCounterAttack;
@@ -268,6 +268,12 @@ class GenericUnit implements IUnit {
          * Sets default parameters for every type of Unit.
          */
         abstract void setDefaults();
+
+
+        /**
+         * Sets available actions for every type of Unit.
+         */
+        abstract void setActions();
 
 
         /**

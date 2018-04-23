@@ -23,5 +23,10 @@ class ArcherUnit extends GenericUnit {
 
             unit.restoreAllPoints();
         }
+
+
+        public void setActions() {
+            unit.availableActions.add(Action.SIMPLE_ACTION);
+        }
     }
 }
