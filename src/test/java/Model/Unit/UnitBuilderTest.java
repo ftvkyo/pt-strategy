@@ -2,10 +2,9 @@ package Model.Unit;
 
 import Model.Item.GenericItem;
 import org.junit.Test;
-import Model.Player;
+import Model.Player.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 

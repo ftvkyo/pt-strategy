@@ -3,7 +3,7 @@ package Model.Unit;
 import java.util.ArrayList;
 
 import Model.Item.GenericItem;
-import Model.Player;
+import Model.Player.Player;
 
 
 /**
@@ -63,6 +63,14 @@ class GenericUnit implements IUnit {
      * Inventory of the Unit.
      */
     private ArrayList<GenericItem> items;
+
+
+    /**
+     * Available actions.
+     * TODO: ArrayList -> Set
+     */
+    //package protected
+    ArrayList<Action> availableActions;
 
 
     /**
@@ -207,6 +215,16 @@ class GenericUnit implements IUnit {
 
     public void removeItem(int n) {
         items.remove(n);
+    }
+
+
+    public ArrayList<Action> getAvailableActions() {
+        return (ArrayList<Action>) availableActions.clone();
+    }
+
+    public ActionResult performAction(Action action) {
+        /*TODO*/
+        return ActionResult.SUCCESS;
     }
 
 
