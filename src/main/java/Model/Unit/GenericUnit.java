@@ -1,9 +1,9 @@
 package Model.Unit;
 
-import java.util.ArrayList;
-
 import Model.Item.GenericItem;
 import Model.Player.Player;
+
+import java.util.ArrayList;
 
 
 /**
@@ -20,13 +20,13 @@ class GenericUnit implements IUnit {
     /**
      * Owner of the Unit.
      */
-    private Player owner;
+    Player owner;
 
 
     /**
      * Maximal possible value of Health Points of the Unit.
      */
-    private int healthPointsMax;
+    int healthPointsMax;
 
 
     /**
@@ -38,7 +38,7 @@ class GenericUnit implements IUnit {
     /**
      * Maximal possible value of Action Points of the Unit.
      */
-    private int actionPointsMax;
+    int actionPointsMax;
 
 
     /**
@@ -50,75 +50,36 @@ class GenericUnit implements IUnit {
     /**
      * Damage that the Unit does to other units during attack.
      */
-    private int damagePoints;
+    int damagePoints;
 
 
     /**
      * Determines if unit is able to ignore incoming attack right after its attack.
      */
-    private boolean canIgnoreCounterAttack;
+    boolean canIgnoreCounterAttack;
 
 
     /**
      * Inventory of the Unit.
      */
-    private ArrayList<GenericItem> items;
+    private ArrayList<GenericItem> items = new ArrayList<>();;
 
 
     /**
      * Available actions.
      * TODO: ArrayList -> Set
      */
-    //package protected
     ArrayList<Action> availableActions;
 
 
     /**
      * Default Constructor.
      */
-    GenericUnit() {
-        items = new ArrayList<>();
-    }
+    public GenericUnit() {}
 
 
     public boolean getCanIgnoreCounterAttack() {
         return canIgnoreCounterAttack;
-    }
-
-
-    /**
-     * //TODO
-     * @param canIgnoreCounterAttack true if the unit can ignore counter attack, false otherwise.
-     */
-    void setCanIgnoreCounterAttack(boolean canIgnoreCounterAttack) {
-        this.canIgnoreCounterAttack = canIgnoreCounterAttack;
-    }
-
-
-    /**
-     * Change maximum value of Health Points.
-     * @param maxHealthPoints New maximum value for Health Points
-     */
-    void setMaxHealthPoints(int maxHealthPoints) {
-        healthPointsMax = maxHealthPoints;
-    }
-
-
-    /**
-     * Change maximum value of Action Points
-     * @param maxActionPoints New maximum value for Action Points
-     */
-    void setMaxActionPoints(int maxActionPoints) {
-        actionPointsMax = maxActionPoints;
-    }
-
-
-    /**
-     * Change maximum value of Damage Points
-     * @param damagePoints New maximum value for Damage Points
-     */
-    void setDamagePoints(int damagePoints) {
-        this.damagePoints = damagePoints;
     }
 
 
@@ -167,11 +128,7 @@ class GenericUnit implements IUnit {
     }
 
 
-    /**
-     * Estimate whether Unit is able to attack
-     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
-     */
-    ActionResult ableToAttack() {
+    public ActionResult ableToAttack() {
         if(this.actionPointsCurrent <= 0) {
             return ActionResult.NOT_ENOUGH_POINTS;
         }
@@ -221,6 +178,7 @@ class GenericUnit implements IUnit {
     public ArrayList<Action> getAvailableActions() {
         return (ArrayList<Action>) availableActions.clone();
     }
+
 
     public ActionResult performAction(Action action) {
         /*TODO*/

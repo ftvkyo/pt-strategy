@@ -1,7 +1,8 @@
 package Model;
 
-import java.util.ArrayList;
 import Model.Landscape.GenericLandscape;
+
+import java.util.ArrayList;
 
 /**
  * Usual game field. It's just the game map.

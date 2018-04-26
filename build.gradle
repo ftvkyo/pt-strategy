@@ -11,6 +11,13 @@ repositories {
 }
 
 
+apply plugin: 'java'
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
+
 import org.apache.tools.ant.taskdefs.condition.Os
 project.ext.lwjglVersion = "3.1.6"
 project.ext.lwjglNatives = "natives-linux"

@@ -15,11 +15,11 @@ class InfantryUnit extends GenericUnit {
 
 
         public void setDefaults() {
-            unit.setDamagePoints(30);
-            unit.setMaxHealthPoints(100);
-            unit.setMaxActionPoints(8);
+            unit.damagePoints = 30;
+            unit.healthPointsMax = 100;
+            unit.actionPointsMax = 8;
 
-            unit.setCanIgnoreCounterAttack(false);
+            unit.canIgnoreCounterAttack = false;
 
             unit.restoreAllPoints();
         }

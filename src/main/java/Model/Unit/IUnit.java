@@ -106,6 +106,7 @@ public interface IUnit {
      */
     void removeItem(int n);
 
+
     /**
      * Get available actions for this Unit
      * @return list of available actions
@@ -118,4 +119,11 @@ public interface IUnit {
      * @param action Action to be performed
      */
     ActionResult performAction(Action action);
+
+
+    /**
+     * Estimate whether Unit is able to attack
+     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     */
+    ActionResult ableToAttack();
 }
