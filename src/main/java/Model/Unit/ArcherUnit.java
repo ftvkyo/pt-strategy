@@ -1,7 +1,5 @@
 package Model.Unit;
 
-import Model.Player;
-
 
 class ArcherUnit extends GenericUnit {
 
@@ -17,13 +15,18 @@ class ArcherUnit extends GenericUnit {
 
 
         public void setDefaults() {
-            unit.setDamagePoints(20);
-            unit.setMaxHealthPoints(70);
-            unit.setMaxActionPoints(10);
+            unit.damagePoints = 20;
+            unit.healthPointsMax = 70;
+            unit.actionPointsMax = 10;
 
-            unit.setCanIgnoreCounterAttack(true);
+            unit.canIgnoreCounterAttack = true;
 
             unit.restoreAllPoints();
+        }
+
+
+        public void setActions() {
+            unit.availableActions.add(Action.SIMPLE_ACTION);
         }
     }
 }

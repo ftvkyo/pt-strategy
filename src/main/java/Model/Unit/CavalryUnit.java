@@ -1,7 +1,5 @@
 package Model.Unit;
 
-import Model.Player;
-
 
 class CavalryUnit extends GenericUnit {
 
@@ -13,18 +11,22 @@ class CavalryUnit extends GenericUnit {
 
 
         public void setInventory() {
-            //unit.addItem(something);
         }
 
 
         public void setDefaults() {
-            unit.setDamagePoints(30);
-            unit.setMaxHealthPoints(120);
-            unit.setMaxActionPoints(14);
+            unit.damagePoints = 30;
+            unit.healthPointsMax = 120;
+            unit.actionPointsMax = 14;
 
-            unit.setCanIgnoreCounterAttack(false);
+            unit.canIgnoreCounterAttack = false;
 
             unit.restoreAllPoints();
+        }
+
+
+        public void setActions() {
+            unit.availableActions.add(Action.SIMPLE_ACTION);
         }
     }
 }
