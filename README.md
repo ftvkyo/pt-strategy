@@ -4,6 +4,8 @@
 
 **У этого репозитория есть раздел Wiki с дополнительной информацией.**
 
+**Если вы хотите внести свой вклад в проект, пожалуйста, прочтите CONTRIBUTING.md**
+
 ### Dependencies (зависимости):
 * JDK 8 (JDK 9 не поддерживается этим Gradle)
 * Gradle (Gradlew установит ее автоматически)
@@ -70,11 +72,3 @@ Gradle автоматически загрузит зависимость - би
 пакет `openjdk-8-jdk`.
 * На Windows тоже понадобится 8 версия JDK.
 * **Остальные инструкции можно найти в разделе Wiki на гитхабе.**
-
-
-#### Ссылки
-* Какая-то [Концепция](https://docs.google.com/document/d/e/2PACX-1vSpHRiPfLlqVUm37otCjSqb913a2Rj6wKtj59bPCHMOy2IUX041F3jNrHfqbqNyguhXppTrVQphbS43/pub)
-* Попытка [Техническое задание](https://docs.google.com/document/d/e/2PACX-1vQM3NRpSZ0w1k_juJK0osW2sz-D8cKg0Lm-9CzF7Vcr4Iquctj_FX4qmdZEONR3xDyRBMt_i7b5aspf/pub)
-* Устаревшие [Диаграммы](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Diagrams#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D17TI6yRmGKrILYu83-H9geccFlDeuWDhf%26export%3Ddownload),
-которые мы рисовали в начале разработки проекта.
-Потом будут подкорректированы под новую версию.
