@@ -17,21 +17,20 @@ merges в нее из веток для features.
 
 ##### Send changes:
 ```bash
-git checkout master
 # Подтянем и применим изменения в ветки origin/... и master
-git pull master
+git pull
 
-# Перенесем в вашу ветку изменения из master
-git rebase [branch]
 # Перейдем в вашу ветку
 git checkout [branch]
-# Можем сделать squash каких-либо коммитов
-git rebase -i
+# Перенесем ваши изменения на верхушку `master` при этом не тронув ее
+# При этом можно сделать squash каких-либо коммитов
+git rebase -i master
 
 # Запушим вашу ветку
 git push
 
-# Создадим Pull-Request on GitHub
+# Создадим Pull-Request на GitHub
+# Из вашей ветки в master
 ...
 ```
 
