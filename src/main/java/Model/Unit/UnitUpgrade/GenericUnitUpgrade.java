@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * //TODO: Should i Implement "Remove Decorator" method?
  */
-public class GenericUnitUpgrade implements IUnit {
+class GenericUnitUpgrade implements IUnit {
 
     /**
      * The Unit, that we are decorating.

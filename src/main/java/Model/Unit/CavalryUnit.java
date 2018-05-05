@@ -1,7 +1,7 @@
 package Model.Unit;
 
 
-class CavalryUnit extends GenericUnit {
+public class CavalryUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
 
