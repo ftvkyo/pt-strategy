@@ -13,7 +13,9 @@ public class ExampleAction extends Action {
 
     @Override
     public ActionResult perform(@NotNull IUnit thisUnit, @Nullable IUnit targetUnit, @Nullable GenericItem item) {
-        return ActionResult.SUCCESS;
+        ActionResult retval = ActionResult.SUCCESS;
+        thisUnit.changeActionPoints(-1);
+        return retval;
     }
 
     @NotNull

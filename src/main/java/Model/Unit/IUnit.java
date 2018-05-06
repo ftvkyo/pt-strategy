@@ -24,26 +24,29 @@ public interface IUnit {
 
     /**
      * Change (increase or decrease) amount of Health Points.
-     * @param n Positive or negative delta for changing Health Points
-     * @return ActionResult.SUCCESS or ActionResult.FAIL
+     * @param delta Positive or negative delta for changing Health Points
      */
-    Action.ActionResult changeHealthPoints(int n);
+    void changeHealthPoints(int delta);
 
 
     /**
      * Change (increase or decrease) amount of GenericAction Points.
-     * @param n Positive or negative delta for changing GenericAction Points
-     * @return ActionResult.SUCCESS or ActionResult.FAIL
+     * @param delta Positive or negative delta for changing GenericAction Points
      */
-    Action.ActionResult changeActionPoints(int n);
+    void changeActionPoints(int delta);
 
 
     /**
-     * Resets action points to zero.
+     * Sets action points to zero.
      * Useful for attacks (just like in Sid Meier's Civilization)
-     * @return Action Result
      */
-    Action.ActionResult zeroActionPoints();
+    void zeroActionPoints();
+
+
+    /**
+     * Sets health points to zero.
+     */
+    void zeroHealthPoints();
 
 
     /**
@@ -101,11 +104,4 @@ public interface IUnit {
      * @return list of available actions
      */
     ArrayList<Action> getAvailableActions();
-
-
-    /**
-     * Estimate whether Unit is able to attack
-     * @return ActionResult.SUCCESS or ActionResult.FAIL
-     */
-    Action.ActionResult ableToAttack();
 }

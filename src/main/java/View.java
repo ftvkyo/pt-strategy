@@ -1,13 +1,13 @@
 public class View {
-    private Presenter presenter;
+    private Controller controller;
 
     public View() {
-        presenter = new Presenter();
+        controller = new Controller();
     }
 
     public void run() {
         //Здесь должен быть код, отвечающий за графику игры
-        //Он будет делать запросы в Presenter, который будет говорить ему, что нужно нарисовать
+        //Он будет делать запросы в Controller, который будет говорить ему, что нужно нарисовать
         //View никак не должен взаимодействовать с Model.
     }
 }

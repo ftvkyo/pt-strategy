@@ -110,35 +110,23 @@ class GenericUnit implements IUnit {
     }
 
 
-    public Action.ActionResult changeActionPoints(int n) {
-        if(actionPointsCurrent + n < 0) {
-            return Action.ActionResult.FAIL;
-        }
-        actionPointsCurrent = Math.min(actionPointsCurrent + n, actionPointsMax);
-        return Action.ActionResult.SUCCESS;
+    public void changeActionPoints(int delta) {
+        actionPointsCurrent = Math.max(0, Math.min(actionPointsCurrent + delta, actionPointsMax));
     }
 
 
-    public Action.ActionResult zeroActionPoints() {
+    public void changeHealthPoints(int delta) {
+        healthPointsCurrent = Math.max(0, Math.min(healthPointsCurrent + delta, healthPointsMax));
+    }
+
+
+    public void zeroActionPoints() {
         actionPointsCurrent = 0;
-        return Action.ActionResult.SUCCESS;
     }
 
 
-    public Action.ActionResult changeHealthPoints(int n) {
-        if(healthPointsCurrent <= 0) {
-            return Action.ActionResult.FAIL;
-        }
-        healthPointsCurrent = Math.min(Math.max(healthPointsCurrent + n, 0), healthPointsMax);
-        return Action.ActionResult.SUCCESS;
-    }
-
-
-    public Action.ActionResult ableToAttack() {
-        if(this.actionPointsCurrent <= 0) {
-            return Action.ActionResult.FAIL;
-        }
-        return Action.ActionResult.SUCCESS;
+    public void zeroHealthPoints() {
+        actionPointsCurrent = 0;
     }
 
 

@@ -2,12 +2,11 @@ package Model.Unit;
 
 import Model.Item.GenericItem;
 import Model.Player.Player;
-import Model.Unit.UnitAction.AttackAction;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UnitBuilderTest {
 
@@ -16,6 +15,8 @@ public class UnitBuilderTest {
         UnitBuilder myBuilder = new UnitBuilder();
         Player myPlayer = new Player();
         myBuilder.setOwner(myPlayer);
+
+        assertEquals(myPlayer, myBuilder.getOwner());
 
         IUnit createdUnit;
 
@@ -60,47 +61,5 @@ public class UnitBuilderTest {
         l.remove(0);
 
         assertEquals(l, unit.getItems());
-    }
-
-
-    @Test
-    public void testUnitInteraction_archer_and_cavalry() {
-        UnitBuilder myBuilder = new UnitBuilder();
-        Player p = new Player();
-        myBuilder.setOwner(p);
-
-        myBuilder.setMaker(new ArcherUnit.UnitMaker());
-        IUnit archer = myBuilder.buildNewUnit();
-
-        myBuilder.setMaker(new CavalryUnit.UnitMaker());
-        IUnit cavalry = myBuilder.buildNewUnit();
-
-        AttackAction.ActionResult AResult;
-
-
-        assertTrue(archer.getCanIgnoreCounterAttack());
-        assertFalse(cavalry.getCanIgnoreCounterAttack());
-
-
-        //TODO: attacks
-    }
-
-
-    @Test
-    public void testUnitInteraction_archer_and_infantry() {
-        UnitBuilder myBuilder = new UnitBuilder();
-        Player p = new Player();
-        myBuilder.setOwner(p);
-
-        myBuilder.setMaker(new ArcherUnit.UnitMaker());
-        IUnit archer = myBuilder.buildNewUnit();
-
-        myBuilder.setMaker(new InfantryUnit.UnitMaker());
-        IUnit infantry = myBuilder.buildNewUnit();
-
-        AttackAction.ActionResult AResult;
-
-
-        //TODO: attacks
     }
 }

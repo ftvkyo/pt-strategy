@@ -14,12 +14,12 @@ public class AttackAction extends Action {
     @Override
     public final ActionResult perform(@NotNull IUnit thisUnit, @NotNull IUnit targetUnit, @Nullable GenericItem item) {
         ActionResult retval = ActionResult.SUCCESS;
-        if(thisUnit.getHealthPoints() > 0 && targetUnit.getHealthPoints() > 0) {
-            targetUnit.changeHealthPoints(thisUnit.getDamagePoints());
+        if(targetUnit.getHealthPoints() > 0) {
+            targetUnit.changeHealthPoints(-thisUnit.getDamagePoints());
             thisUnit.zeroActionPoints();
 
             if(!thisUnit.getCanIgnoreCounterAttack() && targetUnit.getHealthPoints() > 0) {
-                thisUnit.changeHealthPoints(targetUnit.getDamagePoints());
+                thisUnit.changeHealthPoints(-targetUnit.getDamagePoints());
             }
         } else {
             retval = ActionResult.FAIL;

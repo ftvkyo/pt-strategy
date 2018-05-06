@@ -53,8 +53,14 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public Action.ActionResult zeroActionPoints() {
-        return this.decorated.zeroActionPoints();
+    public void zeroActionPoints() {
+        this.decorated.zeroActionPoints();
+    }
+
+
+    @Override
+    public void zeroHealthPoints() {
+        this.decorated.zeroHealthPoints();
     }
 
 
@@ -95,20 +101,14 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public Action.ActionResult ableToAttack() {
-        return this.decorated.ableToAttack();
+    public void changeActionPoints(int delta) {
+        this.decorated.changeActionPoints(delta);
     }
 
 
     @Override
-    public Action.ActionResult changeActionPoints(int n) {
-        return this.decorated.changeActionPoints(n);
-    }
-
-
-    @Override
-    public Action.ActionResult changeHealthPoints(int n) {
-        return this.decorated.changeHealthPoints(n);
+    public void changeHealthPoints(int delta) {
+        this.decorated.changeHealthPoints(delta);
     }
 
 
