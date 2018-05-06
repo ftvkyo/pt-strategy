@@ -7,7 +7,7 @@ import com.sun.istack.internal.Nullable;
 
 public class SimpleAction extends Action {
 
-    private static Action instance = new SimpleAction();
+    private static final Action instance = new SimpleAction();
 
     private SimpleAction() {}
 

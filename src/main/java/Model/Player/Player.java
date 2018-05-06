@@ -6,10 +6,10 @@ import Model.Unit.UnitAction.Action;
 import java.util.ArrayList;
 
 /**
- * TODO: doc
+ * Обычный класс игрока, который отвеает за действия от его имени
  */
 public class Player {
-    private UnitGroup selectedUnits; //TODO: init
+    private UnitGroup selectedUnits = new UnitGroup();
 
     /**
      * Allows Player to group his Units to perform actions on them.
@@ -20,14 +20,8 @@ public class Player {
         /**
          * Current group of Units.
          */
-        private ArrayList<IUnit> units;
+        private final ArrayList<IUnit> units = new ArrayList<>();
 
-        /**
-         * Create new group.
-         */
-        public UnitGroup() {
-            units = new ArrayList<>();
-        }
 
         /**
          * Add unit into the group.
@@ -37,6 +31,7 @@ public class Player {
             units.add(unit);
         }
 
+
         /**
          * Clear current group of Units.
          */
@@ -44,14 +39,38 @@ public class Player {
             units.clear();
         }
 
+
         /**
-         * Perform action on all Units in group.
+         * Perform action on all Units in group.]
+         * Возможность совершить action этой группой юнитов
+         * должна быть проверена извне методом canPerformAction.
          * @param action GenericAction to be performed
+         * @return Количество неудачных action.
          */
-        public void performAction(Action action) {
+        public int performAction(Action action) {
+            int fails = 0;
             for(IUnit unit : units) {
-                //TODO!!!
+                Action.ActionResult result = action.perform(unit, null, null);
+                if(result == Action.ActionResult.FAIL) {
+                    fails += 1;
+                }
             }
+            return fails;
+        }
+
+
+        /**
+         * Проверяет, все ли юниты могут выполнить это действие.
+         * @param action Action, который мы выполняем
+         * @return Количество неудавшихся выполнений
+         */
+        public boolean canPerformAction(Action action) {
+            for(IUnit unit : units) {
+                if(!action.canPerform(unit)) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

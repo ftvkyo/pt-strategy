@@ -4,6 +4,7 @@ import Model.Item.GenericItem;
 import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Interface of units. Should be used everywhere, where it's possible instead of GenericUnit class.
@@ -103,5 +104,5 @@ public interface IUnit {
      * Get available actions for this Unit
      * @return list of available actions
      */
-    ArrayList<Action> getAvailableActions();
+    HashSet<Action> getAvailableActions();
 }

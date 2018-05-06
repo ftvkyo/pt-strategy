@@ -1,12 +1,16 @@
 package Model.Unit.UnitUpgrade;
 
 import Model.Player.Player;
+import Model.Unit.ArcherUnit;
+import Model.Unit.IUnit;
+import Model.Unit.UnitAction.Action;
+import Model.Unit.UnitAction.OnlyUpgradedAction;
+import Model.Unit.UnitBuilder;
 import org.junit.Test;
-import Model.Unit.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UnitUpgradeTest {
 
@@ -22,14 +26,17 @@ public class UnitUpgradeTest {
         unit = myBuilder.buildNewUnit();
 
 
-        IUnit.Action action = IUnit.Action.ONLY_UPGRADED_ACTION;
-        ArrayList<IUnit.Action> actions = new ArrayList<>();
-        actions.add(action);
+        Action onlyUpgraded = OnlyUpgradedAction.getAction();
+        assertFalse(onlyUpgraded.canPerform(unit));
 
-        assertEquals(IUnit.ActionResult.ACTION_UNAVAILABLE, unit.performAction(IUnit.Action.ONLY_UPGRADED_ACTION));
+        HashSet<Action> actions = new HashSet<>();
+        actions.add(onlyUpgraded);
+        unit = ActionUnitUpgrade.upgradeUnit(unit, actions);
+        assertTrue(onlyUpgraded.canPerform(unit));
 
-        GenericUnitUpgrade myUnitUpgrade = ActionUnitUpgrade.upgradeUnit(unit, actions);
-
-        assertEquals(IUnit.ActionResult.SUCCESS, myUnitUpgrade.performAction(IUnit.Action.ONLY_UPGRADED_ACTION));
+        assertEquals(
+                Action.ActionResult.SUCCESS,
+                onlyUpgraded.perform(unit, null, null)
+        );
     }
 }

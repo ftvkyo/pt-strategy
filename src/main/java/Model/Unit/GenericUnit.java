@@ -5,6 +5,7 @@ import Model.Player.Player;
 import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 /**
@@ -63,14 +64,13 @@ class GenericUnit implements IUnit {
     /**
      * Inventory of the Unit.
      */
-    private ArrayList<GenericItem> items = new ArrayList<>();
+    private final ArrayList<GenericItem> items = new ArrayList<>();
 
 
     /**
      * Available actions.
-     * TODO: ArrayList -> Set
      */
-    ArrayList<Action> availableActions = new ArrayList<>();
+    final HashSet<Action> availableActions = new HashSet<>();
 
 
     /**
@@ -145,8 +145,9 @@ class GenericUnit implements IUnit {
     }
 
 
-    public ArrayList<Action> getAvailableActions() {
-        return new ArrayList<>(availableActions);
+    //TODO: Добавить проверку по-другому (передавать action и проверять, доступно ли оно)
+    public HashSet<Action> getAvailableActions() {
+        return new HashSet<>(availableActions);
     }
 
 

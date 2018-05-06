@@ -86,7 +86,7 @@ abstract public class GenericLandscape {
      * @return copy of the inventory of the Unit
      */
     public ArrayList<GenericItem> getItems() {
-        return (ArrayList<GenericItem>) items.clone();
+        return new ArrayList<>(items);
     }
 
 

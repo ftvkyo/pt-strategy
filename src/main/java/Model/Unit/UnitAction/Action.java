@@ -14,16 +14,16 @@ import com.sun.istack.internal.Nullable;
 public abstract class Action {
     public enum ActionResult { SUCCESS, FAIL }
 
-    private static Action instance;
+    private static Action instance = null;
 
     abstract public ActionResult perform(@NotNull IUnit thisUnit, @Nullable IUnit targetUnit, @Nullable GenericItem item);
 
     public boolean canPerform(@NotNull IUnit unit) {
-        return unit.getActionPoints() > 0 && unit.getHealthPoints() > 0;
+        return unit.getActionPoints() > 0 && unit.getHealthPoints() > 0 && unit.getAvailableActions().contains(this);
     }
 
     @Nullable
     private static Action getAction() {
-        return null;
+        return instance;
     }
 }

@@ -5,11 +5,11 @@ import Model.Unit.IUnit;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 
-public class ExampleAction extends Action {
+public class OnlyArcherAction extends Action {
 
-    private static final Action instance = new ExampleAction();
+    private static final Action instance = new OnlyArcherAction();
 
-    private ExampleAction() {}
+    private OnlyArcherAction() {}
 
     @Override
     public ActionResult perform(@NotNull IUnit thisUnit, @Nullable IUnit targetUnit, @Nullable GenericItem item) {

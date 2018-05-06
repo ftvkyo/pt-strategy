@@ -2,6 +2,7 @@ package Model.Unit;
 
 
 import Model.Unit.UnitAction.AttackAction;
+import Model.Unit.UnitAction.OnlyArcherAction;
 import Model.Unit.UnitAction.SimpleAction;
 
 public class ArcherUnit extends GenericUnit {
@@ -31,6 +32,7 @@ public class ArcherUnit extends GenericUnit {
         public void setActions() {
             unit.availableActions.add(SimpleAction.getAction());
             unit.availableActions.add(AttackAction.getAction());
+            unit.availableActions.add(OnlyArcherAction.getAction());
         }
     }
 }

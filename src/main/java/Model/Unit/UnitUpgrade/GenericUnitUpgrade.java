@@ -5,6 +5,7 @@ import Model.Unit.IUnit;
 import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Implementation of Decorator pattern.
@@ -83,7 +84,7 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public ArrayList<Action> getAvailableActions() {
+    public HashSet<Action> getAvailableActions() {
         return this.decorated.getAvailableActions();
     }
 

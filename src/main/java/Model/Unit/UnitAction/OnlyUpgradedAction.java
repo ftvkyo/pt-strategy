@@ -7,7 +7,7 @@ import com.sun.istack.internal.Nullable;
 
 public class OnlyUpgradedAction extends Action {
 
-    private static Action instance = new OnlyUpgradedAction();
+    private static final Action instance = new OnlyUpgradedAction();
 
     private OnlyUpgradedAction() {}
 

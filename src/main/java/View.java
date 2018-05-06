@@ -1,9 +1,7 @@
 public class View {
-    private Controller controller;
+    private final Controller controller = new Controller();
 
-    public View() {
-        controller = new Controller();
-    }
+    public View() {}
 
     public void run() {
         //Здесь должен быть код, отвечающий за графику игры
