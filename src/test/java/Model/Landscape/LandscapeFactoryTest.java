@@ -16,18 +16,18 @@ public class LandscapeFactoryTest {
         myFactory = new PlainLandscape.LandscapeFactory();
         myLandscape = myFactory.createInstance();
 
-        assertEquals(myLandscape.getPassableness(), 1);
+        assertEquals(1, myLandscape.getPassableness());
 
 
         myFactory = new ForestLandscape.LandscapeFactory();
         myLandscape = myFactory.createInstance();
 
-        assertEquals(myLandscape.getPassableness(), 3);
+        assertEquals(3, myLandscape.getPassableness());
 
 
         myFactory = new MountainLandscape.LandscapeFactory();
         myLandscape = myFactory.createInstance();
 
-        assertEquals(myLandscape.getPassableness(), 6);
+        assertEquals(6, myLandscape.getPassableness());
     }
 }

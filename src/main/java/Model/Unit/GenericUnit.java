@@ -62,14 +62,14 @@ class GenericUnit implements IUnit {
     /**
      * Inventory of the Unit.
      */
-    private ArrayList<GenericItem> items = new ArrayList<>();;
+    private ArrayList<GenericItem> items = new ArrayList<>();
 
 
     /**
      * Available actions.
      * TODO: ArrayList -> Set
      */
-    ArrayList<Action> availableActions;
+    ArrayList<Action> availableActions = new ArrayList<>();
 
 
     /**
@@ -182,6 +182,7 @@ class GenericUnit implements IUnit {
 
     public ActionResult performAction(Action action) {
         /*TODO*/
+        changeActionPoints(-1);
         return ActionResult.SUCCESS;
     }
 

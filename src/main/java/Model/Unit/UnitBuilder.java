@@ -57,6 +57,7 @@ public class UnitBuilder {
         maker.setOwner(this.owner);
         maker.setDefaults();
         maker.setInventory();
+        maker.setActions();
         return maker.getUnit();
     }
 }

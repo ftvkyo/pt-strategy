@@ -22,7 +22,7 @@ import java.util.ArrayList;
 class GenericUnitUpgrade implements IUnit {
 
     /**
-     * The Unit, that we are decorating.
+     * The Unit that we are decorating.
      */
     IUnit decorated;
 

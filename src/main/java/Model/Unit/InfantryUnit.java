@@ -27,6 +27,7 @@ public class InfantryUnit extends GenericUnit {
 
         public void setActions() {
             unit.availableActions.add(Action.SIMPLE_ACTION);
+            unit.availableActions.add(Action.EXAMPLE_ACTION);
         }
     }
 }

@@ -30,6 +30,7 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
     @Override
     public ActionResult performAction(Action action) {
         //TODO: After implementation of "more complex actions".
+        changeActionPoints(-1);
         return ActionResult.SUCCESS;
     }
 }

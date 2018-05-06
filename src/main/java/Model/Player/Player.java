@@ -14,12 +14,19 @@ public class Player {
      * Allows Player to group his Units to perform actions on them.
      * Structure pattern Facade.
      */
-    public class UnitGroup {
+    public static class UnitGroup {
 
         /**
          * Current group of Units.
          */
-        private ArrayList<IUnit> units = new ArrayList<>();
+        private ArrayList<IUnit> units;
+
+        /**
+         * Create new group.
+         */
+        public UnitGroup() {
+            units = new ArrayList<>();
+        }
 
         /**
          * Add unit into the group.

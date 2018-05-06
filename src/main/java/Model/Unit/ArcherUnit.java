@@ -27,6 +27,7 @@ public class ArcherUnit extends GenericUnit {
 
         public void setActions() {
             unit.availableActions.add(Action.SIMPLE_ACTION);
+
         }
     }
 }
