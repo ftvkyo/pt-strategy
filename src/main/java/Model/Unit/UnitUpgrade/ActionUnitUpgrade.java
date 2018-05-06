@@ -19,7 +19,7 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
      * @param actions the action, that should be added to this unit
      * @return the upgraded unit.
      */
-    public GenericUnitUpgrade upgradeUnit(IUnit unit, ArrayList<Action> actions) {
+    public static GenericUnitUpgrade upgradeUnit(IUnit unit, ArrayList<Action> actions) {
         ActionUnitUpgrade retUnit = new ActionUnitUpgrade();
         retUnit.decorated = unit;
         retUnit.availableActions.addAll(actions);

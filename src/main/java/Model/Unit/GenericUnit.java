@@ -181,9 +181,11 @@ class GenericUnit implements IUnit {
 
 
     public ActionResult performAction(Action action) {
-        /*TODO*/
-        changeActionPoints(-1);
-        return ActionResult.SUCCESS;
+        if (getAvailableActions().contains(action)) {
+            changeActionPoints(-1);
+            return ActionResult.SUCCESS;
+        }
+        return ActionResult.ACTION_UNAVAILABLE;
     }
 
 
