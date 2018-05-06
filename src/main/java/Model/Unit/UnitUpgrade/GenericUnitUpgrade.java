@@ -2,6 +2,7 @@ package Model.Unit.UnitUpgrade;
 
 import Model.Item.GenericItem;
 import Model.Unit.IUnit;
+import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
 
@@ -34,12 +35,6 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public IUnit.ActionResult performAction(IUnit.Action action) {
-        return this.decorated.performAction(action);
-    }
-
-
-    @Override
     public void removeItem(int n) {
         this.decorated.removeItem(n);
     }
@@ -54,6 +49,12 @@ class GenericUnitUpgrade implements IUnit {
     @Override
     public int getActionPoints() {
         return this.decorated.getActionPoints();
+    }
+
+
+    @Override
+    public Action.ActionResult zeroActionPoints() {
+        return this.decorated.zeroActionPoints();
     }
 
 
@@ -94,19 +95,19 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public ActionResult ableToAttack() {
+    public Action.ActionResult ableToAttack() {
         return this.decorated.ableToAttack();
     }
 
 
     @Override
-    public ActionResult changeActionPoints(int n) {
+    public Action.ActionResult changeActionPoints(int n) {
         return this.decorated.changeActionPoints(n);
     }
 
 
     @Override
-    public ActionResult changeHealthPoints(int n) {
+    public Action.ActionResult changeHealthPoints(int n) {
         return this.decorated.changeHealthPoints(n);
     }
 
@@ -116,9 +117,4 @@ class GenericUnitUpgrade implements IUnit {
         return this.decorated.getItems();
     }
 
-
-    @Override
-    public AttackResult attackUnit(IUnit otherUnit) {
-        return this.decorated.attackUnit(otherUnit);
-    }
 }

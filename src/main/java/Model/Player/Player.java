@@ -1,6 +1,7 @@
 package Model.Player;
 
 import Model.Unit.IUnit;
+import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
 
@@ -45,11 +46,11 @@ public class Player {
 
         /**
          * Perform action on all Units in group.
-         * @param action Action to be performed
+         * @param action GenericAction to be performed
          */
-        public void performAction(IUnit.Action action) {
+        public void performAction(Action action) {
             for(IUnit unit : units) {
-                unit.performAction(action);
+                //TODO!!!
             }
         }
     }

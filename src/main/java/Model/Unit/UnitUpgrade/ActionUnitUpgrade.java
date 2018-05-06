@@ -1,6 +1,7 @@
 package Model.Unit.UnitUpgrade;
 
 import Model.Unit.IUnit;
+import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
     /**
      * List of actions, that we process inside of decorator.
      */
-    ArrayList<IUnit.Action> availableActions = new ArrayList<>();
+    private ArrayList<Action> availableActions = new ArrayList<>();
 
 
     /**
@@ -24,13 +25,5 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
         retUnit.decorated = unit;
         retUnit.availableActions.addAll(actions);
         return retUnit;
-    }
-
-
-    @Override
-    public ActionResult performAction(Action action) {
-        //TODO: After implementation of "more complex actions".
-        changeActionPoints(-1);
-        return ActionResult.SUCCESS;
     }
 }

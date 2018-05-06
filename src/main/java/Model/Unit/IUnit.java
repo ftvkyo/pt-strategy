@@ -1,6 +1,7 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
+import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
 
@@ -8,18 +9,6 @@ import java.util.ArrayList;
  * Interface of units. Should be used everywhere, where it's possible instead of GenericUnit class.
  */
 public interface IUnit {
-    /**
-     * Пока что особенностью Action-ов является их ограниченность,
-     * например, если мы хотим все действия юнитов переписать на Actions,
-     * то потребуется довольно сильная их переработка, потому что у разных
-     * действий будут разные требования, например проверка дальности до цели,
-     * если реализовывать атаку других юнитов через Actions.
-     * TODO?: transform Actions to more complex structure
-     */
-    enum Action { EXAMPLE_ACTION, ONLY_UPGRADED_ACTION, SIMPLE_ACTION }
-    enum ActionResult { SUCCESS, NOT_ENOUGH_POINTS, UNIT_DIED, ACTION_UNAVAILABLE }
-    enum AttackResult { NOBODY_DIED, ATTACKER_DIED, DEFENDER_DIED }
-
 
     /**
      * Restore value of all possible points to max value.
@@ -28,7 +17,7 @@ public interface IUnit {
 
 
     /**
-     * Restore value of Action Points.
+     * Restore value of GenericAction Points.
      */
     void restoreActionPoints();
 
@@ -36,17 +25,25 @@ public interface IUnit {
     /**
      * Change (increase or decrease) amount of Health Points.
      * @param n Positive or negative delta for changing Health Points
-     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     * @return ActionResult.SUCCESS or ActionResult.FAIL
      */
-    ActionResult changeHealthPoints(int n);
+    Action.ActionResult changeHealthPoints(int n);
 
 
     /**
-     * Change (increase or decrease) amount of Action Points.
-     * @param n Positive or negative delta for changing Action Points
-     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     * Change (increase or decrease) amount of GenericAction Points.
+     * @param n Positive or negative delta for changing GenericAction Points
+     * @return ActionResult.SUCCESS or ActionResult.FAIL
      */
-    ActionResult changeActionPoints(int n);
+    Action.ActionResult changeActionPoints(int n);
+
+
+    /**
+     * Resets action points to zero.
+     * Useful for attacks (just like in Sid Meier's Civilization)
+     * @return Action Result
+     */
+    Action.ActionResult zeroActionPoints();
 
 
     /**
@@ -57,8 +54,8 @@ public interface IUnit {
 
 
     /**
-     * Getter for Action Points.
-     * @return current Action Points amount
+     * Getter for GenericAction Points.
+     * @return current GenericAction Points amount
      */
     int getActionPoints();
 
@@ -76,14 +73,6 @@ public interface IUnit {
      * @return true if the unit can ignore counter attack, false otherwise.
      */
     boolean getCanIgnoreCounterAttack();
-
-
-    /**
-     * Method for attacking other unit
-     * @param otherUnit other unit.
-     * @return AttackResult.NOBODY_DIED or AttackResult.ATTACKER_DIED or AttackResult.DEFENDER_DIED
-     */
-    AttackResult attackUnit(IUnit otherUnit);
 
 
     /**
@@ -115,15 +104,8 @@ public interface IUnit {
 
 
     /**
-     * Perform action on this unit.
-     * @param action Action to be performed
-     */
-    ActionResult performAction(Action action);
-
-
-    /**
      * Estimate whether Unit is able to attack
-     * @return ActionResult.SUCCESS or ActionResult.NOT_ENOUGH_POINTS
+     * @return ActionResult.SUCCESS or ActionResult.FAIL
      */
-    ActionResult ableToAttack();
+    Action.ActionResult ableToAttack();
 }

@@ -2,12 +2,13 @@ package Model.Unit;
 
 import Model.Item.GenericItem;
 import Model.Player.Player;
+import Model.Unit.UnitAction.Action;
 
 import java.util.ArrayList;
 
 
 /**
- * Generic class for all units.
+ * GenericUnit class for all units.
  * Just like IUnit interface but with package-private and private members,
  * not intended to be used not from package.
  *
@@ -36,13 +37,13 @@ class GenericUnit implements IUnit {
 
 
     /**
-     * Maximal possible value of Action Points of the Unit.
+     * Maximal possible value of GenericAction Points of the Unit.
      */
     int actionPointsMax;
 
 
     /**
-     * Current value of Action Points of the Unit.
+     * Current value of GenericAction Points of the Unit.
      */
     private int actionPointsCurrent;
 
@@ -109,59 +110,40 @@ class GenericUnit implements IUnit {
     }
 
 
-    public ActionResult changeActionPoints(int n) {
+    public Action.ActionResult changeActionPoints(int n) {
         if(actionPointsCurrent + n < 0) {
-            return ActionResult.NOT_ENOUGH_POINTS;
+            return Action.ActionResult.FAIL;
         }
         actionPointsCurrent = Math.min(actionPointsCurrent + n, actionPointsMax);
-        return ActionResult.SUCCESS;
+        return Action.ActionResult.SUCCESS;
     }
 
 
-    public ActionResult changeHealthPoints(int n) {
-        ActionResult retval = ActionResult.SUCCESS;
-        if(healthPointsCurrent + n <= 0) {
-            retval = ActionResult.UNIT_DIED;
+    public Action.ActionResult zeroActionPoints() {
+        actionPointsCurrent = 0;
+        return Action.ActionResult.SUCCESS;
+    }
+
+
+    public Action.ActionResult changeHealthPoints(int n) {
+        if(healthPointsCurrent <= 0) {
+            return Action.ActionResult.FAIL;
         }
         healthPointsCurrent = Math.min(Math.max(healthPointsCurrent + n, 0), healthPointsMax);
-        return retval;
+        return Action.ActionResult.SUCCESS;
     }
 
 
-    public ActionResult ableToAttack() {
+    public Action.ActionResult ableToAttack() {
         if(this.actionPointsCurrent <= 0) {
-            return ActionResult.NOT_ENOUGH_POINTS;
+            return Action.ActionResult.FAIL;
         }
-        return ActionResult.SUCCESS;
-    }
-
-
-    public AttackResult attackUnit(IUnit otherUnit) {
-        if(this.ableToAttack() == ActionResult.NOT_ENOUGH_POINTS) {
-            return AttackResult.NOBODY_DIED;
-        } else {
-            this.actionPointsCurrent = 0;
-
-            ActionResult outcomingAttackResult = otherUnit.changeHealthPoints(-this.damagePoints);
-
-            if(outcomingAttackResult == ActionResult.UNIT_DIED) {
-                return AttackResult.DEFENDER_DIED;
-            }
-
-            if(!this.canIgnoreCounterAttack) {
-                ActionResult incomingAttackResult = this.changeHealthPoints(-otherUnit.getDamagePoints());
-                if(incomingAttackResult == ActionResult.UNIT_DIED) {
-                    return AttackResult.ATTACKER_DIED;
-                }
-            }
-
-            return AttackResult.NOBODY_DIED;
-        }
+        return Action.ActionResult.SUCCESS;
     }
 
 
     public ArrayList<GenericItem> getItems() {
-        return (ArrayList<GenericItem>) items.clone();
+        return new ArrayList<>(items);
     }
 
 
@@ -176,16 +158,7 @@ class GenericUnit implements IUnit {
 
 
     public ArrayList<Action> getAvailableActions() {
-        return (ArrayList<Action>) availableActions.clone();
-    }
-
-
-    public ActionResult performAction(Action action) {
-        if (getAvailableActions().contains(action)) {
-            changeActionPoints(-1);
-            return ActionResult.SUCCESS;
-        }
-        return ActionResult.ACTION_UNAVAILABLE;
+        return new ArrayList<>(availableActions);
     }
 
 

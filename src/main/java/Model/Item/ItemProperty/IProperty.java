@@ -1,12 +1,9 @@
-package Model.Item;
+package Model.Item.ItemProperty;
 
+import Model.Item.GenericItem;
 import Model.Unit.IUnit;
 
-/**
- * Bridge pattern.
- * Allows Items to have unified side effects.
- */
-class ItemProperty {
+public interface IProperty {
 
     /**
      * Called on activation of the item.
@@ -14,14 +11,12 @@ class ItemProperty {
      * @param thisUnit Unit, that activated the item
      * @param targetUnit Target unit (can be null)
      */
-    public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {}
-
+    public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit);
 
     /**
      * Called on picking up the item.
      * @param thisItem Item, that was picked up
      * @param thisUnit Unit, that picked up that item
      */
-    public void onPickup(GenericItem thisItem, IUnit thisUnit) {}
+    public void onPickup(GenericItem thisItem, IUnit thisUnit);
 }
-

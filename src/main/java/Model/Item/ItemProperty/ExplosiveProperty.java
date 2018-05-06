@@ -1,12 +1,12 @@
-package Model.Item;
+package Model.Item.ItemProperty;
 
+import Model.Item.GenericItem;
 import Model.Unit.IUnit;
 
-class ExplosiveProperty extends ItemProperty {
+class ExplosiveProperty extends GenericProperty {
 
     @Override
     public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {
-        thisItem.setTitle(thisItem.getTitle() + " [Exploded].");
         thisUnit.changeHealthPoints(-10);
     }
 }

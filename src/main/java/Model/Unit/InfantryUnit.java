@@ -1,6 +1,9 @@
 package Model.Unit;
 
 
+import Model.Unit.UnitAction.AttackAction;
+import Model.Unit.UnitAction.SimpleAction;
+
 public class InfantryUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
@@ -26,8 +29,8 @@ public class InfantryUnit extends GenericUnit {
 
 
         public void setActions() {
-            unit.availableActions.add(Action.SIMPLE_ACTION);
-            unit.availableActions.add(Action.EXAMPLE_ACTION);
+            unit.availableActions.add(SimpleAction.getAction());
+            unit.availableActions.add(AttackAction.getAction());
         }
     }
 }

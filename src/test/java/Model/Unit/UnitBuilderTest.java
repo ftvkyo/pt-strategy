@@ -1,8 +1,9 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
-import org.junit.Test;
 import Model.Player.Player;
+import Model.Unit.UnitAction.AttackAction;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -74,65 +75,14 @@ public class UnitBuilderTest {
         myBuilder.setMaker(new CavalryUnit.UnitMaker());
         IUnit cavalry = myBuilder.buildNewUnit();
 
-        IUnit.AttackResult AResult;
+        AttackAction.ActionResult AResult;
 
 
-        assertEquals(true, archer.getCanIgnoreCounterAttack());
-        assertEquals(false, cavalry.getCanIgnoreCounterAttack());
+        assertTrue(archer.getCanIgnoreCounterAttack());
+        assertFalse(cavalry.getCanIgnoreCounterAttack());
 
 
-        AResult = cavalry.attackUnit(archer);
-
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-
-        assertEquals(0, cavalry.getActionPoints());
-        assertEquals(100, cavalry.getHealthPoints());
-        assertEquals(30, cavalry.getDamagePoints());
-
-        assertEquals(10, archer.getActionPoints());
-        assertEquals(40, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
-
-
-        AResult = archer.attackUnit(cavalry);
-
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-
-        assertEquals(0, archer.getActionPoints());
-        assertEquals(40, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
-
-        assertEquals(0, cavalry.getActionPoints());
-        assertEquals(80, cavalry.getHealthPoints());
-        assertEquals(30, cavalry.getDamagePoints());
-
-
-        cavalry.changeActionPoints(+1);
-        AResult = cavalry.attackUnit(archer);
-
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-
-        assertEquals(0, cavalry.getActionPoints());
-        assertEquals(60, cavalry.getHealthPoints());
-        assertEquals(30, cavalry.getDamagePoints());
-
-        assertEquals(0, archer.getActionPoints());
-        assertEquals(10, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
-
-
-        cavalry.changeActionPoints(+1);
-        AResult = cavalry.attackUnit(archer);
-
-        assertEquals(IUnit.AttackResult.DEFENDER_DIED, AResult);
-
-        assertEquals(0, cavalry.getActionPoints());
-        assertEquals(60, cavalry.getHealthPoints());
-        assertEquals(30, cavalry.getDamagePoints());
-
-        assertEquals(0, archer.getActionPoints());
-        assertEquals(0, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
+        //TODO: attacks
     }
 
 
@@ -148,53 +98,9 @@ public class UnitBuilderTest {
         myBuilder.setMaker(new InfantryUnit.UnitMaker());
         IUnit infantry = myBuilder.buildNewUnit();
 
-        IUnit.AttackResult AResult;
+        AttackAction.ActionResult AResult;
 
 
-        AResult = archer.attackUnit(infantry);
-
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-
-        assertEquals(0, archer.getActionPoints());
-        assertEquals(70, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
-
-        assertEquals(8, infantry.getActionPoints());
-        assertEquals(80, infantry.getHealthPoints());
-        assertEquals(30, infantry.getDamagePoints());
-
-
-        AResult = infantry.attackUnit(archer);
-
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-
-        assertEquals(0, infantry.getActionPoints());
-        assertEquals(60, infantry.getHealthPoints());
-        assertEquals(30, infantry.getDamagePoints());
-
-        assertEquals(0, archer.getActionPoints());
-        assertEquals(40, archer.getHealthPoints());
-        assertEquals(20, archer.getDamagePoints());
-
-
-        archer.restoreAllPoints();
-        infantry.changeActionPoints(+1);
-        AResult = infantry.attackUnit(archer);
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-        assertEquals(40, infantry.getHealthPoints());
-
-
-        archer.restoreAllPoints();
-        infantry.changeActionPoints(+1);
-        AResult = infantry.attackUnit(archer);
-        assertEquals(IUnit.AttackResult.NOBODY_DIED, AResult);
-        assertEquals(20, infantry.getHealthPoints());
-
-
-        archer.restoreAllPoints();
-        infantry.changeActionPoints(+1);
-        AResult = infantry.attackUnit(archer);
-        assertEquals(IUnit.AttackResult.ATTACKER_DIED, AResult);
-        assertEquals(0, infantry.getHealthPoints());
+        //TODO: attacks
     }
 }

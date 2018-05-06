@@ -8,7 +8,7 @@ import java.util.ArrayList;
 abstract public class GenericLandscape {
 
     /**
-     * Action Points needed to step on this Landscape.
+     * GenericAction Points needed to step on this Landscape.
      */
     private int passableness;
 

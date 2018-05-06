@@ -1,11 +1,13 @@
 package Model.Item;
 
+import Model.Item.ItemProperty.IProperty;
+
 public class GenericItem {
 
     /**
      * Property of this item
      */
-    private ItemProperty property;
+    private IProperty property;
 
     /**
      * Title of this item
@@ -15,15 +17,13 @@ public class GenericItem {
     /**
      * Default constructor without specific property
      */
-    public GenericItem() {
-        this.property = new ItemProperty();
-    }
+    public GenericItem() {}
 
     /**
      * Constructor for items with properties
      * @param p Property to assign to this item
      */
-    public GenericItem(ItemProperty p) {
+    public GenericItem(IProperty p) {
         this.property = p;
     }
 
