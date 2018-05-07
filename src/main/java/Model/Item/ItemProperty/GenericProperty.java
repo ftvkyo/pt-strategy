@@ -9,8 +9,11 @@ import Model.Unit.IUnit;
  */
 class GenericProperty implements IProperty {
 
-    public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {}
+    public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {
 
-    public void onPickup(GenericItem thisItem, IUnit thisUnit) {}
+    }
+
+    public void onPickup(GenericItem thisItem, IUnit thisUnit) {
+    }
 }
 

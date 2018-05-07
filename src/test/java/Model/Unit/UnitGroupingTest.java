@@ -45,8 +45,8 @@ public class UnitGroupingTest {
     }
 
     @Test
-   public void UnitGroupingTest_ExampleAction() {
-       UnitBuilder myBuilder = new UnitBuilder();
+    public void UnitGroupingTest_ExampleAction() {
+        UnitBuilder myBuilder = new UnitBuilder();
         Player p = new Player();
         myBuilder.setOwner(p);
 
