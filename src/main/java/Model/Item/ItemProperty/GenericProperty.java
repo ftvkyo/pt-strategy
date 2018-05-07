@@ -5,8 +5,7 @@ import Model.Unit.IUnit;
 
 /**
  * Паттерн Bridge.
- * Позволяет Item'ам иметь единые свойства. (?)
- * Allows Items to have unified side effects.
+ * Позволяет Item'ам иметь универсальные свойства.
  */
 class GenericProperty implements IProperty {
 
