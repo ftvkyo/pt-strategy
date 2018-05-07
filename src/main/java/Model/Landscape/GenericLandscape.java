@@ -22,7 +22,6 @@ abstract public class GenericLandscape {
 
     /**
      * Item'ы, находящиеся на данном Landscape.
-     * (или у юнита, находящегося на Landscape?)
      */
     private ArrayList<GenericItem> items;
 
@@ -88,7 +87,6 @@ abstract public class GenericLandscape {
     /**
      * Метод для выяснения, какие Item'ы находятся на данном Landscape.
      * @return копия массива Item'ов, находящихся на данном Landscape
-     * (они на клетке или у юнита?)
      */
     public ArrayList<GenericItem> getItems() {
         return new ArrayList<>(items);
