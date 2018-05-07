@@ -1,25 +1,34 @@
 package Model.Unit.UnitAction;
 
-import Model.Item.GenericItem;
 import Model.Unit.IUnit;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 
-public class ExampleAction extends Action {
+public class ExampleAction implements IAction {
 
-    private static final Action instance = new ExampleAction();
+    public static final IAction instance = new ExampleAction();
 
     private ExampleAction() {}
 
     @Override
-    public ActionResult perform(@NotNull IUnit thisUnit, @Nullable IUnit targetUnit, @Nullable GenericItem item) {
-        ActionResult retval = ActionResult.SUCCESS;
+    public ActionResult perform(Object... parameters) {
+        if(!checkParameters(parameters)) {
+            return ActionResult.FAIL;
+        }
+
+        IUnit thisUnit = (IUnit) parameters[0];
+
         thisUnit.changeActionPoints(-1);
-        return retval;
+        return ActionResult.SUCCESS;
     }
 
-    @NotNull
-    public static Action getAction() {
-        return instance;
+    private boolean checkParameters(Object[] parameters) {
+        return parameters.length >= 1
+                && parameters[0] instanceof IUnit;
+    }
+
+    @Override
+    public boolean canPerform(IUnit unit) {
+        return unit.getHealthPoints() > 0
+                && unit.getActionPoints() > 0
+                && unit.getAvailableActions().contains(instance);
     }
 }

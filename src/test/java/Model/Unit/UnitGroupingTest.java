@@ -1,7 +1,7 @@
-package Model.Player;
+package Model.Unit;
 
-import Model.Unit.*;
-import Model.Unit.UnitAction.Action;
+import Model.Player.Player;
+import Model.Unit.UnitAction.IAction;
 import Model.Unit.UnitAction.OnlyArcherAction;
 import Model.Unit.UnitAction.SimpleAction;
 import org.junit.Test;
@@ -26,9 +26,9 @@ public class UnitGroupingTest {
         myBuilder.setMaker(new InfantryUnit.UnitMaker());
         IUnit infantry2 = myBuilder.buildNewUnit();
 
-        Player.UnitGroup units = new Player.UnitGroup();
+        UnitGroup units = new UnitGroup();
 
-        Action sa = SimpleAction.getAction();
+        IAction sa = SimpleAction.instance;
 
         assertTrue(sa.canPerform(archer) && sa.canPerform(infantry1) && sa.canPerform(infantry2));
 
@@ -64,7 +64,7 @@ public class UnitGroupingTest {
         IUnit cavalry2 = myBuilder.buildNewUnit();
 
 
-        Action onlyArcherAction = OnlyArcherAction.getAction();
+        IAction onlyArcherAction = OnlyArcherAction.instance;
 
         assertTrue(onlyArcherAction.canPerform(archer));
         assertFalse(onlyArcherAction.canPerform(infantry));
@@ -72,7 +72,7 @@ public class UnitGroupingTest {
         assertFalse(onlyArcherAction.canPerform(cavalry2));
 
 
-        Player.UnitGroup units = new Player.UnitGroup();
+        UnitGroup units = new UnitGroup();
 
         units.addUnit(archer);
         assertTrue(units.canPerformAction(onlyArcherAction));

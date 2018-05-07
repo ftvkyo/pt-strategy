@@ -1,8 +1,8 @@
 package Model.Unit;
 
 import Model.Player.Player;
-import Model.Unit.UnitAction.Action;
 import Model.Unit.UnitAction.AttackAction;
+import Model.Unit.UnitAction.IAction;
 import Model.Unit.UnitAction.SimpleAction;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class UnitAttackTest {
         myBuilder.setMaker(new CavalryUnit.UnitMaker());
         IUnit cavalry = myBuilder.buildNewUnit();
 
-        Action attack = AttackAction.getAction();
+        IAction attack = AttackAction.instance;
 
 
         assertTrue(archer.getCanIgnoreCounterAttack());
@@ -45,8 +45,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(archer));
         assertTrue(attack.canPerform(cavalry));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(archer, cavalry, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(archer, cavalry)
         );
 
         assertEquals(70, archer.getHealthPoints());
@@ -64,8 +64,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(cavalry));
         assertFalse(attack.canPerform(archer));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(cavalry, archer, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(cavalry, archer)
         );
 
         assertEquals(80, cavalry.getHealthPoints());
@@ -83,8 +83,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(archer));
         assertFalse(attack.canPerform(cavalry));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(archer, cavalry, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(archer, cavalry)
         );
 
         assertEquals(40, archer.getHealthPoints());
@@ -102,8 +102,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(cavalry));
         assertFalse(attack.canPerform(archer));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(cavalry, archer, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(cavalry, archer)
         );
 
         assertEquals(40, cavalry.getHealthPoints());
@@ -121,8 +121,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(archer));
         assertFalse(attack.canPerform(cavalry));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(archer, cavalry, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(archer, cavalry)
         );
 
         assertEquals(10, archer.getHealthPoints());
@@ -140,8 +140,8 @@ public class UnitAttackTest {
         assertTrue(attack.canPerform(cavalry));
         assertFalse(attack.canPerform(archer));
         assertEquals(
-                Action.ActionResult.SUCCESS,
-                attack.perform(cavalry, archer, null)
+                IAction.ActionResult.SUCCESS,
+                attack.perform(cavalry, archer)
         );
 
         assertEquals(20, cavalry.getHealthPoints());
@@ -153,7 +153,7 @@ public class UnitAttackTest {
         // [7] After-battle checks
         assertFalse(attack.canPerform(cavalry));
 
-        Action sa = SimpleAction.getAction();
+        IAction sa = SimpleAction.instance;
         assertFalse(attack.canPerform(archer));
         assertFalse(sa.canPerform(archer));
         archer.restoreActionPoints();
@@ -165,8 +165,8 @@ public class UnitAttackTest {
         assertEquals(14, cavalry.getActionPoints());
 
         assertEquals(
-                Action.ActionResult.FAIL,
-                attack.perform(cavalry, archer, null)
+                IAction.ActionResult.FAIL,
+                attack.perform(cavalry, archer)
         );
     }
 }

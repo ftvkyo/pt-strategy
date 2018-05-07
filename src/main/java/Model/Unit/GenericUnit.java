@@ -2,7 +2,7 @@ package Model.Unit;
 
 import Model.Item.GenericItem;
 import Model.Player.Player;
-import Model.Unit.UnitAction.Action;
+import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -69,13 +69,13 @@ class GenericUnit implements IUnit {
     /**
      * Действия, доступные Unit'у.
      */
-    final HashSet<Action> availableActions = new HashSet<>();
+    final HashSet<IAction> availableActions = new HashSet<>();
 
 
     /**
-     * Дефолтный конструктор.
+     * Спрятанный конструктор.
      */
-    public GenericUnit() {}
+    GenericUnit() {}
 
 
     public boolean getCanIgnoreCounterAttack() {
@@ -145,7 +145,7 @@ class GenericUnit implements IUnit {
 
 
     //TODO: Добавить проверку по-другому (передавать action и проверять, доступно ли оно)
-    public HashSet<Action> getAvailableActions() {
+    public HashSet<IAction> getAvailableActions() {
         return new HashSet<>(availableActions);
     }
 
