@@ -8,26 +8,29 @@ import java.util.ArrayList;
 abstract public class GenericLandscape {
 
     /**
-     * GenericAction Points needed to step on this Landscape.
+     * Action Points, необходимые для того,
+     * чтобы пройти по этому Landscape.
      */
     private int passableness;
 
 
     /**
-     * Unit on current Landscape.
+     * Unit, находящийся на данном Landscape.
      */
     private IUnit unit;
 
 
     /**
-     * Items on current Landscape.
+     * Item'ы, находящиеся на данном Landscape.
+     * (или у юнита, находящегося на Landscape?)
      */
     private ArrayList<GenericItem> items;
 
 
     /**
-     * Setter for passableness of Landscape.
-     * @param p Positive delta for passableness of Landscape
+     * Сэттер для "проходимости" этого Landscape.
+     * @param p положительное число для
+     * "проходимости" этого Landscape
      */
     void setPassableness(int p) {
         passableness = p;
@@ -35,8 +38,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Getter for passableness of Landscape.
-     * @return passableness of Landscape
+     * Геттер для "проходимости" данного Landscape.
+     * @return "проходимость" данного Landscape
      */
     public int getPassableness() {
         return passableness;
@@ -44,8 +47,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method for putting Unit on this Landscape.
-     * @param un Unit to put on this Landscape
+     * Метод для помещения Unit'a на данный Landscape.
+     * @param un Unit, который будет помещен на данный Landscape
      */
     public void setUnit(IUnit un) {
         this.unit = un;
@@ -53,8 +56,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method for getting Unit on this Landscape.
-     * @return Unit on this Landscape
+     * Метод для получения Unit'a, находящегося на данном Landscape.
+     * @return Unit, пребывающий на этом Landscape
      */
     public IUnit getUnit() {
         return this.unit;
@@ -62,8 +65,9 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method for swapping Units (on this Landscape and on Landscape l).
-     * @param l second Landscape for swapping Units
+     * Метод для обмена местами Unit'ов (на этом Landscape and на Landscape l).
+     * @param l Landscape, с находящимся на котором Unit'ом
+     * будет меняться местами Unit на данном Landscape
      */
     public void swapUnit(GenericLandscape l) {
         IUnit tmp = l.getUnit();
@@ -73,8 +77,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method to add Item on this Landscape.
-     * @param item Item to put on this Landscape
+     * Метод для добавления Item на данный Landscape.
+     * @param item Item для помещения на этот Landscape
      */
     public void addItem(GenericItem item) {
         items.add(item);
@@ -82,8 +86,9 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method for getting Items on this Landscape.
-     * @return copy of the inventory of the Unit
+     * Метод для выяснения, какие Item'ы находятся на данном Landscape.
+     * @return копия массива Item'ов, находящихся на данном Landscape
+     * (они на клетке или у юнита?)
      */
     public ArrayList<GenericItem> getItems() {
         return new ArrayList<>(items);
@@ -91,8 +96,8 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Method to remove n-th Item from this Landscape.
-     * @param n number of the Item to remove
+     * Метод для удаленния n-ного Item'a с данного Landscape.
+     * @param n номер Item'a для удаления
      */
     public void removeItem(int n) {
         items.remove(n);
@@ -100,13 +105,13 @@ abstract public class GenericLandscape {
 
 
     /**
-     * Class for Factory Method Design Pattern.
+     * Класс для паттерна Factory Method.
      */
     abstract public static class GenericLandscapeFactory {
 
         /**
          * Factory method.
-         * @return newly generated Landscape object
+         * @return сгенерированный объект Landscape
          */
         abstract public GenericLandscape createInstance();
     }

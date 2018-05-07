@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Model interface.
+ * Интерфейс Model.
  */
 public interface IModel {
 

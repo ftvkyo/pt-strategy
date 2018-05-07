@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Server (main) Model, used when we play over network.
+ * Server (главная) Model, используемая для игр по сети.
  */
 public class ThickModel implements IModel {
     //

@@ -7,102 +7,102 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Interface of units. Should be used everywhere, where it's possible instead of GenericUnit class.
+ * Интерфейс Unit'ов. Следует использовать его вместо GenericUnit везде, где это возможно.
  */
 public interface IUnit {
 
     /**
-     * Restore value of all possible points to max value.
+     * Метод для обновления значений всех возможных Points до максимальных значений.
      */
     void restoreAllPoints();
 
 
     /**
-     * Restore value of GenericAction Points.
+     * Метод для обновления значения Action Points.
      */
     void restoreActionPoints();
 
 
     /**
-     * Change (increase or decrease) amount of Health Points.
-     * @param delta Positive or negative delta for changing Health Points
+     * Метод для изменения (уменьшения или увеличения) значения Health Points.
+     * @param delta число, на которое нужно изменить Health Points
      */
     void changeHealthPoints(int delta);
 
 
     /**
-     * Change (increase or decrease) amount of GenericAction Points.
-     * @param delta Positive or negative delta for changing GenericAction Points
+     * Метод для изменения (уменьшения или увеличения) значения Action Points.
+     * @param delta число, на которое нужно изменить Action Points
      */
     void changeActionPoints(int delta);
 
 
     /**
-     * Sets action points to zero.
-     * Useful for attacks (just like in Sid Meier's Civilization)
+     * Метод для обнуления Action Points.
+     * Полезен для атак (как в Sid Meier's Civilization)
      */
     void zeroActionPoints();
 
 
     /**
-     * Sets health points to zero.
+     * Метод для обнуления Health Points.
      */
     void zeroHealthPoints();
 
 
     /**
-     * Getter for Health Points.
-     * @return current Health Points amount
+     * Геттер для Health Points.
+     * @return текущее значение Health Points
      */
     int getHealthPoints();
 
 
     /**
-     * Getter for GenericAction Points.
-     * @return current GenericAction Points amount
+     * Геттер для Action Points.
+     * @return текущее значение Action Points
      */
     int getActionPoints();
 
 
     /**
-     * Getter for DamagePoints.
-     * @return Damage Points amount
+     * Геттер для Damage Points.
+     * @return текущее значение Damage Points
      */
     int getDamagePoints();
 
 
     /**
-     * Some units are able to ignore incoming attack after their attack,
-     * this is determined by this getter.
-     * @return true if the unit can ignore counter attack, false otherwise.
+     * Некоторые Unit'ы (лучники) могут игнорировать ответные атаки,
+     * и этот метод -- геттер для способности данного Unit'a делать это.
+     * @return true, если Unit имеет способность игнорировать ответную атаку, false иначе
      */
     boolean getCanIgnoreCounterAttack();
 
 
     /**
-     * Get inventory of this Unit.
-     * @return Inventory
+     * Геттер для инвентаря данного Unit'a.
+     * @return массив Items -- инвентарь
      */
     ArrayList<GenericItem> getItems();
 
 
     /**
-     * Add item to the inventory of this Unit.
-     * @param item Item that will be added
+     * Метод для добавления Item'a в инвентарь данного Unit'a.
+     * @param item Item, который будет добавлен в инвентарь
      */
     void addItem(GenericItem item);
 
 
     /**
-     * Remove item from this unit inventory.
-     * @param n Position (in inventory) of the item that will be removed
+     * Метод для удаления n-ного Item'a из инвентаря данного Unit'a.
+     * @param n номер Item'a, который будет удален из инвентаря
      */
     void removeItem(int n);
 
 
     /**
-     * Get available actions for this Unit
-     * @return list of available actions
+     * Геттер для доступных данному Unit'у действий
+     * @return множество доступных данному Unit'у действий
      */
     HashSet<Action> getAvailableActions();
 }

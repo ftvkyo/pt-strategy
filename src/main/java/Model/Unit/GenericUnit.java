@@ -9,72 +9,71 @@ import java.util.HashSet;
 
 
 /**
- * GenericUnit class for all units.
- * Just like IUnit interface but with package-private and private members,
- * not intended to be used not from package.
+ * GenericUnit -- класс для всех Units.
+ * Почти как IUnit interface, но с package private и private членами,
+ * которые не предполагается использовать вне папки.
  *
- * Particularly methods for correct implementation of Builder Design Pattern.
- * It means that some fields of object will not be editable outside the package, for example
- * maximal values of *Points and damage of the Unit.
+ * Конкретно -- методы для корректной реализации паттерна Builder.
+ * Это значит, что некоторые поля объекта нельзя будет изменять из мест вне папки.
  */
 class GenericUnit implements IUnit {
 
     /**
-     * Owner of the Unit.
+     * Игрок, владеющй Unit'ом.
      */
     Player owner;
 
 
     /**
-     * Maximal possible value of Health Points of the Unit.
+     * Максимально возможное значение Health Points Unit'a.
      */
     int healthPointsMax;
 
 
     /**
-     * Current value of Health Points of the Unit.
+     * Текущее значение Health Points Unit'a.
      */
     private int healthPointsCurrent;
 
 
     /**
-     * Maximal possible value of GenericAction Points of the Unit.
+     * Максимально возможное значение Action Points Unit'a.
      */
     int actionPointsMax;
 
 
     /**
-     * Current value of GenericAction Points of the Unit.
+     * Текущее значение Action Points Unit'a.
      */
     private int actionPointsCurrent;
 
 
     /**
-     * Damage that the Unit does to other units during attack.
+     * Урон, наносимый Unit'ом другим Unit'ам во время атаки.
      */
     int damagePoints;
 
 
     /**
-     * Determines if unit is able to ignore incoming attack right after its attack.
+     * Возможность Unit'a избежать ответной атаки после атаки самого Unit'a.
      */
     boolean canIgnoreCounterAttack;
 
 
     /**
-     * Inventory of the Unit.
+     * Инвентарь (набор Items) Unit'a.
      */
     private final ArrayList<GenericItem> items = new ArrayList<>();
 
 
     /**
-     * Available actions.
+     * Действия, доступные Unit'у.
      */
     final HashSet<Action> availableActions = new HashSet<>();
 
 
     /**
-     * Default Constructor.
+     * Дефолтный конструктор.
      */
     public GenericUnit() {}
 
@@ -152,28 +151,28 @@ class GenericUnit implements IUnit {
 
 
     /**
-     * Part of Builder Design Pattern.
-     * "Creator and initializer" of Units.
-     * Must be used in UnitBuilder Class.
+     * Часть паттерна Builder.
+     * "Создатель и инициализатор" Units.
+     * Должен быть использован в классе UnitBuilder.
      *
-     * createUnit() and getUnit() methods should be called only once through the unit creation.
+     * Методы createUnit() и getUnit() следует вызывать пр создании Unit'a только один раз.
      */
     static abstract class GenericUnitMaker {
 
         /**
-         * Container of the unit.
+         * Unit.
          */
         GenericUnit unit;
 
 
         /**
-         * First method to be called in the UnitBuilder class.
+         * Метод, который нужно вызвать первым в классе UnitBuilder.
          */
         abstract void createUnit();
 
 
         /**
-         * Set owner of current unit in the container.
+         * Сэттер для владельца Unit'a.
          * @param owner Owner of the unit.
          */
         public void setOwner(Player owner) {
@@ -182,26 +181,26 @@ class GenericUnit implements IUnit {
 
 
         /**
-         * Sets default Inventory for every type of Unit.
+         * Сэттер для дефолтного инвентаря для данного типа Unit'a.
          */
         abstract void setInventory();
 
 
         /**
-         * Sets default parameters for every type of Unit.
+         * Сэттер для дефолтных параметров для данного типа Unit'a.
          */
         abstract void setDefaults();
 
 
         /**
-         * Sets available actions for every type of Unit.
+         * Сэттер для доступных данному типу Unit'a действий.
          */
         abstract void setActions();
 
 
         /**
-         * Getter of the unit.
-         * @return Created Unit.
+         * Геттер для Unit'a.
+         * @return созданный Unit
          */
         public GenericUnit getUnit() {
             return unit;

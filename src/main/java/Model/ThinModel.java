@@ -1,8 +1,8 @@
 package Model;
 
 /**
- * Client model, that will connect to remote ThickModel (server model).
- * It will probably cache some data.
+ * Client Model, которая будет подключаться к удаленной ThickModel.
+ * (?) It will probably cache some data.
  */
 public class ThinModel implements IModel {
     //

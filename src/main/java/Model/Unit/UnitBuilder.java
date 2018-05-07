@@ -4,25 +4,25 @@ import Model.Player.Player;
 
 
 /**
- * Part of implementation of Builder Design Pattern.
+ * Часть реализации паттерна Builder.
  */
 public class UnitBuilder {
 
     /**
-     * Current UnitMaker;
+     * Текущий UnitMaker.
      */
     private GenericUnit.GenericUnitMaker maker;
 
 
     /**
-     * Owner of this UnitBuilder and produced Units.
+     * Владелец данного UnitBuilder'a и создаваемых Unit'ов.
      */
     private Player owner;
 
 
     /**
-     * Setter for UnitMaker
-     * @param maker New UnitMaker to be "plugged".
+     * Сэттер для UnitMaker'a.
+     * @param maker UnitMaker, который будет использоваться
      */
     public void setMaker(GenericUnit.GenericUnitMaker maker) {
         this.maker = maker;
@@ -30,8 +30,8 @@ public class UnitBuilder {
 
 
     /**
-     * Setter for owner of UnitBuilder and produced Units.
-     * @param owner New owner to be set.
+     * Сэттер для владельца UnitBuilder'a и создаваемых Unit'ов.
+     * @param owner владелец UnitBuilder'a и создаваемых Unit'ов
      */
     public void setOwner(Player owner) {
         this.owner = owner;
@@ -39,8 +39,8 @@ public class UnitBuilder {
 
 
     /**
-     * Getter for current owner of UnitBuilder and produced Units.
-     * @return Current owner.
+     * Геттер для текущего владельца UnitBuilder'a и создаваемых Unit'ов.
+     * @return текущий владелец UnitBuilder'a и создаваемых Unit'ов
      */
     public Player getOwner() {
         return owner;
@@ -48,9 +48,9 @@ public class UnitBuilder {
 
 
     /**
-     * Main method for unit creation.
-     * Setters for Maker and Owner should be called before this method.
-     * @return Created unit.
+     * Главный метод для создания Unit'ов.
+     * Сэттеры для создателя Maker'a и владельца должны быть вызваны раньше, чем этот метод.
+     * @return созданный Unit
      */
     public IUnit buildNewUnit() {
         maker.createUnit();

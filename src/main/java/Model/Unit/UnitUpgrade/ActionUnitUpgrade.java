@@ -8,17 +8,18 @@ import java.util.HashSet;
 public class ActionUnitUpgrade extends GenericUnitUpgrade {
 
     /**
-     * List of actions, that we process inside of decorator.
+     * Множество действий, которые мы осуществляем внутри декоратора. (?)
+     * Set of actions, that we process inside of decorator.
      */
     private final HashSet<Action> availableActions = new HashSet<>();
 
 
     /**
-     * The process of unit upgrading.
+     * Процесс улучшения Unit'a.
      * TODO: Should I implement it as constructor?
-     * @param unit the unit to be upgraded
-     * @param actions the action, that should be added to this unit
-     * @return the upgraded unit.
+     * @param unit юнит, который будет улучшен
+     * @param actions действие, возможность совершать которое получит этот Unit
+     * @return Улучшенный Unit
      */
     public static GenericUnitUpgrade upgradeUnit(IUnit unit, HashSet<Action> actions) {
         ActionUnitUpgrade retUnit = new ActionUnitUpgrade();

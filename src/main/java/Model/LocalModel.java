@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Model for local games, for example - for HotSeat games.
+ * Model для локальных игр, например, для игр посредством HotSeat.
  */
 public class LocalModel implements IModel {
 

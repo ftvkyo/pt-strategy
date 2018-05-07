@@ -6,26 +6,26 @@ import Model.Unit.UnitAction.Action;
 import java.util.ArrayList;
 
 /**
- * Обычный класс игрока, который отвеает за действия от его имени
+ * Обычный класс игрока, который отвечает за действия от его имени.
  */
 public class Player {
     private UnitGroup selectedUnits = new UnitGroup();
 
     /**
-     * Allows Player to group his Units to perform actions on them.
-     * Structure pattern Facade.
+     * Позволяет игроку группировать свои Unit'ы для выполнения действий над ними.
+     * Структурный паттерн Facade.
      */
     public static class UnitGroup {
 
         /**
-         * Current group of Units.
+         * Текущая группа Units.
          */
         private final ArrayList<IUnit> units = new ArrayList<>();
 
 
         /**
-         * Add unit into the group.
-         * @param unit The unit to be added
+         * Метод для добавления Unit'a в текущую группу.
+         * @param unit Unit, который будет добавлен
          */
         public void addUnit(IUnit unit) {
             units.add(unit);
@@ -33,7 +33,7 @@ public class Player {
 
 
         /**
-         * Clear current group of Units.
+         * Метод для удаления всех Unit'ов из текущей группы.
          */
         public void clearUnits() {
             units.clear();
@@ -41,11 +41,14 @@ public class Player {
 
 
         /**
-         * Perform action on all Units in group.]
-         * Возможность совершить action этой группой юнитов
+         * Метод для совершения Action текущей группой.
+         * Возможность совершить Action этой группой
          * должна быть проверена извне методом canPerformAction.
-         * @param action GenericAction to be performed
-         * @return Количество неудачных action.
+         * @param action действие, которое должно быть выполнено
+         * @return Количество неудачных попыток выполнить действие
+         * (Действие может не выполниться, если, например,
+         * группа Units атакует другого Unit'a, и он умирает до того,
+         * как все Units группы его атаковали)
          */
         public int performAction(Action action) {
             int fails = 0;
@@ -61,8 +64,8 @@ public class Player {
 
         /**
          * Проверяет, все ли юниты могут выполнить это действие.
-         * @param action Action, который мы выполняем
-         * @return Количество неудавшихся выполнений
+         * @param action действие, которые мы выполняем
+         * @return Способность всех Units группы выполнить данное действие
          */
         public boolean canPerformAction(Action action) {
             for(IUnit unit : units) {

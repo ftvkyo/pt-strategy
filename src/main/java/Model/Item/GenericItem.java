@@ -5,39 +5,39 @@ import Model.Item.ItemProperty.IProperty;
 public class GenericItem {
 
     /**
-     * Property of this item
+     * Свойство Item'a.
      */
     private IProperty property;
 
     /**
-     * Title of this item
+     * Название Item'a.
      */
     private String title;
 
     /**
-     * Default constructor without specific property
+     * Дефолтный конструктор без определенного свойства.
      */
     public GenericItem() {}
 
     /**
-     * Constructor for items with properties
-     * @param p Property to assign to this item
+     * Конструктор для Items со свойствами.
+     * @param p Свойство, которое будет присвоено Item'у
      */
     public GenericItem(IProperty p) {
         this.property = p;
     }
 
     /**
-     * Setter for item's title.
-     * @param title New title.
+     * Сэттер для названия Item'a.
+     * @param title название, которое будет присвоено Item'у
      */
     void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Getter for item's title.
-     * @return Current item's title.
+     * Геттер для названия Item'a.
+     * @return Текущее название Item'a
      */
     public String getTitle() {
         return title;

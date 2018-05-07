@@ -5,7 +5,7 @@ import Model.Landscape.GenericLandscape;
 import java.util.ArrayList;
 
 /**
- * Usual game field. It's just the game map.
+ * Обычное поле, просто карта игры.
  */
 public class Field {
 

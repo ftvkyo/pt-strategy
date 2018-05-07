@@ -8,29 +8,29 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Implementation of Decorator pattern.
- * Allows us to write new classes, that decorate our units,
- * and add new abilities for these units.
+ * Реализация паттерна Decorator.
+ * Позволяет нам писать новые классы, которые декорируют Units,
+ * и добавлять новые возможности этим Units.
  *
- * Units should be decorated at runtime, of course.
- * The power of this solution, that we can decorate any types of units
- * and change behavior of units as we want.
+ * Unit'ы, конечно, должны декорироваться в процессе выполнения программы.
+ * Таким образом мы сможем декорировать любые Unit'ы
+ * и изменять их поведение так, как нам угодно.
  *
- * This pattern have one problem - if we decorate the unit many times,
- * calls of unit's methods will work longer (if compiler doesn't optimize it).
+ * У этого паттерна, правда, есть одна проблема: если мы много раз будем декорировать Unit,
+ * вызов методов этого Unit'a будет работать дольше (если это не оптимизируется компилятором).
  *
  * //TODO: Should i Implement "Remove Decorator" method?
  */
 class GenericUnitUpgrade implements IUnit {
 
     /**
-     * The Unit that we are decorating.
+     * Юнит, который будет декорироваться.
      */
     IUnit decorated;
 
 
     /**
-     * Hidden decorator (package private).
+     * Package private конструктор.
      */
     GenericUnitUpgrade() {}
 
