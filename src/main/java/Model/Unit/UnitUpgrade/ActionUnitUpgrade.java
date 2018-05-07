@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class ActionUnitUpgrade extends GenericUnitUpgrade {
 
     /**
-     * Множество действий, которые мы осуществляем внутри декоратора. (?)
+     * Множество действий, которые умеет декорированный юнит.
      * Set of actions, that we process inside of decorator.
      */
     private final HashSet<Action> availableActions = new HashSet<>();
