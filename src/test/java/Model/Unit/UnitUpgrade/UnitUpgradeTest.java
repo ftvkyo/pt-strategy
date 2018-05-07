@@ -3,7 +3,7 @@ package Model.Unit.UnitUpgrade;
 import Model.Player.Player;
 import Model.Unit.ArcherUnit;
 import Model.Unit.IUnit;
-import Model.Unit.UnitAction.Action;
+import Model.Unit.UnitAction.IAction;
 import Model.Unit.UnitAction.OnlyUpgradedAction;
 import Model.Unit.UnitBuilder;
 import org.junit.Test;
@@ -26,16 +26,16 @@ public class UnitUpgradeTest {
         unit = myBuilder.buildNewUnit();
 
 
-        Action onlyUpgraded = OnlyUpgradedAction.getAction();
+        IAction onlyUpgraded = OnlyUpgradedAction.instance;
         assertFalse(onlyUpgraded.canPerform(unit));
 
-        HashSet<Action> actions = new HashSet<>();
+        HashSet<IAction> actions = new HashSet<>();
         actions.add(onlyUpgraded);
         unit = ActionUnitUpgrade.upgradeUnit(unit, actions);
         assertTrue(onlyUpgraded.canPerform(unit));
 
         assertEquals(
-                Action.ActionResult.SUCCESS,
+                IAction.ActionResult.SUCCESS,
                 onlyUpgraded.perform(unit, null, null)
         );
     }

@@ -1,7 +1,7 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
-import Model.Unit.UnitAction.Action;
+import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -104,5 +104,5 @@ public interface IUnit {
      * Геттер для доступных данному Unit'у действий
      * @return множество доступных данному Unit'у действий
      */
-    HashSet<Action> getAvailableActions();
+    HashSet<IAction> getAvailableActions();
 }

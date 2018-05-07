@@ -29,8 +29,8 @@ public class CavalryUnit extends GenericUnit {
 
 
         public void setActions() {
-            unit.availableActions.add(SimpleAction.getAction());
-            unit.availableActions.add(AttackAction.getAction());
+            unit.availableActions.add(SimpleAction.instance);
+            unit.availableActions.add(AttackAction.instance);
         }
     }
 }

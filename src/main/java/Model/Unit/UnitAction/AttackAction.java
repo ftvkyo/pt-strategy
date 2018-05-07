@@ -1,19 +1,22 @@
 package Model.Unit.UnitAction;
 
-import Model.Item.GenericItem;
 import Model.Unit.IUnit;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 
-public class AttackAction extends Action {
+public class AttackAction implements IAction {
 
-    private static final Action instance = new AttackAction();
+    public static final IAction instance = new AttackAction();
 
     private AttackAction() {}
 
     @Override
-    public final ActionResult perform(@NotNull IUnit thisUnit, @NotNull IUnit targetUnit, @Nullable GenericItem item) {
-        ActionResult retval = ActionResult.SUCCESS;
+    public final ActionResult perform(Object... parameters) {
+        if(!checkParameters(parameters)) {
+            return ActionResult.WRONG_PARAMETERS;
+        }
+
+        IUnit thisUnit = (IUnit) parameters[0];
+        IUnit targetUnit = (IUnit) parameters[1];
+
         if(targetUnit.getHealthPoints() > 0) {
             targetUnit.changeHealthPoints(-thisUnit.getDamagePoints());
             thisUnit.zeroActionPoints();
@@ -21,15 +24,22 @@ public class AttackAction extends Action {
             if(!thisUnit.getCanIgnoreCounterAttack() && targetUnit.getHealthPoints() > 0) {
                 thisUnit.changeHealthPoints(-targetUnit.getDamagePoints());
             }
+            return ActionResult.SUCCESS;
         } else {
-            retval = ActionResult.FAIL;
+            return ActionResult.FAIL;
         }
-
-        return retval;
     }
 
-    @NotNull
-    public static Action getAction() {
-        return instance;
+    private boolean checkParameters(Object[] parameters) {
+        return parameters.length >= 2
+                && parameters[0] instanceof IUnit
+                && parameters[1] instanceof IUnit;
+    }
+
+    @Override
+    public boolean canPerform(IUnit unit) {
+        return unit.getHealthPoints() > 0
+                && unit.getActionPoints() > 0
+                && unit.getAvailableActions().contains(instance);
     }
 }

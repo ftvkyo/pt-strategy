@@ -30,9 +30,9 @@ public class ArcherUnit extends GenericUnit {
 
 
         public void setActions() {
-            unit.availableActions.add(SimpleAction.getAction());
-            unit.availableActions.add(AttackAction.getAction());
-            unit.availableActions.add(OnlyArcherAction.getAction());
+            unit.availableActions.add(SimpleAction.instance);
+            unit.availableActions.add(AttackAction.instance);
+            unit.availableActions.add(OnlyArcherAction.instance);
         }
     }
 }
