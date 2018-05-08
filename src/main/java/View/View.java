@@ -135,7 +135,6 @@ public class View implements java.util.Observer, java.lang.AutoCloseable {
             glVertex2f(t.x3, t.y3);
             glEnd();
 
-
             glfwSwapBuffers(window); // swap the color buffers
 
             // Poll for window events. The key callback above will only be
