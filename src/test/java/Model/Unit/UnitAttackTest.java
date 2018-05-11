@@ -44,6 +44,11 @@ public class UnitAttackTest {
 
         assertTrue(attack.canPerform(archer));
         assertTrue(attack.canPerform(cavalry));
+
+        assertEquals(
+                IAction.ActionResult.WRONG_PARAMETERS,
+                attack.perform(archer, "s")
+        );
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(archer, cavalry)
