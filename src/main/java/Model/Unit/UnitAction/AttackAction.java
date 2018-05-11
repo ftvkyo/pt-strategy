@@ -1,6 +1,7 @@
 package Model.Unit.UnitAction;
 
 import Model.Unit.IUnit;
+import com.sun.istack.internal.NotNull;
 
 public class AttackAction implements IAction {
 
@@ -9,7 +10,7 @@ public class AttackAction implements IAction {
     private AttackAction() {}
 
     @Override
-    public final ActionResult perform(Object... parameters) {
+    public final ActionResult perform(@NotNull Object... parameters) {
         if(!checkParameters(parameters)) {
             return ActionResult.WRONG_PARAMETERS;
         }
