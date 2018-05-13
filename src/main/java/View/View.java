@@ -2,6 +2,7 @@ package View;
 
 import Presenter.Presenter;
 
+
 public class View implements Runnable, AutoCloseable {
 
     private Presenter presenter;
@@ -27,7 +28,7 @@ public class View implements Runnable, AutoCloseable {
     }
 
 
-    public void setPresenter(Presenter presenter){
+    public void setPresenter(Presenter presenter) {
         System.out.println("View      : adding presenter");
         this.presenter = presenter;
     }

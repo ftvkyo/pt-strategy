@@ -6,6 +6,7 @@ import Model.Unit.UnitAction.IAction;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+
 /**
  * Интерфейс Unit'ов. Следует использовать его вместо GenericUnit везде, где это возможно.
  */
@@ -25,6 +26,7 @@ public interface IUnit {
 
     /**
      * Метод для изменения (уменьшения или увеличения) значения Health Points.
+     *
      * @param delta число, на которое нужно изменить Health Points
      */
     void changeHealthPoints(int delta);
@@ -32,6 +34,7 @@ public interface IUnit {
 
     /**
      * Метод для изменения (уменьшения или увеличения) значения Action Points.
+     *
      * @param delta число, на которое нужно изменить Action Points
      */
     void changeActionPoints(int delta);
@@ -52,6 +55,7 @@ public interface IUnit {
 
     /**
      * Геттер для Health Points.
+     *
      * @return текущее значение Health Points
      */
     int getHealthPoints();
@@ -59,6 +63,7 @@ public interface IUnit {
 
     /**
      * Геттер для Action Points.
+     *
      * @return текущее значение Action Points
      */
     int getActionPoints();
@@ -66,6 +71,7 @@ public interface IUnit {
 
     /**
      * Геттер для Damage Points.
+     *
      * @return текущее значение Damage Points
      */
     int getDamagePoints();
@@ -74,6 +80,7 @@ public interface IUnit {
     /**
      * Некоторые Unit'ы (лучники) могут игнорировать ответные атаки,
      * и этот метод -- геттер для способности данного Unit'a делать это.
+     *
      * @return true, если Unit имеет способность игнорировать ответную атаку, false иначе
      */
     boolean getCanIgnoreCounterAttack();
@@ -81,6 +88,7 @@ public interface IUnit {
 
     /**
      * Геттер для инвентаря данного Unit'a.
+     *
      * @return массив Items -- инвентарь
      */
     ArrayList<GenericItem> getItems();
@@ -88,6 +96,7 @@ public interface IUnit {
 
     /**
      * Метод для добавления Item'a в инвентарь данного Unit'a.
+     *
      * @param item Item, который будет добавлен в инвентарь
      */
     void addItem(GenericItem item);
@@ -95,6 +104,7 @@ public interface IUnit {
 
     /**
      * Метод для удаления n-ного Item'a из инвентаря данного Unit'a.
+     *
      * @param n номер Item'a, который будет удален из инвентаря
      */
     void removeItem(int n);
@@ -102,6 +112,7 @@ public interface IUnit {
 
     /**
      * Геттер для доступных данному Unit'у действий
+     *
      * @return множество доступных данному Unit'у действий
      */
     HashSet<IAction> getAvailableActions();

@@ -3,11 +3,15 @@ package Model.Unit.UnitAction;
 import Model.Unit.IUnit;
 import com.sun.istack.internal.NotNull;
 
+
 public class AttackAction implements IAction {
 
     public static final IAction instance = new AttackAction();
 
-    private AttackAction() {}
+
+    private AttackAction() {
+    }
+
 
     @Override
     public final ActionResult perform(@NotNull Object... parameters) {
@@ -31,11 +35,13 @@ public class AttackAction implements IAction {
         }
     }
 
+
     private boolean checkParameters(Object[] parameters) {
         return parameters.length >= 2
                 && parameters[0] instanceof IUnit
                 && parameters[1] instanceof IUnit;
     }
+
 
     @Override
     public boolean canPerform(IUnit unit) {

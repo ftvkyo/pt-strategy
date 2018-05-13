@@ -7,18 +7,19 @@ import Model.Unit.UnitAction.IAction;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+
 /**
  * Реализация паттерна Decorator.
  * Позволяет нам писать новые классы, которые декорируют Units,
  * и добавлять новые возможности этим Units.
- *
+ * <p>
  * Unit'ы, конечно, должны декорироваться в процессе выполнения программы.
  * Таким образом мы сможем декорировать любые Unit'ы
  * и изменять их поведение так, как нам угодно.
- *
+ * <p>
  * У этого паттерна, правда, есть одна проблема: если мы много раз будем декорировать Unit,
  * вызов методов этого Unit'a будет работать дольше (если это не оптимизируется компилятором).
- *
+ * <p>
  * //TODO: Should i Implement "Remove Decorator" method?
  */
 class GenericUnitUpgrade implements IUnit {
@@ -32,7 +33,8 @@ class GenericUnitUpgrade implements IUnit {
     /**
      * Package private конструктор.
      */
-    GenericUnitUpgrade() {}
+    GenericUnitUpgrade() {
+    }
 
 
     @Override

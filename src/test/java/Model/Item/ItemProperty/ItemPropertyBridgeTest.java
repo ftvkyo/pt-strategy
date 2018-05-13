@@ -6,10 +6,9 @@ import Model.Unit.ArcherUnit;
 import Model.Unit.IUnit;
 import Model.Unit.InfantryUnit;
 import Model.Unit.UnitBuilder;
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class ItemPropertyBridgeTest {
@@ -31,6 +30,7 @@ public class ItemPropertyBridgeTest {
 
         assertEquals(95, infantry.getHealthPoints());
     }
+
 
     @Test
     public void ExplosivePropertyTest() {

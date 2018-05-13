@@ -12,7 +12,7 @@ import java.util.HashSet;
  * GenericUnit -- класс для всех Units.
  * Почти как IUnit interface, но с package private и private членами,
  * которые не предполагается использовать вне папки.
- *
+ * <p>
  * Конкретно -- методы для корректной реализации паттерна Builder.
  * Это значит, что некоторые поля объекта нельзя будет изменять из мест вне папки.
  */
@@ -75,7 +75,8 @@ class GenericUnit implements IUnit {
     /**
      * Спрятанный конструктор.
      */
-    GenericUnit() {}
+    GenericUnit() {
+    }
 
 
     public boolean getCanIgnoreCounterAttack() {
@@ -154,7 +155,7 @@ class GenericUnit implements IUnit {
      * Часть паттерна Builder.
      * "Создатель и инициализатор" Units.
      * Должен быть использован в классе UnitBuilder.
-     *
+     * <p>
      * Методы createUnit() и getUnit() следует вызывать пр создании Unit'a только один раз.
      */
     static abstract class GenericUnitMaker {
@@ -173,6 +174,7 @@ class GenericUnit implements IUnit {
 
         /**
          * Сэттер для владельца Unit'a.
+         *
          * @param owner Owner of the unit.
          */
         public void setOwner(Player owner) {
@@ -200,6 +202,7 @@ class GenericUnit implements IUnit {
 
         /**
          * Геттер для Unit'a.
+         *
          * @return созданный Unit
          */
         public GenericUnit getUnit() {

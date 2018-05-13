@@ -22,6 +22,7 @@ public class UnitBuilder {
 
     /**
      * Сэттер для UnitMaker'a.
+     *
      * @param maker UnitMaker, который будет использоваться
      */
     public void setMaker(GenericUnit.GenericUnitMaker maker) {
@@ -31,6 +32,7 @@ public class UnitBuilder {
 
     /**
      * Сэттер для владельца UnitBuilder'a и создаваемых Unit'ов.
+     *
      * @param owner владелец UnitBuilder'a и создаваемых Unit'ов
      */
     public void setOwner(Player owner) {
@@ -40,6 +42,7 @@ public class UnitBuilder {
 
     /**
      * Геттер для текущего владельца UnitBuilder'a и создаваемых Unit'ов.
+     *
      * @return текущий владелец UnitBuilder'a и создаваемых Unit'ов
      */
     public Player getOwner() {
@@ -50,6 +53,7 @@ public class UnitBuilder {
     /**
      * Главный метод для создания Unit'ов.
      * Сэттеры для создателя Maker'a и владельца должны быть вызваны раньше, чем этот метод.
+     *
      * @return созданный Unit
      */
     public IUnit buildNewUnit() {

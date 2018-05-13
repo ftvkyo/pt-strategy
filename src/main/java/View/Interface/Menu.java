@@ -2,14 +2,17 @@ package View.Interface;
 
 import static org.lwjgl.opengl.GL11.*;
 
+
 class Menu implements Renderable {
 
     private View.Rectangle<Float> rect;
+
 
     public Menu setRectangle(View.Rectangle<Float> r) {
         rect = r;
         return this;
     }
+
 
     @Override
     public void render(Object o) {

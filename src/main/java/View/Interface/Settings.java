@@ -4,18 +4,22 @@ import View.Rectangle;
 
 import static org.lwjgl.opengl.GL11.*;
 
+
 public class Settings implements Renderable {
 
     private View.Rectangle<Float> rect;
+
 
     public Settings() {
         rect = new Rectangle<>(-1f, 1f, -1f, 1f);
     }
 
+
     public Settings setRectangle(View.Rectangle<Float> r) {
         rect = r;
         return this;
     }
+
 
     @Override
     public void render(Object o) {

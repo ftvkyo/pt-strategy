@@ -12,14 +12,19 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+
 public class Renderer implements Runnable, AutoCloseable {
 
     private long window;
+
     private int windowHeight = 1080;
+
     private int windowWidth = 1920;
+
     private View view;
 
     Renderable settings;
+
     Renderable game;
 
     String state; //FIXME
@@ -34,7 +39,7 @@ public class Renderer implements Runnable, AutoCloseable {
 
     public static void init() {
         GLFWErrorCallback.createPrint(System.err).set();
-        if (!glfwInit()) {
+        if(!glfwInit()) {
             throw new IllegalStateException("Не получилось инициализировать GLFW.");
         }
     }
@@ -145,7 +150,7 @@ public class Renderer implements Runnable, AutoCloseable {
                 } else if(state.equals("in_game")) {
                     state = "settings";
                 }
-            } else if (key == GLFW_KEY_S) {
+            } else if(key == GLFW_KEY_S) {
                 System.out.println("S pressed");
                 if(state.equals("settings")) {
                     state = "in_game";
@@ -157,7 +162,7 @@ public class Renderer implements Runnable, AutoCloseable {
 
     private void mouseClickCallback(long window, long button, long action, long mods) {
         if(action == GLFW_RELEASE) {
-            if ((mods & GLFW_MOD_CONTROL) != 0) {
+            if((mods & GLFW_MOD_CONTROL) != 0) {
                 System.out.println("Mouse click [with CTRL]");
             } else {
                 System.out.println("Mouse click");
