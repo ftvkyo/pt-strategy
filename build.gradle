@@ -1,8 +1,10 @@
 group 'org.ftvkyo2011.pt-strategy'
-version '0.1-SNAPSHOT'
+version '0.2-SNAPSHOT'
 
 apply plugin: 'application'
 apply plugin: 'java'
+
+//compileJava.options.compilerArgs << "-XDignore.symbol.file"
 
 mainClassName = 'Main'
 sourceCompatibility = 1.8
@@ -106,4 +108,6 @@ dependencies {
     //compile "org.lwjgl:lwjgl-zstd:$lwjglVersion:$lwjglNatives"
 
     compile "org.joml:joml:${jomlVersion}"
+
+    compile 'com.intellij:annotations:+@jar'
 }
