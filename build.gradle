@@ -28,6 +28,7 @@ switch ( OperatingSystem.current() ) {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 

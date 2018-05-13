@@ -3,7 +3,7 @@ package Model;
 /**
  * Model class.
  */
-public class Model extends java.util.Observable {
+public class Model {
     public Model() {
         System.out.println("Model     : ()");
     }
