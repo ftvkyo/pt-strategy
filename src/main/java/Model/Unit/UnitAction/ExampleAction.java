@@ -2,11 +2,15 @@ package Model.Unit.UnitAction;
 
 import Model.Unit.IUnit;
 
+
 public class ExampleAction implements IAction {
 
     public static final IAction instance = new ExampleAction();
 
-    private ExampleAction() {}
+
+    private ExampleAction() {
+    }
+
 
     @Override
     public ActionResult perform(Object... parameters) {
@@ -20,10 +24,12 @@ public class ExampleAction implements IAction {
         return ActionResult.SUCCESS;
     }
 
+
     private boolean checkParameters(Object[] parameters) {
         return parameters.length >= 1
                 && parameters[0] instanceof IUnit;
     }
+
 
     @Override
     public boolean canPerform(IUnit unit) {

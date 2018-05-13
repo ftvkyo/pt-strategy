@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
 public class UnitGroupingTest {
 
     @Test
@@ -43,6 +44,7 @@ public class UnitGroupingTest {
         assertEquals(7, infantry2.getActionPoints());
         assertEquals(9, archer.getActionPoints());
     }
+
 
     @Test
     public void UnitGroupingTest_ExampleAction() {

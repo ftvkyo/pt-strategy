@@ -5,6 +5,7 @@ import Model.Unit.IUnit;
 
 import java.util.ArrayList;
 
+
 abstract public class GenericLandscape {
 
     /**
@@ -28,8 +29,9 @@ abstract public class GenericLandscape {
 
     /**
      * Сэттер для "проходимости" этого Landscape.
+     *
      * @param p положительное число для
-     * "проходимости" этого Landscape
+     *          "проходимости" этого Landscape
      */
     void setPassableness(int p) {
         passableness = p;
@@ -38,6 +40,7 @@ abstract public class GenericLandscape {
 
     /**
      * Геттер для "проходимости" данного Landscape.
+     *
      * @return "проходимость" данного Landscape
      */
     public int getPassableness() {
@@ -47,6 +50,7 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для помещения Unit'a на данный Landscape.
+     *
      * @param un Unit, который будет помещен на данный Landscape
      */
     public void setUnit(IUnit un) {
@@ -56,6 +60,7 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для получения Unit'a, находящегося на данном Landscape.
+     *
      * @return Unit, пребывающий на этом Landscape
      */
     public IUnit getUnit() {
@@ -65,8 +70,9 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для обмена местами Unit'ов (на этом Landscape and на Landscape l).
+     *
      * @param l Landscape, с находящимся на котором Unit'ом
-     * будет меняться местами Unit на данном Landscape
+     *          будет меняться местами Unit на данном Landscape
      */
     public void swapUnit(GenericLandscape l) {
         IUnit tmp = l.getUnit();
@@ -77,6 +83,7 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для добавления Item на данный Landscape.
+     *
      * @param item Item для помещения на этот Landscape
      */
     public void addItem(GenericItem item) {
@@ -86,6 +93,7 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для выяснения, какие Item'ы находятся на данном Landscape.
+     *
      * @return копия массива Item'ов, находящихся на данном Landscape
      */
     public ArrayList<GenericItem> getItems() {
@@ -95,6 +103,7 @@ abstract public class GenericLandscape {
 
     /**
      * Метод для удаленния n-ного Item'a с данного Landscape.
+     *
      * @param n номер Item'a для удаления
      */
     public void removeItem(int n) {
@@ -109,6 +118,7 @@ abstract public class GenericLandscape {
 
         /**
          * Factory method.
+         *
          * @return сгенерированный объект Landscape
          */
         abstract public GenericLandscape createInstance();

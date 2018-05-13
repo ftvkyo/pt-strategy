@@ -4,6 +4,7 @@ package Model.Unit;
 import Model.Unit.UnitAction.AttackAction;
 import Model.Unit.UnitAction.SimpleAction;
 
+
 public class CavalryUnit extends GenericUnit {
 
     static public class UnitMaker extends GenericUnit.GenericUnitMaker {
