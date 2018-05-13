@@ -1,7 +1,7 @@
 package Model.Unit.UnitAction;
 
 import Model.Unit.IUnit;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 
 public class AttackAction implements IAction {
