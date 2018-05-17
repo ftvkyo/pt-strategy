@@ -1,4 +1,4 @@
-package View;
+package View.Misc;
 
 
 public class Rectangle<T> {

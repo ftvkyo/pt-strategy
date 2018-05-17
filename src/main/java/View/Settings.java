@@ -1,25 +1,29 @@
-package View.Interface;
+package View;
 
-import View.Interface.Element.Button;
-import View.Interface.Element.Tickbox;
-import View.Rectangle;
+import View.Misc.Rectangle;
+import View.Misc.Renderable;
+import View.Misc.Tickbox;
 
 import java.util.ArrayList;
 
 
 public class Settings extends Renderable {
 
+    GameView view;
+
+    GameRenderer renderer;
+
     ArrayList<Renderable> controls = new ArrayList<>();
 
-    public Settings() {
-
-        //FIXME
-        rect = new Rectangle<>(0f, 1920f, 1080f, 0f);
+    public Settings(GameView view, GameRenderer renderer) {
+        this.view = view;
+        this.renderer = renderer;
+        this.rect = new Rectangle<>(0f, 1920f, 1080f, 0f);
 
         controls.add(new Tickbox(0.9f, 0.5f, 0.5f)
                         .setRectangle(10f, 50f, 50f, 10f));
 
-        controls.add(new Button(0.2f, 0.2f, 0.2f) {
+        controls.add(new Renderable(0.2f, 0.2f, 0.2f) {
             @Override
             protected void clickEvent() {
                 this.colorR += 0.2f;
@@ -29,17 +33,24 @@ public class Settings extends Renderable {
             }
         }.setRectangle(60f, 100f, 50f, 10f));
 
-        controls.add(new Button(0f, 1f, 0f) {
+        controls.add(new Renderable(0f, 1f, 0f) {
             @Override
             protected void clickEvent() {
-                System.out.println("Should begin the game");
+                //TODO: start game
             }
         }.setRectangle(110f, 150f, 50f, 10f));
+
+
+        controls.add(new Renderable(1f, 0f, 0f) {
+            @Override
+            protected void clickEvent() {
+                //TODO: restart game
+            }
+        }.setRectangle(160f, 200f, 50f, 10f));
     }
 
 
     public void clickEvent(float xpos, float ypos) {
-        System.out.println("Passing clickEvent to controls");
         for(Renderable control: controls) {
             control.clickEvent(xpos, ypos);
         }

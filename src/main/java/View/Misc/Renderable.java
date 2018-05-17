@@ -1,16 +1,28 @@
-package View.Interface;
+package View.Misc;
 
-
-import View.Rectangle;
 
 import static org.lwjgl.opengl.GL11.*;
 
 
-public abstract class Renderable {
+public class Renderable {
 
     protected Rectangle<Float> rect;
 
     protected float colorR, colorG, colorB;
+
+
+    public Renderable() {
+        this.colorR = 0;
+        this.colorG = 0;
+        this.colorB = 0;
+    }
+
+
+    public Renderable(float colorR, float colorG, float colorB) {
+        this.colorR = colorR;
+        this.colorG = colorG;
+        this.colorB = colorB;
+    }
 
 
     public Renderable setRectangle(float left, float right, float bottom, float top) {
