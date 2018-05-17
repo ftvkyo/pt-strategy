@@ -1,18 +1,19 @@
 package View.Interface;
 
-import View.Rectangle;
+public class Game extends Renderable {
 
+    Renderable map = new Field()
+            //FIXME
+            .setRectangle(0f, 1920*0.66f, 0f, 1080f);
 
-public class Game implements Renderable {
-
-    Renderable map = new Field().setRectangle(new Rectangle<>(-1f, 0.33f, -1f, 1f));
-
-    Renderable menu = new Menu().setRectangle(new Rectangle<>(0.33f, 1f, -1f, 1f));
+    Renderable menu = new Menu()
+            //FIXME
+            .setRectangle(1920*0.66f, 1920f, 0f, 1080f);
 
 
     @Override
-    public void render(Object o) {
-        map.render(o);
-        menu.render(o);
+    public void render() {
+        map.render();
+        menu.render();
     }
 }

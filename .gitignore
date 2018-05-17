@@ -2,6 +2,7 @@
 .gradle
 /build/
 /out/
+*.log
 
 pt-strategy.iml
 

@@ -27,13 +27,15 @@ public class Renderer implements Runnable, AutoCloseable {
 
     Renderable game;
 
-    String state; //FIXME
+    Renderable state;
 
 
     public Renderer(View v) {
         view = v;
         game = new Game();
         settings = new Settings();
+
+        state = settings;
     }
 
 
@@ -102,11 +104,17 @@ public class Renderer implements Runnable, AutoCloseable {
         glfwShowWindow(window);
 
         GL.createCapabilities();
+
+
+        glViewport(0, 0, windowWidth, windowHeight);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0.0f, (double) windowWidth, (double) windowHeight, 0.0f, 0.0f, 1.0f); //TODO: call on resize?
+        glMatrixMode(GL_MODELVIEW);
     }
 
 
     public void run() {
-        state = "settings";
         glClearColor(0f, 0f, 0f, 0.0f);
 
         while(!glfwWindowShouldClose(window)) {
@@ -126,11 +134,7 @@ public class Renderer implements Runnable, AutoCloseable {
     private void render() {
         clearBuffer();
 
-        if(state.equals("settings")) {
-            settings.render(new Object());
-        } else if(state.equals("in_game")) {
-            game.render(new Object());
-        }
+        state.render();
 
         glfwSwapBuffers(window);
     }
@@ -145,15 +149,15 @@ public class Renderer implements Runnable, AutoCloseable {
         if(action == GLFW_RELEASE) {
             if(key == GLFW_KEY_ESCAPE) {
                 System.out.println("ESC pressed");
-                if(state.equals("settings")) {
+                if(state.equals(settings)) {
                     glfwSetWindowShouldClose(window, true);
-                } else if(state.equals("in_game")) {
-                    state = "settings";
+                } else if(state.equals(game)) {
+                    state = settings;
                 }
             } else if(key == GLFW_KEY_S) {
                 System.out.println("S pressed");
-                if(state.equals("settings")) {
-                    state = "in_game";
+                if(state.equals(settings)) {
+                    state = game;
                 }
             }
         }
@@ -162,11 +166,16 @@ public class Renderer implements Runnable, AutoCloseable {
 
     private void mouseClickCallback(long window, long button, long action, long mods) {
         if(action == GLFW_RELEASE) {
+            double[] xpos = {0}, ypos = {0};
+            glfwGetCursorPos(window, xpos, ypos);
+
             if((mods & GLFW_MOD_CONTROL) != 0) {
                 System.out.println("Mouse click [with CTRL]");
             } else {
                 System.out.println("Mouse click");
             }
+
+            state.clickEvent((float) xpos[0], (float) ypos[0]);
         }
     }
 }
