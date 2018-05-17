@@ -1,20 +1,30 @@
-import Model.Model;
-import Presenter.Presenter;
-import View.View;
+import Controller.Controller;
+import Model.GameModel;
+import View.GameView;
+import View.SettingsView;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        Model m = new Model();
+        try(GameView gameView = new GameView();
+                SettingsView settingsView = new SettingsView()) {
 
-        try(View v = new View()) {
-            Presenter p = new Presenter();
+            GameModel gameModel = new GameModel();
+            Controller controller = new Controller();
 
-            v.setPresenter(p);
-            p.setModel(m);
 
-            v.run();
+            gameModel.setView(gameView);
+            settingsModel.setView(settingsView);
+
+            gameView.setController(controller);
+            settingsView.setController(controller);
+
+            controller.setGameModel(gameModel);
+            controller.setSettingsModel(settingsModel);
+
+
+            controller.run();
         }
     }
 }

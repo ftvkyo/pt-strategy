@@ -1,8 +1,5 @@
-package View.Interface.Element;
+package View.Misc;
 
-
-import View.Interface.Renderable;
-import View.Rectangle;
 
 import static java.lang.Math.abs;
 import static org.lwjgl.opengl.GL11.*;
@@ -14,9 +11,7 @@ public class Tickbox extends Renderable {
 
 
     public Tickbox(float colorR, float colorG, float colorB) {
-        this.colorR = colorR;
-        this.colorG = colorG;
-        this.colorB = colorB;
+        super(colorR, colorG, colorB);
     }
 
 

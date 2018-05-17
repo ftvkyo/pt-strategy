@@ -1,8 +1,7 @@
 package View;
 
-import View.Interface.Game;
-import View.Interface.Renderable;
-import View.Interface.Settings;
+
+import View.Misc.Renderable;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -13,15 +12,15 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 
-public class Renderer implements Runnable, AutoCloseable {
+public class GameRenderer implements Runnable, AutoCloseable {
 
     private long window;
 
-    private int windowHeight = 1080;
+    int windowHeight = 1080;
 
-    private int windowWidth = 1920;
+    int windowWidth = 1920;
 
-    private View view;
+    GameView view;
 
     Renderable settings;
 
@@ -30,10 +29,10 @@ public class Renderer implements Runnable, AutoCloseable {
     Renderable state;
 
 
-    public Renderer(View v) {
+    public GameRenderer(GameView v) {
         view = v;
         game = new Game();
-        settings = new Settings();
+        settings = new Settings(view, this);
 
         state = settings;
     }
@@ -54,7 +53,7 @@ public class Renderer implements Runnable, AutoCloseable {
 
 
     public void close() {
-        System.out.println("Renderer  : close()");
+        System.out.println("GameRenderer  : close()");
 
         glfwFreeCallbacks(window);
         glfwDestroyWindow(window);
@@ -109,7 +108,7 @@ public class Renderer implements Runnable, AutoCloseable {
         glViewport(0, 0, windowWidth, windowHeight);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.0f, (double) windowWidth, (double) windowHeight, 0.0f, 0.0f, 1.0f); //TODO: call on resize?
+        glOrtho(0.0f, (double) windowWidth, (double) windowHeight, 0.0f, 0.0f, 1.0f);
         glMatrixMode(GL_MODELVIEW);
     }
 
@@ -154,11 +153,6 @@ public class Renderer implements Runnable, AutoCloseable {
                 } else if(state.equals(game)) {
                     state = settings;
                 }
-            } else if(key == GLFW_KEY_S) {
-                System.out.println("S pressed");
-                if(state.equals(settings)) {
-                    state = game;
-                }
             }
         }
     }
@@ -177,5 +171,15 @@ public class Renderer implements Runnable, AutoCloseable {
 
             state.clickEvent((float) xpos[0], (float) ypos[0]);
         }
+    }
+
+
+    void switchState(Renderable state) {
+        this.state = state;
+    }
+
+
+    Object getParameters() {
+        return null;
     }
 }
