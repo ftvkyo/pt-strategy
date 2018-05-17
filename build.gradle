@@ -2,6 +2,7 @@ group 'org.ftvkyo2011.pt-strategy'
 version '0.2-SNAPSHOT'
 
 apply plugin: 'application'
+apply plugin: 'distribution'
 apply plugin: 'java'
 
 //compileJava.options.compilerArgs << "-XDignore.symbol.file"

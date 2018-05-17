@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Обычное поле, просто карта игры.
  */
-public class Field {
+class Field {
 
     private ArrayList<ArrayList<GenericLandscape>> field;
 }

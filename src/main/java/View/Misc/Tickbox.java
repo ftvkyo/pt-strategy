@@ -5,14 +5,14 @@ import static java.lang.Math.abs;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Tickbox extends Renderable {
+public class Tickbox extends InterfaceElement {
 
     private boolean checked = false;
 
-
-    public Tickbox(float colorR, float colorG, float colorB) {
-        super(colorR, colorG, colorB);
-    }
+    Runnable action = () -> {
+        System.out.println("Changed state");
+        checked = !checked;
+    };
 
 
     public Tickbox setChecked(boolean checked) {
@@ -27,28 +27,18 @@ public class Tickbox extends Renderable {
 
 
     @Override
-    public void clickEvent(float xpos, float ypos) {
-        if(rect.left <= xpos && xpos <= rect.right && rect.top <= ypos && ypos <= rect.bottom) {
-            System.out.println("Changed state");
-            checked = !checked;
-        }
-    }
-
-
-    @Override
     protected void renderState() {
         if(checked) {
             glBegin(GL_QUADS);
             glColor3f(0.1f, 0.1f, 0.1f);
-            Rectangle<Float> checkmark = new Rectangle<>(
-                    rect.left + abs(rect.left - rect.right)*0.1f,
-                    rect.right - abs(rect.left - rect.right)*0.1f,
-                    rect.bottom - abs(rect.bottom - rect.top)*0.1f,
-                    rect.top + abs(rect.bottom - rect.top)*0.1f);
-            glVertex2f(checkmark.left, checkmark.bottom);
-            glVertex2f(checkmark.left, checkmark.top);
-            glVertex2f(checkmark.right, checkmark.top);
-            glVertex2f(checkmark.right, checkmark.bottom);
+            float leftT = left + abs(left - right)*0.1f;
+            float rightT = right - abs(left - right)*0.1f;
+            float bottomT = bottom - abs(bottom - top)*0.1f;
+            float topT = top + abs(bottom - top)*0.1f;
+            glVertex2f(leftT, bottomT);
+            glVertex2f(leftT, topT);
+            glVertex2f(rightT, topT);
+            glVertex2f(rightT, bottomT);
             glEnd();
         }
     }
