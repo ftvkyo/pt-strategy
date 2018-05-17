@@ -1,28 +1,45 @@
 package Controller;
 
-import Model.GameModel;
+import Model.Model;
 
 
 /**
  *
  */
-public class Controller implements Runnable {
+public class Controller implements AutoCloseable {
 
-    private GameModel model;
+    Model model;
 
 
-    public Controller() {
-        System.out.println("Controller : ()");
+    public void close() {
+
     }
 
 
-    public void setGameModel(GameModel m) {//FIXME
-        System.out.println("Controller : adding model");
-        this.model = m;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
 
-    public void run() {
+    public enum Callback {
+        START_GAME,
+        RESTART_GAME,
+        ESC_GAME
+    }
 
+
+    public void startGameCallback() {
+        model.beginGame();
+    }
+
+
+    public void restartGameCallback() {
+        model.reset();
+        startGameCallback();
+    }
+
+
+    public void escapeGameCallback() {
+        model.pauseOrExit();
     }
 }
