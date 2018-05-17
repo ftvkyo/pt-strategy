@@ -3,7 +3,7 @@ package View;
 
 public class Rectangle<T> {
 
-    public T xLeft, xRight, yBottom, yTop;
+    public T left, right, bottom, top;
 
 
     public Rectangle() {
@@ -11,9 +11,9 @@ public class Rectangle<T> {
 
 
     public Rectangle(T left, T right, T bottom, T top) {
-        xLeft = left;
-        xRight = right;
-        yBottom = bottom;
-        yTop = top;
+        this.left = left;
+        this.right = right;
+        this.bottom = bottom;
+        this.top = top;
     }
 }
