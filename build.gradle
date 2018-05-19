@@ -111,5 +111,4 @@ dependencies {
     compile "org.joml:joml:${jomlVersion}"
 
     compile 'com.intellij:annotations:+@jar'
-    compile 'com.android.support:support-annotations:+'
 }
