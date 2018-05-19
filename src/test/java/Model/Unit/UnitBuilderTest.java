@@ -58,7 +58,7 @@ public class UnitBuilderTest {
         assertEquals(l, unit.getItems());
 
 
-        unit.removeItem(0);
+        unit.removeItem(item);
         l.remove(0);
 
         assertEquals(l, unit.getItems());
