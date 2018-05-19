@@ -1,30 +1,19 @@
 package Controller;
 
 import Model.Model;
+import View.Notification.CheckboxUpdate;
 
 
 /**
  *
  */
-public class Controller implements AutoCloseable {
+public class Controller{
 
     Model model;
 
 
-    public void close() {
-
-    }
-
-
     public void setModel(Model model) {
         this.model = model;
-    }
-
-
-    public enum Callback {
-        START_GAME,
-        RESTART_GAME,
-        ESC_GAME
     }
 
 
@@ -39,7 +28,12 @@ public class Controller implements AutoCloseable {
     }
 
 
-    public void escapeGameCallback() {
+    public void escapeCallback() {
         model.pauseOrExit();
+    }
+
+
+    public void checkboxExampleCallback(CheckboxUpdate cu) {
+        model.toggleCheckbox(cu);
     }
 }
