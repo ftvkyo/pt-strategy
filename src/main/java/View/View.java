@@ -11,7 +11,6 @@ import View.Notification.WindowChange;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class View extends Renderable implements INotificationReciever {
 
     private boolean shouldClose = false;
@@ -43,6 +42,7 @@ public class View extends Renderable implements INotificationReciever {
                         .setRectangle(14f, 15f, 2f, 1f)
                         .setAction( () -> controller.escapeCallback() )
                 );
+
 
         settingsRenderable = new Renderable()
                 .setRectangle(0f, windowWidth, windowHeight, 0f)
