@@ -26,6 +26,7 @@ public class AttackAction implements IAction {
             targetUnit.changeHealthPoints(-thisUnit.getDamagePoints());
             thisUnit.zeroActionPoints();
 
+
             if(!thisUnit.getCanIgnoreCounterAttack() && targetUnit.getHealthPoints() > 0) {
                 thisUnit.changeHealthPoints(-targetUnit.getDamagePoints());
             }

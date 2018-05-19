@@ -35,21 +35,6 @@ public class GenericItem {
         this.property = p;
     }
 
-    /**
-     * Использование предмета
-     * @param thisUnit юнит, который использует Item
-     * @param targetUnit юнит, на котором использую Item
-     */
-    public void useItem (IUnit thisUnit, IUnit targetUnit) {
-
-        ArrayList<GenericItem> items = thisUnit.getItems();
-
-        int itemIndex = items.indexOf(this);
-        if (itemIndex != -1) {
-            this.property.onActivate(this, thisUnit, targetUnit);
-            thisUnit.removeItem(itemIndex);
-        }
-    }
 
 
     /**

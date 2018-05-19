@@ -109,6 +109,8 @@ class GenericUnit implements IUnit {
         return damagePoints;
     }
 
+    public Player getOwner() { return owner; }
+
 
     public void changeActionPoints(int delta) {
         actionPointsCurrent = Math.max(0, Math.min(actionPointsCurrent + delta, actionPointsMax));
@@ -140,8 +142,8 @@ class GenericUnit implements IUnit {
     }
 
 
-    public void removeItem(int n) {
-        items.remove(n);
+    public void removeItem(GenericItem item) {
+        items.remove(item);
     }
 
 

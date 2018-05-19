@@ -20,6 +20,7 @@ public interface IProperty {
 
     /**
      * Вызывается при взятии Item'а Unit'ом.
+     * Андрей, я не понимаю, зачем это :(
      *
      * @param thisItem Item, который был взят
      * @param thisUnit Unit, взявший Item
