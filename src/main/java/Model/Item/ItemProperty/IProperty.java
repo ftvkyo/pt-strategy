@@ -6,6 +6,8 @@ import Model.Unit.IUnit;
 
 public interface IProperty {
 
+
+
     /**
      * Вызывается при активации Item'а.
      *

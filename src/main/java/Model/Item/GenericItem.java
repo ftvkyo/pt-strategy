@@ -1,6 +1,9 @@
 package Model.Item;
 
 import Model.Item.ItemProperty.IProperty;
+import Model.Unit.IUnit;
+
+import java.util.ArrayList;
 
 
 public class GenericItem {
@@ -32,6 +35,22 @@ public class GenericItem {
         this.property = p;
     }
 
+    /**
+     * Использование предмета
+     * @param thisUnit юнит, который использует Item
+     * @param targetUnit юнит, на котором использую Item
+     */
+    public void useItem (IUnit thisUnit, IUnit targetUnit) {
+
+        ArrayList<GenericItem> items = thisUnit.getItems();
+
+        int itemIndex = items.indexOf(this);
+        if (itemIndex != -1) {
+            this.property.onActivate(this, thisUnit, targetUnit);
+            thisUnit.removeItem(itemIndex);
+        }
+    }
+
 
     /**
      * Сэттер для названия Item'a.
@@ -51,4 +70,5 @@ public class GenericItem {
     public String getTitle() {
         return title;
     }
+
 }

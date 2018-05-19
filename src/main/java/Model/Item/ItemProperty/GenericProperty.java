@@ -16,6 +16,7 @@ class GenericProperty implements IProperty {
 
 
     public void onPickup(GenericItem thisItem, IUnit thisUnit) {
+        thisUnit.addItem(thisItem);
     }
 }
 
