@@ -1,19 +1,24 @@
 package View.Notification;
 
-import View.Misc.Checkbox;
-
-
 public class CheckboxUpdate implements INotification {
 
-    private Checkbox c;
+    private String checkboxID;
+
+    private boolean updateTo;
 
 
-    public CheckboxUpdate(Checkbox c) {
-        this.c = c;
+    public CheckboxUpdate(String checkboxID, boolean updateTo) {
+        this.checkboxID = checkboxID;
+        this.updateTo = updateTo;
     }
 
 
-    public void update(boolean state) {
-        c.setChecked(state);
+    public String getCheckboxID() {
+        return checkboxID;
+    }
+
+
+    public boolean getUpdateTo() {
+        return updateTo;
     }
 }

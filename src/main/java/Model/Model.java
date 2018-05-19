@@ -1,30 +1,30 @@
 package Model;
 
 import View.Notification.CheckboxUpdate;
-import View.Notification.INotificationReciever;
+import View.Notification.INotificationReceiver;
 import View.Notification.WindowChange;
 
 
 public class Model{
 
-    private INotificationReciever reciever;
+    private INotificationReceiver reciever;
 
 
     private boolean checkbox = false;
 
 
-    public void setReciever(INotificationReciever reciever) {
+    public void setReciever(INotificationReceiver reciever) {
         this.reciever = reciever;
     }
 
 
     public void beginGame() {
-        reciever.sendNotification(WindowChange.SWITCH_TO_GAME);
+        reciever.receiveNotification(WindowChange.SWITCH_TO_GAME);
     }
 
 
     public void pauseOrExit() {
-        reciever.sendNotification(WindowChange.SWITCH_TO_SETTINGS_OR_EXIT);
+        reciever.receiveNotification(WindowChange.SWITCH_TO_SETTINGS_OR_EXIT);
     }
 
 
@@ -32,8 +32,8 @@ public class Model{
     }
 
 
-    public void toggleCheckbox(CheckboxUpdate cu) {
+    public void toggleCheckbox(String checkboxID) {
         checkbox = !checkbox;
-        cu.update(checkbox);
+        reciever.receiveNotification(new CheckboxUpdate(checkboxID, checkbox));
     }
 }

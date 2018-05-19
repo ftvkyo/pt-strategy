@@ -1,6 +1,8 @@
 package View.Misc;
 
 
+import Controller.Controller;
+
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -15,6 +17,8 @@ public class Renderable {
     private ArrayList<Renderable> children = new ArrayList<>();
 
     private Runnable action = null;
+
+    protected Controller controller;
 
 
     public Renderable() {}
@@ -65,6 +69,14 @@ public class Renderable {
     }
 
 
+    public void setController(Controller controller) {
+        this.controller = controller;
+        for(Renderable child : children) {
+            child.setController(controller);
+        }
+    }
+
+
     public final void render() {
         glBegin(GL_QUADS);
         glColor3f(colorR, colorG, colorB);
@@ -91,8 +103,6 @@ public class Renderable {
                 action.run();
             }
         }
-
-        renderState();
     }
 
 

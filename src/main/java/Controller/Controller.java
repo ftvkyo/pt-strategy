@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Model;
-import View.Notification.CheckboxUpdate;
 
 
 /**
@@ -33,7 +32,17 @@ public class Controller{
     }
 
 
-    public void checkboxExampleCallback(CheckboxUpdate cu) {
-        model.toggleCheckbox(cu);
+    public void checkboxExampleCallback(String checkboxID) {
+        model.toggleCheckbox(checkboxID);
+    }
+
+
+    public void fieldClickCallback(int row, int column) {
+        System.out.print("Row: ");
+        System.out.print(row);
+        System.out.print(", ");
+        System.out.print("Column: ");
+        System.out.print(column);
+        System.out.println(" clicked.");
     }
 }
