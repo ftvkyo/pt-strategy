@@ -8,6 +8,6 @@ public class HealingProperty extends GenericProperty {
 
     @Override
     public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {
-        targetUnit.changeHealthPoints(15);
+        thisUnit.changeHealthPoints(15);
     }
 }

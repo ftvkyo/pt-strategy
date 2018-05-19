@@ -9,7 +9,7 @@ public class ExplosiveProperty extends GenericProperty {
     @Override
     public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {
 
-        targetUnit.changeHealthPoints(-10);
+        thisUnit.changeHealthPoints(-10);
 
     }
 }
