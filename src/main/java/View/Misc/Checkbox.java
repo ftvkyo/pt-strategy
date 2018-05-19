@@ -1,28 +1,24 @@
 package View.Misc;
 
 
+import View.Notification.CheckboxUpdate;
+
 import static java.lang.Math.abs;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Tickbox extends Renderable {
+public class Checkbox extends Renderable {
 
     private boolean checked = false;
 
-    Runnable action = () -> {
-        System.out.println("Changed state");
-        checked = !checked;
-    };
 
-
-    public Tickbox setChecked(boolean checked) {
-        this.checked = checked;
-        return this;
+    public Checkbox() {
     }
 
 
-    public boolean getChecked() {
-        return checked;
+    public Checkbox setChecked(boolean checked) {
+        this.checked = checked;
+        return this;
     }
 
 
@@ -42,4 +38,9 @@ public class Tickbox extends Renderable {
             glEnd();
         }
     }
+
+
+     public CheckboxUpdate getUpdater() {
+        return new CheckboxUpdate(this);
+     }
 }

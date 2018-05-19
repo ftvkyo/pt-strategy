@@ -1,10 +1,15 @@
 package View;
 
 import Controller.Controller;
+import View.Misc.Checkbox;
 import View.Misc.Renderable;
+import View.Notification.CheckboxUpdate;
 import View.Notification.INotification;
 import View.Notification.INotificationReciever;
 import View.Notification.WindowChange;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class View extends Renderable implements INotificationReciever {
@@ -19,26 +24,38 @@ public class View extends Renderable implements INotificationReciever {
     private Controller controller;
 
 
+    private Map<String, Renderable> interfaceElements = new HashMap<>();
+
+
     public View(float windowWidth, float windowHeight) {
         this.setRectangle(0f, windowWidth, windowHeight, 0f);
+
+
+        Checkbox exampleCheckbox = new Checkbox();
+        exampleCheckbox.setAction( () -> controller.checkboxExampleCallback(exampleCheckbox.getUpdater()) )
+                .setColor(0.5f, 0.5f, 0.5f)
+                .setRectangle(14f, 15f, 4f, 3f);
+        interfaceElements.put("exampleCheckbox", exampleCheckbox);
+
+        interfaceElements.put("escapeButton",
+                new Renderable()
+                        .setColor(1f, 0f, 0f)
+                        .setRectangle(14f, 15f, 2f, 1f)
+                        .setAction( () -> controller.escapeCallback() )
+                );
 
         settingsRenderable = new Renderable()
                 .setRectangle(0f, windowWidth, windowHeight, 0f)
                 .addChild(new Renderable()
                         .setColor(0.5f, 0.9f, 0.5f)
                         .setRectangle(1f, 2f, 2f, 1f)
-                        .setAction( () -> controller.startGameCallback() )
-                )
+                        .setAction( () -> controller.startGameCallback() ))
                 .addChild(new Renderable()
                         .setColor(0.9f, 0.5f, 0.5f)
                         .setRectangle(3f, 4f, 2f, 1f)
-                        .setAction( () -> controller.restartGameCallback() )
-                )
-                .addChild(new Renderable()
-                        .setColor(1f, 0f, 0f)
-                        .setRectangle(14f, 15f, 2f, 1f)
-                        .setAction( () -> controller.escapeGameCallback() )
-                );
+                        .setAction( () -> controller.restartGameCallback() ))
+                .addChild(interfaceElements.get("escapeButton"))
+                .addChild(interfaceElements.get("exampleCheckbox"));
 
         gameRenderable = new Renderable()
                 .setRectangle(0f, windowWidth, windowHeight, 0f)
@@ -47,11 +64,7 @@ public class View extends Renderable implements INotificationReciever {
                 )
                 .addChild(new GameMenuRenderable()
                         .setRectangle(windowWidth * 0.66f, windowWidth, windowHeight, 0f)
-                        .addChild(new Renderable()
-                                .setColor(1f, 0f, 0f)
-                                .setRectangle(14f, 15f, 2f, 1f)
-                                .setAction( () -> controller.escapeGameCallback() )
-                        )
+                        .addChild(interfaceElements.get("escapeButton"))
                 );
 
         currentRenderable = settingsRenderable;
@@ -70,6 +83,8 @@ public class View extends Renderable implements INotificationReciever {
             } else if(n == WindowChange.SWITCH_TO_GAME) {
                 currentRenderable = gameRenderable;
             }
+        } else if(n instanceof CheckboxUpdate) {
+
         }
     }
 

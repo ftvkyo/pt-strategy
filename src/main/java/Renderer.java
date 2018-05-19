@@ -137,7 +137,7 @@ public class Renderer implements Runnable, AutoCloseable {
     private void keyPressCallback(long window, long key, long scancode, long action, long mods) {
         if(action == GLFW_RELEASE) {
             if(key == GLFW_KEY_ESCAPE) {
-                controller.escapeGameCallback();
+                controller.escapeCallback();
             }
         }
     }

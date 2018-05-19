@@ -1,5 +1,6 @@
 package Model;
 
+import View.Notification.CheckboxUpdate;
 import View.Notification.INotificationReciever;
 import View.Notification.WindowChange;
 
@@ -7,6 +8,9 @@ import View.Notification.WindowChange;
 public class Model{
 
     private INotificationReciever reciever;
+
+
+    private boolean checkbox = false;
 
 
     public void setReciever(INotificationReciever reciever) {
@@ -25,5 +29,11 @@ public class Model{
 
 
     public void reset() {
+    }
+
+
+    public void toggleCheckbox(CheckboxUpdate cu) {
+        checkbox = !checkbox;
+        cu.update(checkbox);
     }
 }

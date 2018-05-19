@@ -91,6 +91,8 @@ public class Renderable {
                 action.run();
             }
         }
+
+        renderState();
     }
 
 
