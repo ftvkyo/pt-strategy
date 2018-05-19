@@ -6,25 +6,13 @@ import Model.Model;
 /**
  *
  */
-public class Controller implements AutoCloseable {
+public class Controller{
 
     Model model;
 
 
-    public void close() {
-
-    }
-
-
     public void setModel(Model model) {
         this.model = model;
-    }
-
-
-    public enum Callback {
-        START_GAME,
-        RESTART_GAME,
-        ESC_GAME
     }
 
 

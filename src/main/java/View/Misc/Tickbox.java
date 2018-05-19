@@ -5,7 +5,7 @@ import static java.lang.Math.abs;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Tickbox extends InterfaceElement {
+public class Tickbox extends Renderable {
 
     private boolean checked = false;
 

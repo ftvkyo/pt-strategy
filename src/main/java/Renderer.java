@@ -1,6 +1,5 @@
-package View;
-
 import Controller.Controller;
+import View.View;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -27,7 +26,6 @@ public class Renderer implements Runnable, AutoCloseable {
     }
 
 
-
     private long currentWindow;
 
     public static final int windowHeight = 9;
@@ -36,26 +34,51 @@ public class Renderer implements Runnable, AutoCloseable {
     public static final int windowWidth = 16;
     private int realWindowWidth = 1920;
 
-    private View view;
 
+    private View view;
     private Controller controller;
 
 
-    public Renderer(View view, Controller controller) {
-        this.view = view;
-        this.controller = controller;
-    }
-
-
     public void close() {
-        System.out.println("Renderer: close()");
-
         glfwFreeCallbacks(currentWindow);
         glfwDestroyWindow(currentWindow);
     }
 
 
-    public void createWindow() {
+    public void run() {
+        currentWindow = createWindow();
+
+        glClearColor(0f, 0f, 0f, 0.0f);
+
+        while(!glfwWindowShouldClose(currentWindow)) {
+            // Poll for currentWindow events. The key callbacks will only be
+            // invoked during this call.
+            glfwWaitEventsTimeout(0.1);
+
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            view.render();
+            if(view.getShouldClose()) {
+                glfwSetWindowShouldClose(currentWindow, true);
+            }
+
+            glfwSwapBuffers(currentWindow);
+        }
+    }
+
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+
+    private long createWindow() {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
@@ -75,54 +98,33 @@ public class Renderer implements Runnable, AutoCloseable {
         }
 
 
-        currentWindow = glfwCreateWindow(
+        long window = glfwCreateWindow(
                 realWindowWidth,
                 realWindowHeight,
                 "pt-strategy",
                 monitor,
                 NULL
         );
-        if(currentWindow == NULL) {
+        if(window == NULL) {
             throw new RuntimeException("Не получилось создать окно с помощью GLFW");
         }
 
-        glfwSetKeyCallback(currentWindow, this::keyPressCallback);
-        glfwSetMouseButtonCallback(currentWindow, this::mouseClickCallback);
-        glfwSetWindowSizeCallback(currentWindow, this::windowResizeCallback);
+        glfwSetKeyCallback(window, this::keyPressCallback);
+        glfwSetMouseButtonCallback(window, this::mouseClickCallback);
+        glfwSetWindowSizeCallback(window, this::windowResizeCallback);
 
         // Make the OpenGL context current
-        glfwMakeContextCurrent(currentWindow);
+        glfwMakeContextCurrent(window);
         // Enable v-sync
         glfwSwapInterval(1);
 
         // Make the currentWindow visible
-        glfwShowWindow(currentWindow);
+        glfwShowWindow(window);
 
         GL.createCapabilities();
+        windowResizeCallback(window, realWindowWidth, realWindowHeight);
 
-
-        windowResizeCallback(currentWindow, realWindowWidth, realWindowHeight);
-    }
-
-
-    public void run() {
-        glClearColor(0f, 0f, 0f, 0.0f);
-
-        while(!glfwWindowShouldClose(currentWindow)) {
-            // Poll for currentWindow events. The key callbacks will only be
-            // invoked during this call.
-            glfwWaitEventsTimeout(0.1);
-
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            view.interfaceElement.render();
-            glfwSwapBuffers(currentWindow);
-        }
-    }
-
-
-    public void setShouldClose() {
-        glfwSetWindowShouldClose(currentWindow, true);
+        return window;
     }
 
 
@@ -135,27 +137,19 @@ public class Renderer implements Runnable, AutoCloseable {
     private void keyPressCallback(long window, long key, long scancode, long action, long mods) {
         if(action == GLFW_RELEASE) {
             if(key == GLFW_KEY_ESCAPE) {
-                view.getCallback(Controller.Callback.ESC_GAME).run();
+                controller.escapeGameCallback();
             }
         }
     }
 
 
     private void mouseClickCallback(long window, long button, long action, long mods) {
-        //TODO: transform clicks from 1920*1080 etc. to 16.0f*9.0f
-
         if(action == GLFW_RELEASE) {
             double[] xPosition = {0}, yPosition = {0};
             glfwGetCursorPos(window, xPosition, yPosition);
             transformClick(xPosition, yPosition);
 
-            if((mods & GLFW_MOD_CONTROL) != 0) {
-                System.out.println("Mouse click [with CTRL]");
-            } else {
-                System.out.println("Mouse click");
-            }
-
-            view.interfaceElement.clickEvent((float) xPosition[0], (float) yPosition[0]);
+            view.clickEvent((float) xPosition[0], (float) yPosition[0]);
         }
     }
 
