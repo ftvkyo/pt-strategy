@@ -1,37 +1,38 @@
 package View.Misc;
 
 
-import View.Renderer;
-
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class InterfaceElement {
+public class Renderable {
 
     protected float colorR, colorG, colorB;
 
     protected float left, right, bottom, top;
 
-    protected ArrayList<InterfaceElement> children = new ArrayList<>();
+    private ArrayList<Renderable> children = new ArrayList<>();
 
     private Runnable action = null;
 
 
-    public InterfaceElement() {
-        this.colorR = 0;
-        this.colorG = 0;
-        this.colorB = 0;
+    public Renderable() {}
+
+
+    public Renderable(float windowWidth, float windowHeight) {
+        this.colorR = 0f;
+        this.colorG = 0f;
+        this.colorB = 0f;
 
         this.left = 0f;
-        this.right = Renderer.windowWidth;
-        this.bottom = Renderer.windowHeight;
+        this.right = windowWidth;
+        this.bottom = windowHeight;
         this.top = 0f;
     }
 
 
-    public final InterfaceElement setColor(float colorR, float colorG, float colorB) {
+    public final Renderable setColor(float colorR, float colorG, float colorB) {
         this.colorR = colorR;
         this.colorG = colorG;
         this.colorB = colorB;
@@ -40,7 +41,7 @@ public class InterfaceElement {
     }
 
 
-    public final InterfaceElement setRectangle(float left, float right, float bottom, float top) {
+    public final Renderable setRectangle(float left, float right, float bottom, float top) {
         this.left = left;
         this.right = right;
         this.bottom = bottom;
@@ -50,8 +51,15 @@ public class InterfaceElement {
     }
 
 
-    public final InterfaceElement setAction(Runnable action) {
+    public final Renderable setAction(Runnable action) {
         this.action = action;
+
+        return this;
+    }
+
+
+    public final Renderable addChild(Renderable r) {
+        children.add(r);
 
         return this;
     }
@@ -68,24 +76,26 @@ public class InterfaceElement {
 
         renderState();
 
-        for(InterfaceElement child : children) {
+        for(Renderable child : children) {
             child.render();
         }
     }
 
 
-    protected void renderState() {
-    }
-
-
-    public final void clickEvent(float xPosition, float yPosition) {
+    public void clickEvent(float xPosition, float yPosition) {
         if(left <= xPosition && xPosition <= right && top <= yPosition && yPosition <= bottom) {
-            for(InterfaceElement child : children) {
+            for(Renderable child : children) {
                 child.clickEvent(xPosition, yPosition);
             }
             if(action != null) {
                 action.run();
             }
         }
+
+        renderState();
+    }
+
+
+    protected void renderState() {
     }
 }

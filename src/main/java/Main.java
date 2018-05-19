@@ -6,16 +6,25 @@ import View.View;
 public class Main {
 
     public static void main(String[] args) {
+        Renderer.init();
 
+        try(Renderer   renderer   = new Renderer()) {
 
-        try(Controller controller = new Controller();
-            View view = new View(controller);
-            Model model = new Model()) {
+            Model      model      = new Model();
+            View       view       = new View(Renderer.windowWidth, Renderer.windowHeight);
+            Controller controller = new Controller();
 
-            model.setView(view);
+            renderer.setView(view);
+            renderer.setController(controller);
+
             controller.setModel(model);
+            view.setController(controller);
+            model.setReciever(view);
 
-            view.run();
+            renderer.run();
         }
+
+
+        Renderer.finish();
     }
 }
