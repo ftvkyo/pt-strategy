@@ -4,7 +4,6 @@ import Model.Item.GenericItem;
 import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 
 /**
@@ -111,9 +110,18 @@ public interface IUnit {
 
 
     /**
-     * Геттер для доступных данному Unit'у действий
+     * Проверка, доступно ли действие юниту
      *
-     * @return множество доступных данному Unit'у действий
+     * @return true если доступно, иначе false.
      */
-    HashSet<IAction> getAvailableActions();
+    boolean isActionAvailable(IAction action);
+
+
+    /**
+     * Проверка, может ли юнит выполнить действие
+     * Включает в себя проверку затрачиваемых очков
+     *
+     * @return true если может, иначе false.
+     */
+    boolean isAbleToPerform(IAction action);
 }

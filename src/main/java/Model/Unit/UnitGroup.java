@@ -45,8 +45,7 @@ public class UnitGroup {
     public int performAction(IAction action) {
         int fails = 0;
         for(IUnit unit : units) {
-            IAction.ActionResult result = action.perform(unit, null, null);
-            if(result == IAction.ActionResult.FAIL) {
+            if(action.perform(unit) == IAction.ActionResult.FAIL) {
                 fails += 1;
             }
         }
@@ -62,7 +61,7 @@ public class UnitGroup {
      */
     public boolean canPerformAction(IAction action) {
         for(IUnit unit : units) {
-            if(!action.canPerform(unit)) {
+            if(!unit.isAbleToPerform(action)) {
                 return false;
             }
         }

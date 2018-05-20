@@ -5,7 +5,7 @@ import Model.Unit.IUnit;
 
 public class ExampleAction extends GenericAction {
 
-    public static final IAction instance = new ExampleAction();
+    public static IAction instance = new ExampleAction();
 
 
     private ExampleAction() {
@@ -29,13 +29,5 @@ public class ExampleAction extends GenericAction {
     protected boolean checkParameters(Object[] parameters) {
         return parameters.length >= 1
                 && parameters[0] instanceof IUnit;
-    }
-
-
-    @Override
-    public boolean canPerform(IUnit unit) {
-        return unit.getHealthPoints() > 0
-                && unit.getActionPoints() > 0
-                && unit.getAvailableActions().contains(instance);
     }
 }

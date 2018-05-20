@@ -29,8 +29,8 @@ public class UnitAttackTest {
         assertTrue(archer.getCanIgnoreCounterAttack());
         assertFalse(cavalry.getCanIgnoreCounterAttack());
 
-        assertTrue(archer.getAvailableActions().contains(attack));
-        assertTrue(cavalry.getAvailableActions().contains(attack));
+        assertTrue(archer.isAbleToPerform(attack));
+        assertTrue(cavalry.isAbleToPerform(attack));
 
         /*
         Archer damage points: 20
@@ -43,8 +43,8 @@ public class UnitAttackTest {
         assertEquals(10, archer.getActionPoints());
         assertEquals(14, cavalry.getActionPoints());
 
-        assertTrue(attack.canPerform(archer));
-        assertTrue(attack.canPerform(cavalry));
+        assertTrue(archer.isAbleToPerform(attack));
+        assertTrue(cavalry.isAbleToPerform(attack));
 
         assertEquals(
                 IAction.ActionResult.WRONG_PARAMETERS,
@@ -67,8 +67,8 @@ public class UnitAttackTest {
         assertEquals(14, cavalry.getActionPoints());
         assertEquals(0, archer.getActionPoints());
 
-        assertTrue(attack.canPerform(cavalry));
-        assertFalse(attack.canPerform(archer));
+        assertTrue(cavalry.isAbleToPerform(attack));
+        assertFalse(archer.isAbleToPerform(attack));
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(cavalry, archer)
@@ -86,8 +86,8 @@ public class UnitAttackTest {
         assertEquals(10, archer.getActionPoints());
         assertEquals(0, cavalry.getActionPoints());
 
-        assertTrue(attack.canPerform(archer));
-        assertFalse(attack.canPerform(cavalry));
+        assertTrue(archer.isAbleToPerform(attack));
+        assertFalse(cavalry.isAbleToPerform(attack));
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(archer, cavalry)
@@ -105,8 +105,8 @@ public class UnitAttackTest {
         assertEquals(14, cavalry.getActionPoints());
         assertEquals(0, archer.getActionPoints());
 
-        assertTrue(attack.canPerform(cavalry));
-        assertFalse(attack.canPerform(archer));
+        assertTrue(cavalry.isAbleToPerform(attack));
+        assertFalse(archer.isAbleToPerform(attack));
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(cavalry, archer)
@@ -124,8 +124,8 @@ public class UnitAttackTest {
         assertEquals(10, archer.getActionPoints());
         assertEquals(0, cavalry.getActionPoints());
 
-        assertTrue(attack.canPerform(archer));
-        assertFalse(attack.canPerform(cavalry));
+        assertTrue(archer.isAbleToPerform(attack));
+        assertFalse(cavalry.isAbleToPerform(attack));
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(archer, cavalry)
@@ -143,8 +143,8 @@ public class UnitAttackTest {
         assertEquals(14, cavalry.getActionPoints());
         assertEquals(0, archer.getActionPoints());
 
-        assertTrue(attack.canPerform(cavalry));
-        assertFalse(attack.canPerform(archer));
+        assertTrue(cavalry.isAbleToPerform(attack));
+        assertFalse(archer.isAbleToPerform(attack));
         assertEquals(
                 IAction.ActionResult.SUCCESS,
                 attack.perform(cavalry, archer)
@@ -157,14 +157,15 @@ public class UnitAttackTest {
 
 
         // [7] After-battle checks
-        assertFalse(attack.canPerform(cavalry));
+        assertTrue(archer.isActionAvailable(attack));
+        assertFalse(archer.isAbleToPerform(attack));
 
         IAction sa = SimpleAction.instance;
-        assertFalse(attack.canPerform(archer));
-        assertFalse(sa.canPerform(archer));
+        assertFalse(archer.isAbleToPerform(attack));
+        assertFalse(archer.isAbleToPerform(sa));
         archer.restoreActionPoints();
-        assertFalse(attack.canPerform(archer));
-        assertFalse(sa.canPerform(archer));
+        assertFalse(archer.isAbleToPerform(attack));
+        assertFalse(archer.isAbleToPerform(sa));
 
         cavalry.restoreAllPoints();
         assertEquals(120, cavalry.getHealthPoints());
@@ -174,5 +175,8 @@ public class UnitAttackTest {
                 IAction.ActionResult.FAIL,
                 attack.perform(cavalry, archer)
         );
+
+        archer.restoreAllPoints();
+        assertTrue(archer.isAbleToPerform(attack));
     }
 }

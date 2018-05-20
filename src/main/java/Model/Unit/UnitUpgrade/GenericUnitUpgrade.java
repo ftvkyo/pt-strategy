@@ -5,7 +5,6 @@ import Model.Unit.IUnit;
 import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 
 /**
@@ -86,8 +85,14 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public HashSet<IAction> getAvailableActions() {
-        return this.decorated.getAvailableActions();
+    public boolean isActionAvailable(IAction action) {
+        return this.decorated.isActionAvailable(action);
+    }
+
+
+    @Override
+    public boolean isAbleToPerform(IAction action) {
+        return this.decorated.isAbleToPerform(action);
     }
 
 

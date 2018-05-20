@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AttackAction extends GenericAction {
 
-    public static final IAction instance = new AttackAction();
+    public static IAction instance = new AttackAction();
 
 
     private AttackAction() {
@@ -41,13 +41,5 @@ public class AttackAction extends GenericAction {
         return parameters.length >= 2
                 && parameters[0] instanceof IUnit
                 && parameters[1] instanceof IUnit;
-    }
-
-
-    @Override
-    public boolean canPerform(IUnit unit) {
-        return unit.getHealthPoints() > 0
-                && unit.getActionPoints() > 0
-                && unit.getAvailableActions().contains(instance);
     }
 }

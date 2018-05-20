@@ -7,6 +7,7 @@ public abstract class GenericAction implements IAction {
 
     protected abstract boolean checkParameters(Object[] parameters);
 
+
     @Override
     public ActionResult perform(Object... parameters) {
         if(!checkParameters(parameters)) {

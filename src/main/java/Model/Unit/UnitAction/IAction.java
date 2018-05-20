@@ -1,8 +1,5 @@
 package Model.Unit.UnitAction;
 
-import Model.Unit.IUnit;
-
-
 /**
  * Generic IAction class.
  * <p>
@@ -18,7 +15,4 @@ public interface IAction {
 
 
     ActionResult perform(Object... parameters);
-
-
-    boolean canPerform(IUnit unit);
 }

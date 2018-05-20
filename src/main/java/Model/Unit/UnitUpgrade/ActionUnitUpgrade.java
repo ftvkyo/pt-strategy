@@ -4,6 +4,7 @@ import Model.Unit.IUnit;
 import Model.Unit.UnitAction.IAction;
 
 import java.util.HashSet;
+import java.util.Set;
 
 
 public class ActionUnitUpgrade extends GenericUnitUpgrade {
@@ -12,7 +13,7 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
      * Множество действий, которые умеет декорированный юнит.
      * Set of actions, that we process inside of decorator.
      */
-    private final HashSet<IAction> availableActions = new HashSet<>();
+    private final Set<IAction> availableActions = new HashSet<>();
 
 
     /**
@@ -23,7 +24,7 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
      * @param actions действия, возможность совершать которое получит этот Unit
      * @return Улучшенный Unit
      */
-    public static GenericUnitUpgrade upgradeUnit(IUnit unit, HashSet<IAction> actions) {
+    public static GenericUnitUpgrade upgradeUnit(IUnit unit, Set<IAction> actions) {
         ActionUnitUpgrade retUnit = new ActionUnitUpgrade();
         retUnit.decorated = unit;
         retUnit.availableActions.addAll(actions);
@@ -32,9 +33,17 @@ public class ActionUnitUpgrade extends GenericUnitUpgrade {
 
 
     @Override
-    public HashSet<IAction> getAvailableActions() {
-        HashSet<IAction> actions = this.decorated.getAvailableActions();
-        actions.addAll(availableActions);
-        return actions;
+    public boolean isActionAvailable(IAction action) {
+        return this.decorated.isActionAvailable(action)
+                || availableActions.contains(action);
+    }
+
+
+    @Override
+    public boolean isAbleToPerform(IAction action) {
+        return this.decorated.isAbleToPerform(action)
+                || (this.getHealthPoints() > 0
+                && this.getActionPoints() > 0
+                && this.isActionAvailable(action));
     }
 }

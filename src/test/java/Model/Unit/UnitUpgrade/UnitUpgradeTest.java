@@ -9,6 +9,7 @@ import Model.Unit.UnitBuilder;
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -27,17 +28,18 @@ public class UnitUpgradeTest {
         unit = myBuilder.buildNewUnit();
 
 
-        IAction onlyUpgraded = OnlyUpgradedAction.instance;
-        assertFalse(onlyUpgraded.canPerform(unit));
+        IAction oua = OnlyUpgradedAction.instance;
+        assertFalse(unit.isAbleToPerform(oua));
 
-        HashSet<IAction> actions = new HashSet<>();
-        actions.add(onlyUpgraded);
+        Set<IAction> actions = new HashSet<>();
+        actions.add(oua);
+
         unit = ActionUnitUpgrade.upgradeUnit(unit, actions);
-        assertTrue(onlyUpgraded.canPerform(unit));
+        assertTrue(unit.isAbleToPerform(oua));
 
         assertEquals(
                 IAction.ActionResult.SUCCESS,
-                onlyUpgraded.perform(unit, null, null)
+                oua.perform(unit)
         );
     }
 }

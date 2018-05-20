@@ -31,7 +31,7 @@ public class UnitGroupingTest {
 
         IAction sa = SimpleAction.instance;
 
-        assertTrue(sa.canPerform(archer) && sa.canPerform(infantry1) && sa.canPerform(infantry2));
+        assertTrue(archer.isAbleToPerform(sa) && infantry1.isAbleToPerform(sa) && infantry2.isAbleToPerform(sa));
 
 
         units.addUnit(archer);
@@ -68,10 +68,10 @@ public class UnitGroupingTest {
 
         IAction onlyArcherAction = OnlyArcherAction.instance;
 
-        assertTrue(onlyArcherAction.canPerform(archer));
-        assertFalse(onlyArcherAction.canPerform(infantry));
-        assertFalse(onlyArcherAction.canPerform(cavalry1));
-        assertFalse(onlyArcherAction.canPerform(cavalry2));
+        assertTrue(archer.isAbleToPerform(onlyArcherAction));
+        assertFalse(infantry.isAbleToPerform(onlyArcherAction));
+        assertFalse(cavalry1.isAbleToPerform(onlyArcherAction));
+        assertFalse(cavalry2.isAbleToPerform(onlyArcherAction));
 
 
         UnitGroup units = new UnitGroup();
