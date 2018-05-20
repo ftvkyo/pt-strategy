@@ -3,7 +3,7 @@ package Model.Unit.UnitAction;
 import Model.Unit.IUnit;
 
 
-public class ExampleAction implements IAction {
+public class ExampleAction extends GenericAction {
 
     public static final IAction instance = new ExampleAction();
 
@@ -25,7 +25,8 @@ public class ExampleAction implements IAction {
     }
 
 
-    private boolean checkParameters(Object[] parameters) {
+    @Override
+    protected boolean checkParameters(Object[] parameters) {
         return parameters.length >= 1
                 && parameters[0] instanceof IUnit;
     }

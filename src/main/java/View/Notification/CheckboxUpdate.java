@@ -2,9 +2,9 @@ package View.Notification;
 
 public class CheckboxUpdate implements INotification {
 
-    private String checkboxID;
+    private final String checkboxID;
 
-    private boolean updateTo;
+    private final boolean updateTo;
 
 
     public CheckboxUpdate(String checkboxID, boolean updateTo) {

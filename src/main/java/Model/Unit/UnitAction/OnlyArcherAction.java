@@ -3,7 +3,7 @@ package Model.Unit.UnitAction;
 import Model.Unit.IUnit;
 
 
-public class OnlyArcherAction implements IAction {
+public class OnlyArcherAction extends GenericAction {
 
     public static final IAction instance = new OnlyArcherAction();
 
@@ -11,22 +11,8 @@ public class OnlyArcherAction implements IAction {
     private OnlyArcherAction() {
     }
 
-
     @Override
-    public ActionResult perform(Object... parameters) {
-        if(!checkParameters(parameters)) {
-            return ActionResult.FAIL;
-        }
-
-        IUnit thisUnit = (IUnit) parameters[0];
-
-        ActionResult retval = ActionResult.SUCCESS;
-        thisUnit.changeActionPoints(-1);
-        return retval;
-    }
-
-
-    private boolean checkParameters(Object[] parameters) {
+    protected boolean checkParameters(Object[] parameters) {
         return parameters.length >= 1
                 && parameters[0] instanceof IUnit;
     }

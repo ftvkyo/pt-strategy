@@ -14,7 +14,7 @@ public class Renderable {
 
     protected float left, right, bottom, top;
 
-    private ArrayList<Renderable> children = new ArrayList<>();
+    private final ArrayList<Renderable> children = new ArrayList<>();
 
     private Runnable action = null;
 

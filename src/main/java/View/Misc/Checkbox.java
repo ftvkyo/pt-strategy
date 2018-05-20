@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Checkbox extends Renderable {
 
-    private static float margin = 0.2f;
+    private static final float margin = 0.2f;
 
     private boolean checked = false;
 

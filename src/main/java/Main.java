@@ -19,7 +19,7 @@ public class Main {
 
             controller.setModel(model);
             view.setController(controller);
-            model.setReciever(view);
+            model.setReceiver(view);
 
             renderer.run();
         }

@@ -8,8 +8,8 @@ import View.Notification.INotificationReceiver;
 
 class GameMapRenderable extends Renderable implements INotificationReceiver {
 
-    private static int fieldSide = 9;
-    private Renderable[][] field = new Renderable[fieldSide][fieldSide];
+    private static final int fieldSide = 9;
+    private final Renderable[][] field = new Renderable[fieldSide][fieldSide];
 
     GameMapRenderable() {
         colorR = 0.2f;

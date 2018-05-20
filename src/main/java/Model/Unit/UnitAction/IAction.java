@@ -8,7 +8,6 @@ import Model.Unit.IUnit;
  * <p>
  * Является синглтоном, при этом все наследники должны
  * инициализировать instance и иметь приватный конструктор.
- * TODO?: сделать GenericAction для избежания дублирования кода
  */
 public interface IAction {
 

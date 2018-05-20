@@ -17,8 +17,8 @@ public class View extends Renderable implements INotificationReceiver {
 
     private Renderable currentRenderable;
 
-    private Renderable settingsRenderable;
-    private Renderable gameRenderable;
+    private final Renderable settingsRenderable;
+    private final Renderable gameRenderable;
 
     private Controller controller;
 
@@ -28,7 +28,7 @@ public class View extends Renderable implements INotificationReceiver {
      * либо имеют состояние, которое надо именять по их ID.
      * Фактически, первый параметр - это ID.
      */
-    private Map<String, Renderable> interfaceElements = new HashMap<>();
+    private final Map<String, Renderable> interfaceElements = new HashMap<>();
 
 
     public View(float windowWidth, float windowHeight) {

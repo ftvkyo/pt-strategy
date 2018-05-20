@@ -4,7 +4,7 @@ import Model.Unit.IUnit;
 import org.jetbrains.annotations.NotNull;
 
 
-public class AttackAction implements IAction {
+public class AttackAction extends GenericAction {
 
     public static final IAction instance = new AttackAction();
 
@@ -36,7 +36,8 @@ public class AttackAction implements IAction {
     }
 
 
-    private boolean checkParameters(Object[] parameters) {
+    @Override
+    protected boolean checkParameters(Object[] parameters) {
         return parameters.length >= 2
                 && parameters[0] instanceof IUnit
                 && parameters[1] instanceof IUnit;
