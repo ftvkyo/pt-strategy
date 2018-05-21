@@ -2,6 +2,13 @@ package Model.Player.PlayerLastAction;
 
 import Model.Unit.UnitAction.IAction;
 
+
+/**
+ * RememberedAction class.
+ *
+ * Сохраненное Action, принадлежащее Caretaker'у
+ */
+
 public class RememberedAction {
     private IAction rememberedAction;
 

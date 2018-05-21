@@ -2,6 +2,15 @@ package Model.Player.PlayerLastAction;
 
 import Model.Unit.UnitAction.IAction;
 
+
+/**
+ * LastAction class.
+ *
+ * Основная способность - через Caretaker'а
+ * может вернуться в сохранненное состояние.
+ * реализует паттерн Хранитель
+ */
+
 public class LastAction {
     private IAction lastAction;
 
@@ -20,4 +29,5 @@ public class LastAction {
     public void restoreLastAction (RememberedAction rememberedAction) {
         this.lastAction = rememberedAction.getRememberedAction();
     }
+
 }

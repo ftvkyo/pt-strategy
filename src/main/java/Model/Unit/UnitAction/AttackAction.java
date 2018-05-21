@@ -1,5 +1,6 @@
 package Model.Unit.UnitAction;
 
+import Model.Player.Player;
 import Model.Unit.IUnit;
 import org.jetbrains.annotations.NotNull;
 
@@ -49,5 +50,14 @@ public class AttackAction implements IAction {
         return unit.getHealthPoints() > 0
                 && unit.getActionPoints() > 0
                 && unit.getAvailableActions().contains(instance);
+    }
+
+    /**
+    *   Игрок гарантирует, что действие валидно
+    *   TODO: определить, как действие возвращается
+     **/
+    @Override
+    public void wasRestored(Player player) {
+
     }
 }

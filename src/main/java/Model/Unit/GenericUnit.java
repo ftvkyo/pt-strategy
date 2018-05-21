@@ -1,6 +1,7 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
+import Model.Item.ItemProperty.IProperty;
 import Model.Player.Player;
 import Model.Unit.UnitAction.IAction;
 
@@ -109,6 +110,7 @@ class GenericUnit implements IUnit {
         return damagePoints;
     }
 
+
     public Player getOwner() { return owner; }
 
 
@@ -144,6 +146,15 @@ class GenericUnit implements IUnit {
 
     public void removeItem(GenericItem item) {
         items.remove(item);
+    }
+
+
+    public void activateItem(int n, IUnit targetUnit) {
+        GenericItem thisItem = items.get(n);
+        IProperty property = thisItem.getProperty();
+        property.onActivate(thisItem, this, targetUnit);
+
+        items.remove(n);
     }
 
 

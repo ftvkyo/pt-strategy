@@ -1,5 +1,6 @@
 package Model.Unit.UnitAction;
 
+import Model.Player.Player;
 import Model.Unit.IUnit;
 
 
@@ -22,4 +23,5 @@ public interface IAction {
 
 
     boolean canPerform(IUnit unit);
+    public void wasRestored(Player player);
 }

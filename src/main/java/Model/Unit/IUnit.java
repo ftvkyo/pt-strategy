@@ -78,6 +78,12 @@ public interface IUnit {
     int getDamagePoints();
 
     /**
+     * Активация способности предмета
+     * @param n индекс предмета в items
+     */
+    void activateItem(int n, IUnit targetUnit);
+
+    /**
      * Геттер хозяин
      * @return владелец юнита
      */

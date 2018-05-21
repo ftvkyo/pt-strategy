@@ -10,6 +10,5 @@ public class ExplosiveProperty extends GenericProperty {
     public void onActivate(GenericItem thisItem, IUnit thisUnit, IUnit targetUnit) {
 
         thisUnit.changeHealthPoints(-10);
-        thisUnit.removeItem (thisItem);
     }
 }
