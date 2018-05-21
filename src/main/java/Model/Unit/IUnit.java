@@ -1,6 +1,7 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
+import Model.Player.Player;
 import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
@@ -76,6 +77,18 @@ public interface IUnit {
      */
     int getDamagePoints();
 
+    /**
+     * Активация способности предмета
+     * @param n индекс предмета в items
+     */
+    void activateItem(int n, IUnit targetUnit);
+
+    /**
+     * Геттер хозяин
+     * @return владелец юнита
+     */
+    Player getOwner();
+
 
     /**
      * Некоторые Unit'ы (лучники) могут игнорировать ответные атаки,
@@ -105,9 +118,9 @@ public interface IUnit {
     /**
      * Метод для удаления n-ного Item'a из инвентаря данного Unit'a.
      *
-     * @param n номер Item'a, который будет удален из инвентаря
+     * @param item, который будет удален из инвентаря
      */
-    void removeItem(int n);
+    void removeItem(GenericItem item);
 
 
     /**

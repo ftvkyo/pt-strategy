@@ -1,5 +1,6 @@
 package Model.Unit.UnitAction;
 
+import Model.Player.Player;
 import Model.Unit.IUnit;
 
 
@@ -36,5 +37,10 @@ public class ExampleAction implements IAction {
         return unit.getHealthPoints() > 0
                 && unit.getActionPoints() > 0
                 && unit.getAvailableActions().contains(instance);
+    }
+
+    @Override
+    public void wasRestored(Player player) {
+
     }
 }

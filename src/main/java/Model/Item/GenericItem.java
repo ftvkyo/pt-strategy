@@ -1,6 +1,10 @@
 package Model.Item;
 
 import Model.Item.ItemProperty.IProperty;
+import Model.Player.Player;
+import Model.Unit.IUnit;
+
+import java.util.ArrayList;
 
 
 public class GenericItem {
@@ -33,6 +37,7 @@ public class GenericItem {
     }
 
 
+
     /**
      * Сэттер для названия Item'a.
      *
@@ -41,6 +46,12 @@ public class GenericItem {
     void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * Геттер для способности.
+     * @return способность
+     */
+    public IProperty getProperty() { return this.property; }
 
 
     /**
@@ -51,4 +62,5 @@ public class GenericItem {
     public String getTitle() {
         return title;
     }
+
 }

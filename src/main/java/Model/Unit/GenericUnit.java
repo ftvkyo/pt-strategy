@@ -1,6 +1,7 @@
 package Model.Unit;
 
 import Model.Item.GenericItem;
+import Model.Item.ItemProperty.IProperty;
 import Model.Player.Player;
 import Model.Unit.UnitAction.IAction;
 
@@ -110,6 +111,9 @@ class GenericUnit implements IUnit {
     }
 
 
+    public Player getOwner() { return owner; }
+
+
     public void changeActionPoints(int delta) {
         actionPointsCurrent = Math.max(0, Math.min(actionPointsCurrent + delta, actionPointsMax));
     }
@@ -140,7 +144,16 @@ class GenericUnit implements IUnit {
     }
 
 
-    public void removeItem(int n) {
+    public void removeItem(GenericItem item) {
+        items.remove(item);
+    }
+
+
+    public void activateItem(int n, IUnit targetUnit) {
+        GenericItem thisItem = items.get(n);
+        IProperty property = thisItem.getProperty();
+        property.onActivate(thisItem, this, targetUnit);
+
         items.remove(n);
     }
 
