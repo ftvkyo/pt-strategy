@@ -1,5 +1,6 @@
 package Model.Unit.UnitAction;
 
+import Model.Player.Player;
 import Model.Unit.IUnit;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,6 +26,7 @@ public class AttackAction extends GenericAction {
         if(targetUnit.getHealthPoints() > 0) {
             targetUnit.changeHealthPoints(-thisUnit.getDamagePoints());
             thisUnit.zeroActionPoints();
+
 
             if(!thisUnit.getCanIgnoreCounterAttack() && targetUnit.getHealthPoints() > 0) {
                 thisUnit.changeHealthPoints(-targetUnit.getDamagePoints());

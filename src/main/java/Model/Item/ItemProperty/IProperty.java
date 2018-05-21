@@ -6,6 +6,8 @@ import Model.Unit.IUnit;
 
 public interface IProperty {
 
+
+
     /**
      * Вызывается при активации Item'а.
      *
@@ -23,4 +25,6 @@ public interface IProperty {
      * @param thisUnit Unit, взявший Item
      */
     void onPickup(GenericItem thisItem, IUnit thisUnit);
+
+
 }

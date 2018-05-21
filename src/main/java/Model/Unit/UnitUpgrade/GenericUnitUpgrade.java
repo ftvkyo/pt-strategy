@@ -1,6 +1,7 @@
 package Model.Unit.UnitUpgrade;
 
 import Model.Item.GenericItem;
+import Model.Player.Player;
 import Model.Unit.IUnit;
 import Model.Unit.UnitAction.IAction;
 
@@ -44,8 +45,8 @@ class GenericUnitUpgrade implements IUnit {
 
 
     @Override
-    public void removeItem(int n) {
-        this.decorated.removeItem(n);
+    public void removeItem(GenericItem item) {
+        this.decorated.removeItem(item);
     }
 
 
@@ -77,6 +78,9 @@ class GenericUnitUpgrade implements IUnit {
     public int getDamagePoints() {
         return this.decorated.getDamagePoints();
     }
+
+    @Override
+    public Player getOwner() { return this.decorated.getOwner(); }
 
 
     @Override
@@ -136,5 +140,11 @@ class GenericUnitUpgrade implements IUnit {
     @Override
     public String getID() {
         return this.decorated.getID();
+    }
+
+
+    @Override
+    public void activateItem(int n, IUnit targetUnit) {
+        this.decorated.activateItem(n, targetUnit);
     }
 }

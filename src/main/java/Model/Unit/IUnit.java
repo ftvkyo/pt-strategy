@@ -2,6 +2,7 @@ package Model.Unit;
 
 import Model.HasIdentifier;
 import Model.Item.GenericItem;
+import Model.Player.Player;
 import Model.Unit.UnitAction.IAction;
 
 import java.util.ArrayList;
@@ -78,6 +79,20 @@ public interface IUnit extends HasIdentifier {
 
 
     /**
+     * Активация способности предмета
+     * @param n индекс предмета в items
+     */
+    void activateItem(int n, IUnit targetUnit);
+
+
+    /**
+     * Геттер хозяина
+     * @return владелец юнита
+     */
+    Player getOwner();
+
+
+    /**
      * Некоторые Unit'ы (лучники) могут игнорировать ответные атаки,
      * и этот метод -- геттер для способности данного Unit'a делать это.
      *
@@ -105,9 +120,9 @@ public interface IUnit extends HasIdentifier {
     /**
      * Метод для удаления n-ного Item'a из инвентаря данного Unit'a.
      *
-     * @param n номер Item'a, который будет удален из инвентаря
+     * @param item, который будет удален из инвентаря
      */
-    void removeItem(int n);
+    void removeItem(GenericItem item);
 
 
     /**

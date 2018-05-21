@@ -1,5 +1,8 @@
 package Model.Unit.UnitAction;
 
+import Model.Player.Player;
+
+
 /**
  * Generic IAction class.
  * <p>
@@ -15,4 +18,6 @@ public interface IAction {
 
 
     ActionResult perform(Object... parameters);
+
+    void wasRestored(Player player);
 }

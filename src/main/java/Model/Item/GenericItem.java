@@ -2,6 +2,10 @@ package Model.Item;
 
 import Model.HasIdentifier;
 import Model.Item.ItemProperty.IProperty;
+import Model.Player.Player;
+import Model.Unit.IUnit;
+
+import java.util.ArrayList;
 
 
 public class GenericItem implements HasIdentifier {
@@ -34,6 +38,7 @@ public class GenericItem implements HasIdentifier {
     }
 
 
+
     /**
      * Сэттер для названия Item'a.
      *
@@ -42,6 +47,12 @@ public class GenericItem implements HasIdentifier {
     void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * Геттер для способности.
+     * @return способность
+     */
+    public IProperty getProperty() { return this.property; }
 
 
     /**
