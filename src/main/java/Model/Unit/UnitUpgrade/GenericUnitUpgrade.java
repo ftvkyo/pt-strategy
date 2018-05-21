@@ -124,4 +124,9 @@ class GenericUnitUpgrade implements IUnit {
         return this.decorated.getItems();
     }
 
+
+    @Override
+    public void activateItem(int n, IUnit targetUnit) {
+        this.decorated.activateItem(n, targetUnit);
+    }
 }
