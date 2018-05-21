@@ -1,5 +1,6 @@
 package Model.Unit;
 
+import Model.HasIdentifier;
 import Model.Item.GenericItem;
 import Model.Unit.UnitAction.IAction;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Интерфейс Unit'ов. Следует использовать его вместо GenericUnit везде, где это возможно.
  */
-public interface IUnit {
+public interface IUnit extends HasIdentifier {
 
     /**
      * Метод для обновления значений всех возможных Points до максимальных значений.

@@ -158,6 +158,13 @@ class GenericUnit implements IUnit {
     }
 
 
+    @Override
+    public String getID() {
+        //TODO: unit ids
+        return null;
+    }
+
+
     /**
      * Часть паттерна Builder.
      * "Создатель и инициализатор" Units.

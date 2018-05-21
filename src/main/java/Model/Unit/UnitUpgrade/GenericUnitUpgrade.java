@@ -18,8 +18,6 @@ import java.util.ArrayList;
  * <p>
  * У этого паттерна, правда, есть одна проблема: если мы много раз будем декорировать Unit,
  * вызов методов этого Unit'a будет работать дольше (если это не оптимизируется компилятором).
- * <p>
- * //TODO: Should i Implement "Remove Decorator" method?
  */
 class GenericUnitUpgrade implements IUnit {
 
@@ -33,6 +31,15 @@ class GenericUnitUpgrade implements IUnit {
      * Package private конструктор.
      */
     GenericUnitUpgrade() {
+    }
+
+
+    /**
+     * Метод для снятия декоратора с юнита
+     * @return юнит, с которого снят декоратор
+     */
+    public IUnit undecorate() {
+        return decorated;
     }
 
 
@@ -125,4 +132,9 @@ class GenericUnitUpgrade implements IUnit {
         return this.decorated.getItems();
     }
 
+
+    @Override
+    public String getID() {
+        return this.decorated.getID();
+    }
 }

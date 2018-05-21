@@ -1,9 +1,10 @@
 package Model.Item;
 
+import Model.HasIdentifier;
 import Model.Item.ItemProperty.IProperty;
 
 
-public class GenericItem {
+public class GenericItem implements HasIdentifier {
 
     /**
      * Свойство Item'a.
@@ -50,5 +51,11 @@ public class GenericItem {
      */
     public String getTitle() {
         return title;
+    }
+
+
+    @Override
+    public String getID() {
+        return "item-generic";
     }
 }

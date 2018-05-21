@@ -10,4 +10,10 @@ public class ForestLandscape extends GenericLandscape {
             return l;
         }
     }
+
+
+    @Override
+    public String getID() {
+        return "landscape-forest";
+    }
 }

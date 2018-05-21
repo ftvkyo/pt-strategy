@@ -9,9 +9,9 @@ import View.Notification.INotificationReceiver;
 class GameMenuRenderable extends Renderable implements INotificationReceiver {
 
     GameMenuRenderable() {
-        colorR = 0.5f;
-        colorG = 0.5f;
-        colorB = 0.5f;
+        colorR = 0.1f;
+        colorG = 0.1f;
+        colorB = 0.1f;
     }
 
 

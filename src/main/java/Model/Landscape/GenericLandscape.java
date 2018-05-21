@@ -1,12 +1,13 @@
 package Model.Landscape;
 
+import Model.HasIdentifier;
 import Model.Item.GenericItem;
 import Model.Unit.IUnit;
 
 import java.util.ArrayList;
 
 
-abstract public class GenericLandscape {
+abstract public class GenericLandscape implements HasIdentifier {
 
     /**
      * Action Points, необходимые для того,
@@ -24,7 +25,7 @@ abstract public class GenericLandscape {
     /**
      * Item'ы, находящиеся на данном Landscape.
      */
-    private ArrayList<GenericItem> items;
+    private ArrayList<GenericItem> items = new ArrayList<>();
 
 
     /**

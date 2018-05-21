@@ -10,4 +10,10 @@ public class PlainLandscape extends GenericLandscape {
             return l;
         }
     }
+
+
+    @Override
+    public String getID() {
+        return "landscape-plain";
+    }
 }

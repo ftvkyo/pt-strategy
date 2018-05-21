@@ -2,19 +2,20 @@ package View.Misc;
 
 
 import Controller.Controller;
+import View.Notification.INotificationReceiver;
 
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Renderable {
+public abstract class Renderable implements INotificationReceiver {
 
     protected float colorR, colorG, colorB;
 
     protected float left, right, bottom, top;
 
-    private final ArrayList<Renderable> children = new ArrayList<>();
+    protected final ArrayList<Renderable> children = new ArrayList<>();
 
     private Runnable action = null;
 

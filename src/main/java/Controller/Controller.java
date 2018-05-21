@@ -38,11 +38,7 @@ public class Controller{
 
 
     public void fieldClickCallback(int row, int column) {
-        System.out.print("Row: ");
-        System.out.print(row);
-        System.out.print(", ");
-        System.out.print("Column: ");
-        System.out.print(column);
-        System.out.println(" clicked.");
+        //TODO: actions - selection, deselection units etc.
+        model.updateFieldCell(row, column);
     }
 }

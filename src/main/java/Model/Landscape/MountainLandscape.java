@@ -10,4 +10,10 @@ public class MountainLandscape extends GenericLandscape {
             return l;
         }
     }
+
+
+    @Override
+    public String getID() {
+        return "landscape-mountain";
+    }
 }

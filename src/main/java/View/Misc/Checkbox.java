@@ -1,6 +1,8 @@
 package View.Misc;
 
 
+import View.Notification.INotification;
+
 import static java.lang.Math.abs;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -37,5 +39,10 @@ public class Checkbox extends Renderable {
             glVertex2f(rightT, bottomT);
             glEnd();
         }
+    }
+
+
+    @Override
+    public void receiveNotification(INotification n) {
     }
 }
