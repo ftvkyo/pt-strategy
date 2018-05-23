@@ -82,6 +82,9 @@ public class Renderer implements Runnable, AutoCloseable {
 
     private long createWindow() {
         glfwDefaultWindowHints();
+
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE);
+
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 

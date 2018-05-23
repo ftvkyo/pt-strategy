@@ -5,7 +5,6 @@ apply plugin: 'application'
 apply plugin: 'distribution'
 apply plugin: 'java'
 
-//compileJava.options.compilerArgs << "-XDignore.symbol.file"
 
 mainClassName = 'Main'
 sourceCompatibility = 1.8
@@ -25,6 +24,7 @@ switch ( OperatingSystem.current() ) {
         break
     case OperatingSystem.MAC_OS:
         project.ext.lwjglNatives = "natives-macos"
+        applicationDefaultJvmArgs = ["-XstartOnFirstThread"]
         break
 }
 
