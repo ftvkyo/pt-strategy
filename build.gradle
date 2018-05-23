@@ -19,7 +19,6 @@ apply plugin: 'java'
 
 defaultTasks 'run'
 
-mainClassName = 'MainKt'
 sourceCompatibility = 1.8
 
 
@@ -33,6 +32,17 @@ test {
 /*
  * BUILD SECTION
  */
+
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+
+    test.kotlin.srcDirs += 'src/test/kotlin'
+    test.java.srcDirs += 'src/test/java'
+}
+
+mainClassName = "Main"
 
 
 repositories {
