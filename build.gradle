@@ -1,14 +1,43 @@
-group 'org.ftvkyo2011.pt-strategy'
+group 'me.ftvkyo.pt-strategy'
 version '0.2-SNAPSHOT'
 
+buildscript {
+    project.ext.kotlin_version = '1.2.41'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 apply plugin: 'application'
+apply plugin: 'kotlin'
 apply plugin: 'distribution'
 apply plugin: 'java'
 
-//compileJava.options.compilerArgs << "-XDignore.symbol.file"
 
-mainClassName = 'Main'
+defaultTasks 'run'
+
+mainClassName = 'MainKt'
 sourceCompatibility = 1.8
+
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+
+/*
+ * BUILD SECTION
+ */
+
+
+repositories {
+    mavenCentral()
+}
 
 
 import org.gradle.internal.os.OperatingSystem
@@ -29,86 +58,36 @@ switch ( OperatingSystem.current() ) {
 }
 
 
-repositories {
-    mavenCentral()
-    jcenter()
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "org.jetbrains.kotlin:kotlin-test"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit"
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    compile "org.lwjgl:lwjgl:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-openal:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-stb:$lwjglVersion"
+
+    compile "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
 }
 
 
-javadoc {
-    source = sourceSets.main.allJava
-    classpath = configurations.compile
-}
-
-
-test {
-    testLogging {
-        events "passed", "skipped", "failed"
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile "org.lwjgl:lwjgl:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-assimp:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-bgfx:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-egl:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-jawt:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-jemalloc:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-lmdb:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-lz4:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-nanovg:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-nfd:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-nuklear:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-odbc:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-openal:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-opencl:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-opengles:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-openvr:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-par:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-remotery:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-rpmalloc:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-sse:$lwjglVersion"
-    compile "org.lwjgl:lwjgl-stb:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-tinyexr:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-tinyfd:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-tootle:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-xxhash:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-yoga:$lwjglVersion"
-    //compile "org.lwjgl:lwjgl-zstd:$lwjglVersion"
-
-    compile "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-bgfx:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-jemalloc:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-lmdb:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-lz4:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-nanovg:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-nfd:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-opengles:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-openvr:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-par:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-remotery:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-rpmalloc:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-sse:$lwjglVersion:$lwjglNatives"
-    compile "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-tinyexr:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-tinyfd:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-tootle:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-xxhash:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-yoga:$lwjglVersion:$lwjglNatives"
-    //compile "org.lwjgl:lwjgl-zstd:$lwjglVersion:$lwjglNatives"
-
-    compile "org.joml:joml:${jomlVersion}"
-
-    compile 'com.intellij:annotations:+@jar'
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
