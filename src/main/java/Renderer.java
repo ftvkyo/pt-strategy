@@ -30,15 +30,21 @@ public class Renderer implements Runnable, AutoCloseable {
 
     private long currentWindow;
 
-    public static final int windowHeight = 9;
-    private int realWindowHeight = 1080;
-
-    public static final int windowWidth = 16;
+    private int windowWidth = 16;
     private int realWindowWidth = 1920;
+
+    private int windowHeight = 9;
+    private int realWindowHeight = 1080;
 
 
     private View view;
     private Controller controller;
+
+
+    Renderer(float internalWidth, float internalHeight) {
+        windowWidth = (int) internalWidth;
+        windowHeight = (int) internalHeight;
+    }
 
 
     public void close() {
@@ -142,7 +148,7 @@ public class Renderer implements Runnable, AutoCloseable {
     private void keyPressCallback(long window, long key, long scancode, long action, long mods) {
         if(action == GLFW_RELEASE) {
             if(key == GLFW_KEY_ESCAPE) {
-                controller.escapeCallback();
+                controller.getCallback("escape-button").run();
             }
         }
     }

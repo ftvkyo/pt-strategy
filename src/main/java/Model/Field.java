@@ -15,7 +15,7 @@ import java.util.Random;
  * Обычное поле, просто карта игры.
  */
 class Field {
-    final int fieldSize = 9;
+    final int fieldSize = 27;
 
     GenericLandscape[][] field = new GenericLandscape[fieldSize][fieldSize];
 

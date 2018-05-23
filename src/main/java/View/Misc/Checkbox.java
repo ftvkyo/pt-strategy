@@ -1,6 +1,9 @@
 package View.Misc;
 
 
+import Controller.Controller;
+import View.InterfaceDescription.RenderableDescription;
+import View.Notification.CheckboxUpdate;
 import View.Notification.INotification;
 
 import static java.lang.Math.abs;
@@ -14,13 +17,8 @@ public class Checkbox extends Renderable {
     private boolean checked = false;
 
 
-    public Checkbox() {
-    }
-
-
-    public Checkbox setChecked(boolean checked) {
-        this.checked = checked;
-        return this;
+    public Checkbox(Controller controller, String id, RenderableDescription description) {
+        super(controller, id, description);
     }
 
 
@@ -44,5 +42,10 @@ public class Checkbox extends Renderable {
 
     @Override
     public void receiveNotification(INotification n) {
+        if(n instanceof CheckboxUpdate) {
+            if(((CheckboxUpdate) n).getCheckboxID().equals(id)) {
+                checked = ((CheckboxUpdate) n).getUpdateTo();
+            }
+        }
     }
 }

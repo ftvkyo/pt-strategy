@@ -1,105 +1,32 @@
 package View;
 
 import Controller.Controller;
-import View.Misc.Checkbox;
+import View.InterfaceDescription.RenderableDescription;
+import View.InterfaceDescription.ViewDescription;
 import View.Misc.Renderable;
 import View.Notification.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class View extends Renderable implements INotificationReceiver {
+public class View implements INotificationReceiver {
 
     private boolean shouldClose = false;
 
-    private Renderable currentRenderable;
-
-    private final Renderable settingsRenderable;
-    private final Renderable gameRenderable;
+    private Map<String, Renderable> screens = new HashMap<>();
+    private String currentScreen;
 
     private Controller controller;
 
 
-    /**
-     * Сюда помещаются Renderables, которые либо показаны на нескольких экранах,
-     * либо имеют состояние, которое надо именять по их ID.
-     * Фактически, первый параметр - это ID.
-     */
-    private final Map<String, Renderable> interfaceElements = new HashMap<>();
+    public View(Controller controller, @NotNull ViewDescription description) {
+        this.controller = controller;
 
-
-    public View(float windowWidth, float windowHeight) {
-        this.setRectangle(0f, windowWidth, windowHeight, 0f);
-
-        /* *****************
-         *
-         * ELEMENTS CREATION
-         *
-         * *****************/
-        Checkbox exampleCheckbox = new Checkbox();
-        exampleCheckbox.setAction( () -> controller.checkboxExampleCallback("exampleCheckbox") )
-                .setColor(0.5f, 0.5f, 0.5f)
-                .setRectangle(1f, 2f, 2f, 1f);
-        interfaceElements.put("exampleCheckbox", exampleCheckbox);
-
-        interfaceElements.put("escapeButton",
-                new Renderable() {
-                    @Override
-                    public void receiveNotification(INotification n) {}
-                }
-                        .setColor(1f, 0f, 0f)
-                        .setRectangle(15f, 15.5f, 1f, 0.5f)
-                        .setAction( () -> controller.escapeCallback() )
-                );
-
-
-        /* *****************
-         *
-         * RENDERABLES SETUP
-         *
-         * *****************/
-        settingsRenderable = new Renderable() {
-            @Override
-            public void receiveNotification(INotification n) {}
+        for(Map.Entry<String, RenderableDescription> screen : description.availableScreens.entrySet()) {
+            screens.put(screen.getKey(), new Renderable(controller, screen.getKey(), screen.getValue()));
         }
-                .setRectangle(0f, windowWidth, windowHeight, 0f)
-                .addChild(new Renderable() {
-                    @Override
-                    public void receiveNotification(INotification n) {}
-                }
-                        .setColor(0.9f, 0.5f, 0.5f)
-                        .setRectangle(12f, 13.5f, 8.5f, 8f)
-                        .setAction( () -> controller.restartGameCallback() ))
-                .addChild(new Renderable() {
-                    @Override
-                    public void receiveNotification(INotification n) {}
-                }
-                        .setColor(0.5f, 0.9f, 0.5f)
-                        .setRectangle(14f, 15.5f, 8.5f, 8f)
-                        .setAction( () -> controller.startGameCallback() ))
-                .addChild(interfaceElements.get("escapeButton"))
-                .addChild(interfaceElements.get("exampleCheckbox"));
-
-
-        gameRenderable = new Renderable() {
-            @Override
-            public void receiveNotification(INotification n) {
-                for(Renderable child : children) {
-                    child.receiveNotification(n);
-                }
-            }
-        }
-                .setRectangle(0f, windowWidth, windowHeight, 0f)
-                .addChild(new GameMapRenderable()
-                        .setRectangle(0f, 9, windowHeight, 0f)
-                )
-                .addChild(new GameMenuRenderable()
-                        .setRectangle(9, windowWidth, windowHeight, 0f)
-                        .addChild(interfaceElements.get("escapeButton"))
-                );
-
-
-        currentRenderable = settingsRenderable;
+        currentScreen = description.initialScreen;
     }
 
 
@@ -107,40 +34,29 @@ public class View extends Renderable implements INotificationReceiver {
     public void receiveNotification(INotification n) {
         if(n instanceof WindowChange) {
             if(n == WindowChange.SWITCH_TO_SETTINGS_OR_EXIT) {
-                if(currentRenderable.equals(settingsRenderable)) {
+                if(currentScreen.equals("settings-screen")) {
                     shouldClose = true;
-                } else if(currentRenderable.equals(gameRenderable)) {
-                    currentRenderable = settingsRenderable;
+                } else if(currentScreen.equals("ingame-screen")) {
+                    currentScreen = "settings-screen";
                 }
             } else if(n == WindowChange.SWITCH_TO_GAME) {
-                currentRenderable = gameRenderable;
+                currentScreen = "ingame-screen";
             }
         } else if(n instanceof CheckboxUpdate) {
-            ((Checkbox) interfaceElements.get(((CheckboxUpdate) n).getCheckboxID()))
-                    .setChecked(((CheckboxUpdate) n).getUpdateTo());
+            screens.get(currentScreen).receiveNotification(n);
         } else if(n instanceof FieldUpdate) {
-            gameRenderable.receiveNotification(n);
+            screens.get("ingame-screen").receiveNotification(n);
         }
     }
 
 
-    @Override
-    protected void renderState() {
-        currentRenderable.render();
+    public void render() {
+        screens.get(currentScreen).render();
     }
 
 
-    @Override
     public void clickEvent(float xPosition, float yPosition) {
-        currentRenderable.clickEvent(xPosition, yPosition);
-    }
-
-
-    @Override
-    public void setController(Controller controller) {
-        this.controller = controller;
-        gameRenderable.setController(controller);
-        settingsRenderable.setController(controller);
+        screens.get(currentScreen).clickEvent(xPosition, yPosition);
     }
 
 

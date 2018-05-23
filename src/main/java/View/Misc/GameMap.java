@@ -1,37 +1,36 @@
-package View;
+package View.Misc;
 
 
-import View.Misc.Renderable;
+import Controller.Controller;
+import View.InterfaceDescription.RenderableDescription;
 import View.Notification.FieldUpdate;
 import View.Notification.INotification;
 
 import java.util.ArrayList;
 
 
-class GameMapRenderable extends Renderable {
+public class GameMap extends Renderable {
 
-    private static final int fieldSide = 9;
+    private static final int fieldSide = 27;
     private final Renderable[][] field = new Renderable[fieldSide][fieldSide];
 
-    GameMapRenderable() {
-        colorR = 0.2f;
-        colorG = 0.9f;
-        colorB = 0.2f;
+    public GameMap(Controller controller, String id, RenderableDescription description) {
+        super(controller, id, description);
+
+        //BUG: Наследовать края от контейнера, а не отсчитывать от края экрана.
+
+        float sizeOfCell = 9f/fieldSide;
 
         for(int i = 0; i < fieldSide; i++) {
             for(int j = 0; j < fieldSide; j++) {
-                Renderable tmp = new Renderable() {
-                    @Override
-                    public void receiveNotification(INotification n) { }
-                };
-                tmp.setRectangle(1f*j, 1f*(j+1), 1f*(i+1), 1f*i);
-                tmp.setColor(0f, (float) (i+j)/18, (float) Math.abs(i-j)/18);
                 final int row = i, col = j;
-                tmp.setAction(() -> controller.fieldClickCallback(row, col));
 
-                field[i][j] = tmp;
+                field[i][j] = new Renderable();
+                //field[i][j].setColor(0f, (float) (i+j)/18, (float) Math.abs(i-j)/18);
+                field[i][j].setShape(sizeOfCell*j, sizeOfCell*(j+1), sizeOfCell*(i+1), sizeOfCell*i);
+                field[i][j].setAction(() -> controller.fieldClickCallback(row, col));
 
-                addChild(tmp);
+                children.add(field[i][j]);
             }
         }
     }

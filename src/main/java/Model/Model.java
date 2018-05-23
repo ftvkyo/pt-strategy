@@ -8,13 +8,18 @@ import View.Notification.WindowChange;
 import java.util.ArrayList;
 
 
-public class Model{
+public class Model {
 
     private INotificationReceiver receiver;
 
     private Field field = new Field();
 
-    private boolean checkbox = false;
+    private boolean exampleCheckboxState = false;
+
+
+    public Model() {
+        reset();
+    }
 
 
     public void setReceiver(INotificationReceiver receiver) {
@@ -43,14 +48,22 @@ public class Model{
     }
 
 
-    public void toggleCheckbox(String checkboxID) {
-        checkbox = !checkbox;
-        receiver.receiveNotification(new CheckboxUpdate(checkboxID, checkbox));
+    public void toggleExampleCheckbox() {
+        exampleCheckboxState = !exampleCheckboxState;
+        receiver.receiveNotification(new CheckboxUpdate("example-checkbox", exampleCheckboxState));
     }
 
 
     public void updateFieldCell(int row, int col) {
         ArrayList<String> cellContents = field.getCellContents(row, col);
         receiver.receiveNotification(new FieldUpdate(row, col, cellContents));
+
+        /*
+        System.err.print(row);
+        System.err.print(" ");
+        System.err.print(col);
+        System.err.print(" ");
+        System.err.println(cellContents);
+        */
     }
 }

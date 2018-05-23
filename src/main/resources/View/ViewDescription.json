@@ -1,0 +1,139 @@
+{
+  "availableScreens": {
+    "settings-screen": {
+      "type": "container",
+      "color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coords": [
+        0.0,
+        16.0,
+        9.0,
+        0.0
+      ],
+      "children": {
+        "escape-button": {
+          "type": "button",
+          "color": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "coords": [
+            15.0,
+            15.5,
+            1.0,
+            0.5
+          ]
+        },
+        "example-checkbox": {
+          "type": "checkbox",
+          "color": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "coords": [
+            1.0,
+            2.0,
+            2.0,
+            1.0
+          ]
+        },
+        "startGame-button": {
+          "type": "button",
+          "color": [
+            0.5,
+            0.8,
+            0.5
+          ],
+          "coords": [
+            12.0,
+            13.0,
+            8.0,
+            7.0
+          ]
+        },
+        "restartGame-button": {
+          "type": "button",
+          "color": [
+            0.8,
+            0.5,
+            0.5
+          ],
+          "coords": [
+            14.0,
+            15.0,
+            8.0,
+            7.0
+          ]
+        }
+      }
+    },
+    "ingame-screen": {
+      "type": "container",
+      "color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coords": [
+        0.0,
+        16.0,
+        9.0,
+        0.0
+      ],
+      "children": {
+        "map-container": {
+          "type": "game-map",
+          "color": [
+            0.0,
+            0.2,
+            0.0
+          ],
+          "coords": [
+            2.0,
+            11.0,
+            9.0,
+            0.0
+          ]
+        },
+        "menu-container": {
+          "type": "container",
+          "color": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "coords": [
+            11.0,
+            16.0,
+            9.0,
+            0.0
+          ],
+          "children": {
+            "escape-button": {
+              "type": "button",
+              "color": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "coords": [
+                15.0,
+                15.5,
+                1.0,
+                0.5
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "initialScreen": "settings-screen",
+  "internalWidth": 16,
+  "internalHeight": 9
+}
