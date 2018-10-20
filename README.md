@@ -2,7 +2,7 @@
 
 ### Семестровое задание по предмету "Технологии программирования"
 
-[![Build Status](https://travis-ci.com/ftvkyo2011-study/pt-strategy.svg?branch=master)](https://travis-ci.com/ftvkyo2011-study/pt-strategy)
+[![Build Status](https://travis-ci.com/ftvkyo/pt-strategy.svg?branch=master)](https://travis-ci.com/ftvkyo2011-study/pt-strategy)
 
 **У этого репозитория есть раздел Wiki с дополнительной информацией.**
 
